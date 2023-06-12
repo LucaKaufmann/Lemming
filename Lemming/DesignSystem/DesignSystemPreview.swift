@@ -70,7 +70,7 @@ struct DesignSystemPreview: View {
                 
             }.buttonStyle(LemmingButton(style: .secondary))
             
-            Button("Secondary button") {
+            Button("Destructive button") {
                 
             }.buttonStyle(LemmingButton(style: .destruction))
             Spacer()

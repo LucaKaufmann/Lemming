@@ -12,7 +12,10 @@ import ComposableArchitecture
 struct LemmingApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView(store: Store(initialState: RootFeature.State(posts: "Post ", account: "account", search: "search", settings: "settings"), reducer: RootFeature()))
+            RootView(store: Store(initialState: RootFeature.State(posts: .init(posts: PostModel.mockPosts),
+                                                                  account: "account",
+                                                                  search: "search",
+                                                                  settings: "settings"), reducer: RootFeature()))
         }
     }
 }

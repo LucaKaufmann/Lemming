@@ -16,6 +16,10 @@
 		819217212A37059E0015BEF3 /* LemmingDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819217202A37059E0015BEF3 /* LemmingDesignSystem.swift */; };
 		819217242A37093E0015BEF3 /* DesignSystemPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819217232A37093E0015BEF3 /* DesignSystemPreview.swift */; };
 		819217262A370BE70015BEF3 /* LemmingButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819217252A370BE70015BEF3 /* LemmingButtons.swift */; };
+		819217292A3732E10015BEF3 /* PostsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819217282A3732E10015BEF3 /* PostsFeature.swift */; };
+		8192172C2A3734F20015BEF3 /* PostsFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192172B2A3734F20015BEF3 /* PostsFeatureView.swift */; };
+		8192172E2A3735B80015BEF3 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192172D2A3735B80015BEF3 /* PostModel.swift */; };
+		819217302A3737410015BEF3 /* PostsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192172F2A3737410015BEF3 /* PostsRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		819217202A37059E0015BEF3 /* LemmingDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmingDesignSystem.swift; sourceTree = "<group>"; };
 		819217232A37093E0015BEF3 /* DesignSystemPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemPreview.swift; sourceTree = "<group>"; };
 		819217252A370BE70015BEF3 /* LemmingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmingButtons.swift; sourceTree = "<group>"; };
+		819217282A3732E10015BEF3 /* PostsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeature.swift; sourceTree = "<group>"; };
+		8192172B2A3734F20015BEF3 /* PostsFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeatureView.swift; sourceTree = "<group>"; };
+		8192172D2A3735B80015BEF3 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		8192172F2A3737410015BEF3 /* PostsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,13 +70,15 @@
 		8192170A2A364A950015BEF3 /* Lemming */ = {
 			isa = PBXGroup;
 			children = (
+				8192172A2A37334F0015BEF3 /* Models */,
+				819217272A3732D00015BEF3 /* Posts */,
 				819217222A3708F70015BEF3 /* DesignSystem */,
 				8192170B2A364A950015BEF3 /* LemmingApp.swift */,
+				8192171E2A364B790015BEF3 /* RootFeature.swift */,
 				8192170D2A364A950015BEF3 /* RootView.swift */,
 				8192170F2A364A960015BEF3 /* Assets.xcassets */,
 				819217112A364A960015BEF3 /* Lemming.entitlements */,
 				819217122A364A960015BEF3 /* Preview Content */,
-				8192171E2A364B790015BEF3 /* RootFeature.swift */,
 			);
 			path = Lemming;
 			sourceTree = "<group>";
@@ -89,6 +99,24 @@
 				819217252A370BE70015BEF3 /* LemmingButtons.swift */,
 			);
 			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		819217272A3732D00015BEF3 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				819217282A3732E10015BEF3 /* PostsFeature.swift */,
+				8192172B2A3734F20015BEF3 /* PostsFeatureView.swift */,
+				8192172F2A3737410015BEF3 /* PostsRowView.swift */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		8192172A2A37334F0015BEF3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8192172D2A3735B80015BEF3 /* PostModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,9 +196,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				819217212A37059E0015BEF3 /* LemmingDesignSystem.swift in Sources */,
+				8192172E2A3735B80015BEF3 /* PostModel.swift in Sources */,
+				8192172C2A3734F20015BEF3 /* PostsFeatureView.swift in Sources */,
 				819217262A370BE70015BEF3 /* LemmingButtons.swift in Sources */,
+				819217292A3732E10015BEF3 /* PostsFeature.swift in Sources */,
 				8192170E2A364A950015BEF3 /* RootView.swift in Sources */,
 				819217242A37093E0015BEF3 /* DesignSystemPreview.swift in Sources */,
+				819217302A3737410015BEF3 /* PostsRowView.swift in Sources */,
 				8192171F2A364B790015BEF3 /* RootFeature.swift in Sources */,
 				8192170C2A364A950015BEF3 /* LemmingApp.swift in Sources */,
 			);

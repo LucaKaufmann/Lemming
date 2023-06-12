@@ -15,6 +15,10 @@ extension Color {
             return Color("primaryColor")
         }
         
+        public static var primaryOnBackground: Color {
+            return Color("primaryOnBackground")
+        }
+        
         public static var secondary: Color {
             return Color("secondaryColor")
         }

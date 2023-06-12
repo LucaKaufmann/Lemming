@@ -24,9 +24,6 @@ public struct LemmingButton: ButtonStyle {
     let iconName: String?
     
     private let buttonPadding: CGFloat = 10
-    private let imageWidth: CGFloat = 24
-    private let imageHeight: CGFloat = 24
-
     private let cornerRadius: CGFloat = 12
     
     public func makeBody(configuration: Configuration) -> some View {

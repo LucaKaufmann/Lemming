@@ -15,7 +15,7 @@ struct RootFeature: ReducerProtocol {
     }
     
     struct State: Equatable {
-        var posts: String
+        var posts: PostsFeature.State
         var account: String
         var search: String
         var settings: String
@@ -25,6 +25,7 @@ struct RootFeature: ReducerProtocol {
     
     enum Action: Equatable {
         case selectedTabChanged(Tab)
+        case posts(PostsFeature.Action)
     }
     
     var body: some ReducerProtocolOf<Self> {
@@ -32,6 +33,8 @@ struct RootFeature: ReducerProtocol {
             switch action {
                 case .selectedTabChanged(let tab):
                     state.selectedTab = tab
+                    return .none
+                default:
                     return .none
             }
         }
