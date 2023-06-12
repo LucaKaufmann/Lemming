@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct LemmingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView(store: Store(initialState: RootFeature.State(posts: "Post ", account: "account", search: "search", settings: "settings"), reducer: RootFeature()))
         }
     }
 }
