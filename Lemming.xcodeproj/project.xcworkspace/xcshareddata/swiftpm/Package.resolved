@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "lemmy-swift-client",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rrainn/Lemmy-Swift-Client.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "07907915a1b08bf83e7097a6a1264640a9139105"
+      }
+    },
+    {
       "identity" : "swift-case-paths",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-case-paths",

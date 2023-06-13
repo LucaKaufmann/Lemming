@@ -13,23 +13,26 @@ struct RootView: View {
     let store: StoreOf<RootFeature>
     
     var body: some View {
-        WithViewStore(self.store, observe: \.selectedTab) { viewStore in
-            TabView(selection: viewStore.binding(send: RootFeature.Action.selectedTabChanged)) {
-                PostsFeatureView(store: store.scope(state: \.posts, action: RootFeature.Action.posts))
-                    .tabItem { Text("Posts") }
-                    .tag(RootFeature.Tab.posts)
-                
-                Text("Account")
-                    .tabItem { Text("Account") }
-                    .tag(RootFeature.Tab.account)
-                
-                Text("Search")
-                    .tabItem { Text("Search") }
-                    .tag(RootFeature.Tab.search)
-                
-                Text("Settings")
-                .tabItem { Text("Settings") }
-                .tag(RootFeature.Tab.settings)
+        ZStack {
+            WithViewStore(self.store, observe: \.selectedTab) { viewStore in
+                Color.red.ignoresSafeArea()
+                TabView(selection: viewStore.binding(send: RootFeature.Action.selectedTabChanged)) {
+                    PostsFeatureView(store: store.scope(state: \.posts, action: RootFeature.Action.posts))
+                        .tabItem { Text("Posts") }
+                        .tag(RootFeature.Tab.posts)
+                    
+                    Text("Account")
+                        .tabItem { Text("Account") }
+                        .tag(RootFeature.Tab.account)
+                    
+                    Text("Search")
+                        .tabItem { Text("Search") }
+                        .tag(RootFeature.Tab.search)
+                    
+                    Text("Settings")
+                        .tabItem { Text("Settings") }
+                        .tag(RootFeature.Tab.settings)
+                }
             }
         }
     }

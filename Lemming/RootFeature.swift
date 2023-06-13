@@ -38,5 +38,8 @@ struct RootFeature: ReducerProtocol {
                     return .none
             }
         }
+        Scope(state: \.posts, action: /Action.posts) {
+            PostsFeature()
+        }
     }
 }

@@ -8,6 +8,9 @@
 import ComposableArchitecture
 
 struct PostsFeature: ReducerProtocol {
+    
+    @Dependency(\.postService) var postService
+    
     struct State: Equatable {
         var posts: [PostModel]
     }
@@ -19,7 +22,16 @@ struct PostsFeature: ReducerProtocol {
     
     var body: some ReducerProtocolOf<Self> {
         Reduce { state, action in
-            return .none
+            switch action {
+                case .refreshPosts:
+                    return .task {
+                        let posts = await postService.getPosts()
+                        return .updateWithPosts(posts)
+                    }
+                case .updateWithPosts(let posts):
+                    state.posts = posts
+                    return .none
+            }
         }
     }
 }
