@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct PostsRowView: View {
     
@@ -15,12 +16,19 @@ struct PostsRowView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 12) {
-                Text(post.title)
+                HStack(alignment: .bottom) {
+                    Text(post.title)
+                }
                 Spacer()
                 HStack {
                     Text(post.community)
+                    Text(post.timestampDescription)
+                        .font(.caption)
+                        .foregroundColor(Color("lemmingGray"))
                     Spacer()
-                        .frame(minWidth: 50)
+                        .frame(width: 25)
+//                    Spacer()
+//                        .frame(minWidth: 50)
                     Text("\(post.numberOfUpvotes) \(Image(systemName: "arrowtriangle.up"))")
                     Text("\(post.numberOfComments) \(Image(systemName: "bubble.right"))")
                         .foregroundColor(Color.LemmingColors.primaryOnBackground)
@@ -28,9 +36,10 @@ struct PostsRowView: View {
                 .font(.footnote)
                 .foregroundColor(Color("lemmingOrange"))
             }
+            Spacer()
             if showThumbnail {
                 if let thumbnailUrl = post.thumbnail_url {
-                    AsyncImage(url: thumbnailUrl) { phase in
+                    CachedAsyncImage(url: thumbnailUrl) { phase in
                         if let image = phase.image {
                             image
                                 .resizable()
@@ -39,12 +48,12 @@ struct PostsRowView: View {
                                     .clipped()
                         } else if phase.error != nil {
                             Color.red
+                                .frame(width: 75)
                         } else {
                             ProgressView()
+                                .frame(width: 75)
                         }
                     }
-                } else {
-                    Spacer().frame(width: 75)
                 }
             }
         }.padding()

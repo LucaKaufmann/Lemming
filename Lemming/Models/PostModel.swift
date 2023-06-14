@@ -20,7 +20,8 @@ struct PostModel: Equatable, Identifiable, Hashable {
     let community: String
     let numberOfUpvotes: Int
     let numberOfComments: Int
-    let timestamp: Date
+    let timestamp: Date?
+    let timestampDescription: String
     let user: String
     
     static var mockPosts: [PostModel] {
@@ -36,6 +37,7 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               numberOfUpvotes: 420420,
                               numberOfComments: 1337,
                               timestamp: Date(),
+                              timestampDescription: "1min ago",
                               user: "Admin")
         let post2 = PostModel(id: 2,
                               title: "Another mock post",
@@ -69,6 +71,7 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               numberOfUpvotes: 123,
                               numberOfComments: 1,
                               timestamp: Date(),
+                              timestampDescription: "1hr ago",
                               user: "Codable")
         let post3 = PostModel(id: 3,
                               title: "How are they so cute?",
@@ -82,6 +85,7 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
                               timestamp: Date(),
+                              timestampDescription: "1d ago",
                               user: "LemmingFan123")
         
         return [post1, post2, post3]

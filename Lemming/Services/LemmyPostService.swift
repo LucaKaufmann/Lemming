@@ -7,18 +7,14 @@
 
 import Foundation
 import Lemmy_Swift_Client
+import ComposableArchitecture
 
 struct LemmyPostService: PostService {
     
-    let dateFormatter: DateFormatter
-    
-    init() {
-        dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-ddTHH:MM:SS"
-    }
+    @Dependency(\.dateFormatterService) var dateFormatterService
     
     func getPosts(page: Int = 0) async -> [PostModel] {
-        if let url = URL(string: "https://lemmy.ml/api/v3") {
+        if let url = URL(string: "https://sh.itjust.works/api/v3") {
             // Create an instance of the Lemmy API with the base URL of your Lemmy instance
             let api = LemmyAPI(baseUrl: url)
 
@@ -30,6 +26,8 @@ struct LemmyPostService: PostService {
                 let response = try await api.request(request)
                 return response.posts.map { postView in
                     let post = postView.post
+                    print(post.published)
+                    let timestamp = dateFormatterService.date(from: post.published ?? "")
                     return PostModel(id: post.id,
                                      title: post.name,
                                      body: post.body,
@@ -41,7 +39,8 @@ struct LemmyPostService: PostService {
                                      community: postView.community.name,
                                      numberOfUpvotes: postView.counts.upvotes,
                                      numberOfComments: postView.counts.comments,
-                                     timestamp: dateFormatter.date(from: post.updated ?? "") ?? .now,
+                                     timestamp: timestamp,
+                                     timestampDescription: dateFormatterService.relativeDateTimeDescription(for: timestamp),
                                      user: postView.creator.name)
                 }
             } catch {

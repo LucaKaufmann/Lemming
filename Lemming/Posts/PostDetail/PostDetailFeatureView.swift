@@ -9,15 +9,17 @@ import SwiftUI
 import ComposableArchitecture
 
 struct PostDetailFeatureView: View {
-    
+        
     let store: StoreOf<PostDetailFeature>
     
     
     struct ViewState: Equatable {
         let post: PostModel
+        let comments: [CommentModel]
         
         init(state: PostDetailFeature.State) {
             self.post = state.post
+            self.comments = state.comments
         }
     }
     
@@ -25,6 +27,8 @@ struct PostDetailFeatureView: View {
         WithViewStore(store, observe: ViewState.init) { viewStore in
             ScrollView {
                 VStack {
+                    PostsRowView(post: viewStore.post, showThumbnail: false)
+                    Divider()
                     if let imageUrl = viewStore.post.url {
                         AsyncImage(url: imageUrl) { phase in
                             if let image = phase.image {
@@ -39,16 +43,17 @@ struct PostDetailFeatureView: View {
                         }
                     }
                     if let body = viewStore.post.body {
-                        Text(body)
+                        Text(body).padding()
                     }
-                    PostsRowView(post: viewStore.post, showThumbnail: false)
-//                    HStack {
-//                        Text("In \(viewStore.post.community)")
-//                        Text("- \(viewStore.post.user)")
-//
-//                    }
-//                    .padding()
                 }
+                Divider()
+                LazyVStack {
+                    ForEach(viewStore.comments) { comment in
+                        Text(comment.content)
+                    }
+                }
+            }.onAppear {
+                viewStore.send(.onAppear)
             }
         }
     }
@@ -87,7 +92,8 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               community: "swift",
                               numberOfUpvotes: 123,
                               numberOfComments: 1,
-                              timestamp: Date(),
+                                 timestamp: Date(),
+                                 timestampDescription: "1d ago",
                               user: "Codable")
         let imagePost = PostModel(id: 3,
                               title: "How are they so cute?",
@@ -100,7 +106,8 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               community: "lemmings",
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
-                              timestamp: Date(),
+                                  timestamp: Date(),
+                                  timestampDescription: "1hr ago",
                               user: "LemmingFan123")
         let imageErrorPost = PostModel(id: 3,
                               title: "How are they so cute?",
@@ -113,13 +120,14 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               community: "lemmings",
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
-                              timestamp: Date(),
+                                       timestamp: Date(),
+                                       timestampDescription: "now",
                               user: "LemmingFan123")
-        PostDetailFeatureView(store: Store(initialState: .init(post: textPost), reducer: PostDetailFeature()))
+        PostDetailFeatureView(store: Store(initialState: .init(post: textPost, comments: []), reducer: PostDetailFeature()))
             .previewDisplayName("Text post")
-        PostDetailFeatureView(store: Store(initialState: .init(post: imagePost), reducer: PostDetailFeature()))
+        PostDetailFeatureView(store: Store(initialState: .init(post: imagePost, comments: []), reducer: PostDetailFeature()))
             .previewDisplayName("Image post")
-        PostDetailFeatureView(store: Store(initialState: .init(post: imageErrorPost), reducer: PostDetailFeature()))
+        PostDetailFeatureView(store: Store(initialState: .init(post: imageErrorPost, comments: []), reducer: PostDetailFeature()))
             .previewDisplayName("Image error post")
     }
 }
