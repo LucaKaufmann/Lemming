@@ -49,7 +49,8 @@ struct PostDetailFeatureView: View {
                 Divider()
                 LazyVStack {
                     ForEach(viewStore.comments) { comment in
-                        Text(comment.content)
+                        CommentDetailView(comment: comment)
+                        Divider()
                     }
                 }
             }.onAppear {

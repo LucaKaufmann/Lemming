@@ -15,10 +15,17 @@ struct CommentDetailView: View {
         VStack(alignment: .leading) {
             HStack {
                 Text(comment.user)
-                Text("")
+                    .foregroundColor(Color("lemmingGrayDark"))
+                Spacer()
+                Text("\(Image(systemName: IconConstants.score)) \(comment.score)")
+                    .foregroundColor(Color("lemmingOrange"))
+                Text("\(Image(systemName: IconConstants.upvote)) \(comment.upvotes)")
+                    .foregroundColor(Color("lemmingOrange"))
+                Text("\(Image(systemName: IconConstants.downvote)) \(comment.downvotes)")
+                    .foregroundColor(Color.LemmingColors.error)
             }.font(.caption)
             Text(comment.content)
-        }
+        }.padding()
     }
 }
 

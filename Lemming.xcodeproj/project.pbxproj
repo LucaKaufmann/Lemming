@@ -31,6 +31,7 @@
 		81B982E82A39E10800D2A3F7 /* DateFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982E72A39E10800D2A3F7 /* DateFormatterService.swift */; };
 		81B982EB2A39E88600D2A3F7 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 81B982EA2A39E88600D2A3F7 /* CachedAsyncImage */; };
 		81B982EE2A39E89900D2A3F7 /* URLCache+imageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982ED2A39E89900D2A3F7 /* URLCache+imageCache.swift */; };
+		81B982F12A3A40AF00D2A3F7 /* IconConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982F02A3A40AF00D2A3F7 /* IconConstants.swift */; };
 		81F7020F2A386D3600484D6F /* Lemmy-Swift-Client in Frameworks */ = {isa = PBXBuildFile; productRef = 81F7020E2A386D3600484D6F /* Lemmy-Swift-Client */; };
 		81F702122A386F3200484D6F /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702112A386F3200484D6F /* PostService.swift */; };
 		81F702142A386F5300484D6F /* LemmyPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702132A386F5300484D6F /* LemmyPostService.swift */; };
@@ -62,6 +63,7 @@
 		81B982E52A39E08300D2A3F7 /* RelativeDateTimeFormatterDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeDateTimeFormatterDependency.swift; sourceTree = "<group>"; };
 		81B982E72A39E10800D2A3F7 /* DateFormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterService.swift; sourceTree = "<group>"; };
 		81B982ED2A39E89900D2A3F7 /* URLCache+imageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLCache+imageCache.swift"; sourceTree = "<group>"; };
+		81B982F02A3A40AF00D2A3F7 /* IconConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconConstants.swift; sourceTree = "<group>"; };
 		81F702112A386F3200484D6F /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		81F702132A386F5300484D6F /* LemmyPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyPostService.swift; sourceTree = "<group>"; };
 		81F702162A38700000484D6F /* PostServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceDependency.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		8192170A2A364A950015BEF3 /* Lemming */ = {
 			isa = PBXGroup;
 			children = (
+				81B982EF2A3A409D00D2A3F7 /* Constants */,
 				81B982EC2A39E88C00D2A3F7 /* Extensions */,
 				81F702152A386FED00484D6F /* Dependencies */,
 				81F702102A386F1B00484D6F /* Services */,
@@ -170,6 +173,14 @@
 				81B982ED2A39E89900D2A3F7 /* URLCache+imageCache.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		81B982EF2A3A409D00D2A3F7 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				81B982F02A3A40AF00D2A3F7 /* IconConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		81F702102A386F1B00484D6F /* Services */ = {
@@ -294,6 +305,7 @@
 				8192170E2A364A950015BEF3 /* RootView.swift in Sources */,
 				819217242A37093E0015BEF3 /* DesignSystemPreview.swift in Sources */,
 				81F702142A386F5300484D6F /* LemmyPostService.swift in Sources */,
+				81B982F12A3A40AF00D2A3F7 /* IconConstants.swift in Sources */,
 				819217302A3737410015BEF3 /* PostsRowView.swift in Sources */,
 				8192171F2A364B790015BEF3 /* RootFeature.swift in Sources */,
 				8192170C2A364A950015BEF3 /* LemmingApp.swift in Sources */,
