@@ -14,9 +14,11 @@ struct PostsFeatureView: View {
     
     struct ViewState: Equatable {
         let posts: [PostModel]
+        let isLoading: Bool
         
         init(state: PostsFeature.State) {
             self.posts = state.posts
+            self.isLoading = state.isLoading
         }
     }
     
@@ -25,8 +27,13 @@ struct PostsFeatureView: View {
             NavigationStack {
                 ScrollView {
                     LazyVStack {
-                        ForEach(viewStore.posts) { post in
+                        ForEach(Array(viewStore.posts.enumerated()), id: \.element) { index, post in
                             PostsRowView(post: post)
+                                .onAppear {
+                                    if index == viewStore.posts.count - 3 && !viewStore.isLoading {
+                                        viewStore.send(.loadNextPage)
+                                    }
+                                }
                             Divider()
                         }
                     }
@@ -50,6 +57,6 @@ struct PostsFeatureView: View {
 
 struct PostsFeatureView_Previews: PreviewProvider {
     static var previews: some View {
-        PostsFeatureView(store: Store(initialState: PostsFeature.State(posts: PostModel.mockPosts), reducer: PostsFeature()))
+        PostsFeatureView(store: Store(initialState: PostsFeature.State(posts: PostModel.mockPosts, currentPage: 0, isLoading: false), reducer: PostsFeature()))
     }
 }

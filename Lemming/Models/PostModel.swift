@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct PostModel: Equatable, Identifiable, Codable {
-    let id = UUID()
+struct PostModel: Equatable, Identifiable, Hashable {
+    let id: Int
     
     let title: String
     let community: String
@@ -18,9 +18,9 @@ struct PostModel: Equatable, Identifiable, Codable {
     let user: String
     
     static var mockPosts: [PostModel] {
-        let post1 = PostModel(title: "[Megathread] Reddit going dark", community: "lemmy", numberOfUpvotes: 420420, numberOfComments: 1337, timestamp: Date(), user: "Admin")
-        let post2 = PostModel(title: "Another mock post", community: "swift", numberOfUpvotes: 123, numberOfComments: 1, timestamp: Date(), user: "Codable")
-        let post3 = PostModel(title: "How are they so cute?", community: "lemmings", numberOfUpvotes: 1, numberOfComments: 0, timestamp: Date(), user: "LemmingFan123")
+        let post1 = PostModel(id: 1, title: "[Megathread] Reddit going dark", community: "lemmy", numberOfUpvotes: 420420, numberOfComments: 1337, timestamp: Date(), user: "Admin")
+        let post2 = PostModel(id: 2, title: "Another mock post", community: "swift", numberOfUpvotes: 123, numberOfComments: 1, timestamp: Date(), user: "Codable")
+        let post3 = PostModel(id: 3, title: "How are they so cute?", community: "lemmings", numberOfUpvotes: 1, numberOfComments: 0, timestamp: Date(), user: "LemmingFan123")
         
         return [post1, post2, post3]
     }

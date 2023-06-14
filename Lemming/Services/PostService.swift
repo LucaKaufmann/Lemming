@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PostService {
-    func getPosts() async -> [PostModel] 
+    func getPosts(page: Int) async -> [PostModel] 
 }

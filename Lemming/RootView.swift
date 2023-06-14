@@ -40,9 +40,9 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView(store: Store(initialState: RootFeature.State(posts: .init(posts: PostModel.mockPosts),
+        RootView(store: Store(initialState: RootFeature.State(posts: .init(posts: PostModel.mockPosts, currentPage: 0, isLoading: false),
                                                               account: "account",
                                                               search: "search",
-                                                              settings: "settings"), reducer: RootFeature()))
+                                                              settings: "settings"), reducer: RootFeature()._printChanges()))
     }
 }
