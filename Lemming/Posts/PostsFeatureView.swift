@@ -28,7 +28,7 @@ struct PostsFeatureView: View {
                 ScrollView {
                     LazyVStack {
                         ForEach(Array(viewStore.posts.enumerated()), id: \.element) { index, post in
-                            PostsRowView(post: post)
+                            PostsRowView(post: post, showThumbnail: true)
                                 .onAppear {
                                     if index == viewStore.posts.count - 3 && !viewStore.isLoading {
                                         viewStore.send(.loadNextPage)
@@ -38,7 +38,10 @@ struct PostsFeatureView: View {
                         }
                     }
                 }.background {
-                    Color.LemmingColors.background.ignoresSafeArea()
+                    Color
+                        .LemmingColors
+                        .background
+                        .ignoresSafeArea()
                 }
                 .onAppear {
                     viewStore.send(.refreshPosts)

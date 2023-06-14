@@ -30,9 +30,14 @@ struct LemmyPostService: PostService {
                 let response = try await api.request(request)
                 return response.posts.map { postView in
                     let post = postView.post
-                    print(post.id)
                     return PostModel(id: post.id,
                                      title: post.name,
+                                     body: post.body,
+                                     embed_description: post.embed_description,
+                                     embed_title: post.embed_title,
+                                     embed_video_url: URL(string: post.embed_video_url ?? ""),
+                                     thumbnail_url: URL(string: post.thumbnail_url ?? ""),
+                                     url: URL(string: post.url ?? ""),
                                      community: postView.community.name,
                                      numberOfUpvotes: postView.counts.upvotes,
                                      numberOfComments: postView.counts.comments,

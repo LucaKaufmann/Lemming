@@ -10,6 +10,7 @@ import SwiftUI
 struct PostsRowView: View {
     
     let post: PostModel
+    let showThumbnail: Bool
     
     var body: some View {
         HStack {
@@ -19,7 +20,7 @@ struct PostsRowView: View {
                 HStack {
                     Text(post.community)
                     Spacer()
-                        .frame(width: 50)
+                        .frame(minWidth: 50)
                     Text("\(post.numberOfUpvotes) \(Image(systemName: "arrowtriangle.up"))")
                     Text("\(post.numberOfComments) \(Image(systemName: "bubble.right"))")
                         .foregroundColor(Color.LemmingColors.primaryOnBackground)
@@ -27,9 +28,25 @@ struct PostsRowView: View {
                 .font(.footnote)
                 .foregroundColor(Color("lemmingOrange"))
             }
-
-            Spacer()
-//                .frame(width: 75)
+            if showThumbnail {
+                if let thumbnailUrl = post.thumbnail_url {
+                    AsyncImage(url: thumbnailUrl) { phase in
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 60, height: 60, alignment: .center)
+                                    .clipped()
+                        } else if phase.error != nil {
+                            Color.red
+                        } else {
+                            ProgressView()
+                        }
+                    }
+                } else {
+                    Spacer().frame(width: 75)
+                }
+            }
         }.padding()
     }
 }
@@ -37,7 +54,12 @@ struct PostsRowView: View {
 
 struct PostsRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PostsRowView(post: PostModel.mockPosts.first!)
+        PostsRowView(post: PostModel.mockPosts.first!, showThumbnail: false)
+            .frame(height: 75)
+            .background {
+                Color.LemmingColors.background
+            }
+        PostsRowView(post: PostModel.mockPosts[2], showThumbnail: true)
             .frame(height: 75)
             .background {
                 Color.LemmingColors.background
