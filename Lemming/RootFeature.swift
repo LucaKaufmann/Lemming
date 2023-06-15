@@ -15,7 +15,7 @@ struct RootFeature: ReducerProtocol {
     }
     
     struct State: Equatable {
-        var posts: PostsFeature.State
+        var posts: PostsRootFeature.State
         var account: String
         var search: String
         var settings: String
@@ -25,7 +25,7 @@ struct RootFeature: ReducerProtocol {
     
     enum Action: Equatable {
         case selectedTabChanged(Tab)
-        case posts(PostsFeature.Action)
+        case posts(PostsRootFeature.Action)
     }
     
     var body: some ReducerProtocolOf<Self> {
@@ -39,7 +39,7 @@ struct RootFeature: ReducerProtocol {
             }
         }
         Scope(state: \.posts, action: /Action.posts) {
-            PostsFeature()
+            PostsRootFeature()
         }
     }
 }

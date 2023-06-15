@@ -18,15 +18,29 @@ struct PostsFeature: ReducerProtocol {
     }
     
     enum Action: Equatable {
+        case onAppear
         case refreshPosts
         case loadNextPage
         case appendPosts([PostModel])
         case updateWithPosts([PostModel])
+        case tappedOnPost(PostModel)
+
+        case delegate(Delegate)
+        
+        enum Delegate: Equatable {
+          case goToPost(PostModel)
+        }
     }
     
     var body: some ReducerProtocolOf<Self> {
         Reduce { state, action in
             switch action {
+                case .onAppear:
+                    if state.posts.isEmpty {
+                        return .send(.refreshPosts)
+                    }
+                    
+                    return .none
                 case .refreshPosts:
                     state.isLoading = true
                     state.currentPage = 1
@@ -54,6 +68,11 @@ struct PostsFeature: ReducerProtocol {
                     state.posts.append(contentsOf: posts)
                     state.isLoading = false
                     state.currentPage += 1
+                    return .none
+                    
+                case .tappedOnPost(let post):
+                    return .send(.delegate(.goToPost(post)))
+                case .delegate(_):
                     return .none
             }
         }

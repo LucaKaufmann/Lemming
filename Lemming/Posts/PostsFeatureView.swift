@@ -24,33 +24,34 @@ struct PostsFeatureView: View {
     
     var body: some View {
         WithViewStore(store, observe: ViewState.init ) { viewStore in
-            NavigationStack {
-                ScrollView {
-                    LazyVStack {
-                        ForEach(Array(viewStore.posts.enumerated()), id: \.element) { index, post in
-                            PostsRowView(post: post, showThumbnail: true)
-                                .onAppear {
-                                    if index == viewStore.posts.count - 3 && !viewStore.isLoading {
-                                        viewStore.send(.loadNextPage)
-                                    }
+            ScrollView {
+                LazyVStack {
+                    ForEach(Array(viewStore.posts.enumerated()), id: \.element) { index, post in
+                        PostsRowView(post: post, showThumbnail: true)
+                            .onAppear {
+                                if index == viewStore.posts.count - 3 && !viewStore.isLoading {
+                                    viewStore.send(.loadNextPage)
                                 }
-                            Divider()
-                        }
+                            }
+                            .onTapGesture {
+                                viewStore.send(.tappedOnPost(post))
+                            }
+                        Divider()
                     }
-                }.background {
-                    Color
-                        .LemmingColors
-                        .background
-                        .ignoresSafeArea()
                 }
-                .onAppear {
-                    viewStore.send(.refreshPosts)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Refresh") {
-                            viewStore.send(.refreshPosts)
-                        }
+            }.background {
+                Color
+                    .LemmingColors
+                    .background
+                    .ignoresSafeArea()
+            }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Refresh") {
+                        viewStore.send(.refreshPosts)
                     }
                 }
             }

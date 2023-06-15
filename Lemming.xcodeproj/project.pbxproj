@@ -32,6 +32,8 @@
 		81B982EB2A39E88600D2A3F7 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 81B982EA2A39E88600D2A3F7 /* CachedAsyncImage */; };
 		81B982EE2A39E89900D2A3F7 /* URLCache+imageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982ED2A39E89900D2A3F7 /* URLCache+imageCache.swift */; };
 		81B982F12A3A40AF00D2A3F7 /* IconConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982F02A3A40AF00D2A3F7 /* IconConstants.swift */; };
+		81B982F32A3A5DBA00D2A3F7 /* PostsRootFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982F22A3A5DBA00D2A3F7 /* PostsRootFeature.swift */; };
+		81B982F52A3A5E1600D2A3F7 /* PostsRootFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982F42A3A5E1600D2A3F7 /* PostsRootFeatureView.swift */; };
 		81F7020F2A386D3600484D6F /* Lemmy-Swift-Client in Frameworks */ = {isa = PBXBuildFile; productRef = 81F7020E2A386D3600484D6F /* Lemmy-Swift-Client */; };
 		81F702122A386F3200484D6F /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702112A386F3200484D6F /* PostService.swift */; };
 		81F702142A386F5300484D6F /* LemmyPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702132A386F5300484D6F /* LemmyPostService.swift */; };
@@ -64,6 +66,8 @@
 		81B982E72A39E10800D2A3F7 /* DateFormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterService.swift; sourceTree = "<group>"; };
 		81B982ED2A39E89900D2A3F7 /* URLCache+imageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLCache+imageCache.swift"; sourceTree = "<group>"; };
 		81B982F02A3A40AF00D2A3F7 /* IconConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconConstants.swift; sourceTree = "<group>"; };
+		81B982F22A3A5DBA00D2A3F7 /* PostsRootFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRootFeature.swift; sourceTree = "<group>"; };
+		81B982F42A3A5E1600D2A3F7 /* PostsRootFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRootFeatureView.swift; sourceTree = "<group>"; };
 		81F702112A386F3200484D6F /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		81F702132A386F5300484D6F /* LemmyPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyPostService.swift; sourceTree = "<group>"; };
 		81F702162A38700000484D6F /* PostServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceDependency.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				819217282A3732E10015BEF3 /* PostsFeature.swift */,
 				8192172B2A3734F20015BEF3 /* PostsFeatureView.swift */,
 				8192172F2A3737410015BEF3 /* PostsRowView.swift */,
+				81B982F22A3A5DBA00D2A3F7 /* PostsRootFeature.swift */,
+				81B982F42A3A5E1600D2A3F7 /* PostsRootFeatureView.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -290,8 +296,10 @@
 				810E07922A39AA0300CCBDBE /* PostDetailFeature.swift in Sources */,
 				81B982E12A39DA5D00D2A3F7 /* CommentDetailView.swift in Sources */,
 				8192172E2A3735B80015BEF3 /* PostModel.swift in Sources */,
+				81B982F52A3A5E1600D2A3F7 /* PostsRootFeatureView.swift in Sources */,
 				810E07962A39B7F300CCBDBE /* CommentService.swift in Sources */,
 				8192172C2A3734F20015BEF3 /* PostsFeatureView.swift in Sources */,
+				81B982F32A3A5DBA00D2A3F7 /* PostsRootFeature.swift in Sources */,
 				819217262A370BE70015BEF3 /* LemmingButtons.swift in Sources */,
 				819217292A3732E10015BEF3 /* PostsFeature.swift in Sources */,
 				81B982E82A39E10800D2A3F7 /* DateFormatterService.swift in Sources */,

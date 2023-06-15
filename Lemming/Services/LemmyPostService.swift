@@ -26,7 +26,6 @@ struct LemmyPostService: PostService {
                 let response = try await api.request(request)
                 return response.posts.map { postView in
                     let post = postView.post
-                    print(post.published)
                     let timestamp = dateFormatterService.date(from: post.published ?? "")
                     return PostModel(id: post.id,
                                      title: post.name,
