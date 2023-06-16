@@ -34,11 +34,23 @@
 		81B982F12A3A40AF00D2A3F7 /* IconConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982F02A3A40AF00D2A3F7 /* IconConstants.swift */; };
 		81B982F32A3A5DBA00D2A3F7 /* PostsRootFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982F22A3A5DBA00D2A3F7 /* PostsRootFeature.swift */; };
 		81B982F52A3A5E1600D2A3F7 /* PostsRootFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982F42A3A5E1600D2A3F7 /* PostsRootFeatureView.swift */; };
+		81E9A5CD2A3C45DC0014CD86 /* LemmingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E9A5CC2A3C45DC0014CD86 /* LemmingTests.swift */; };
+		81E9A5D42A3C45F00014CD86 /* CommentParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E9A5D32A3C45F00014CD86 /* CommentParsingTests.swift */; };
 		81F7020F2A386D3600484D6F /* Lemmy-Swift-Client in Frameworks */ = {isa = PBXBuildFile; productRef = 81F7020E2A386D3600484D6F /* Lemmy-Swift-Client */; };
 		81F702122A386F3200484D6F /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702112A386F3200484D6F /* PostService.swift */; };
 		81F702142A386F5300484D6F /* LemmyPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702132A386F5300484D6F /* LemmyPostService.swift */; };
 		81F702172A38700000484D6F /* PostServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702162A38700000484D6F /* PostServiceDependency.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		81E9A5CE2A3C45DC0014CD86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 819217002A364A950015BEF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 819217072A364A950015BEF3;
+			remoteInfo = Lemming;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		810E07912A39AA0300CCBDBE /* PostDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailFeature.swift; sourceTree = "<group>"; };
@@ -68,6 +80,10 @@
 		81B982F02A3A40AF00D2A3F7 /* IconConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconConstants.swift; sourceTree = "<group>"; };
 		81B982F22A3A5DBA00D2A3F7 /* PostsRootFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRootFeature.swift; sourceTree = "<group>"; };
 		81B982F42A3A5E1600D2A3F7 /* PostsRootFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRootFeatureView.swift; sourceTree = "<group>"; };
+		81E9A5CA2A3C45DC0014CD86 /* LemmingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LemmingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81E9A5CC2A3C45DC0014CD86 /* LemmingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmingTests.swift; sourceTree = "<group>"; };
+		81E9A5D32A3C45F00014CD86 /* CommentParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentParsingTests.swift; sourceTree = "<group>"; };
+		81E9A5D52A3CD2210014CD86 /* LemmyAPIPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LemmyAPIPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81F702112A386F3200484D6F /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		81F702132A386F5300484D6F /* LemmyPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyPostService.swift; sourceTree = "<group>"; };
 		81F702162A38700000484D6F /* PostServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceDependency.swift; sourceTree = "<group>"; };
@@ -81,6 +97,13 @@
 				81B982EB2A39E88600D2A3F7 /* CachedAsyncImage in Frameworks */,
 				81F7020F2A386D3600484D6F /* Lemmy-Swift-Client in Frameworks */,
 				8192171C2A364AEF0015BEF3 /* ComposableArchitecture in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81E9A5C72A3C45DC0014CD86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				8192170A2A364A950015BEF3 /* Lemming */,
+				81E9A5CB2A3C45DC0014CD86 /* LemmingTests */,
 				819217092A364A950015BEF3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				819217082A364A950015BEF3 /* Lemming.app */,
+				81E9A5CA2A3C45DC0014CD86 /* LemmingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +154,7 @@
 				8192170F2A364A960015BEF3 /* Assets.xcassets */,
 				819217112A364A960015BEF3 /* Lemming.entitlements */,
 				819217122A364A960015BEF3 /* Preview Content */,
+				81E9A5D52A3CD2210014CD86 /* LemmyAPIPlayground.playground */,
 			);
 			path = Lemming;
 			sourceTree = "<group>";
@@ -189,6 +215,15 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		81E9A5CB2A3C45DC0014CD86 /* LemmingTests */ = {
+			isa = PBXGroup;
+			children = (
+				81E9A5CC2A3C45DC0014CD86 /* LemmingTests.swift */,
+				81E9A5D32A3C45F00014CD86 /* CommentParsingTests.swift */,
+			);
+			path = LemmingTests;
+			sourceTree = "<group>";
+		};
 		81F702102A386F1B00484D6F /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +271,24 @@
 			productReference = 819217082A364A950015BEF3 /* Lemming.app */;
 			productType = "com.apple.product-type.application";
 		};
+		81E9A5C92A3C45DC0014CD86 /* LemmingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81E9A5D22A3C45DC0014CD86 /* Build configuration list for PBXNativeTarget "LemmingTests" */;
+			buildPhases = (
+				81E9A5C62A3C45DC0014CD86 /* Sources */,
+				81E9A5C72A3C45DC0014CD86 /* Frameworks */,
+				81E9A5C82A3C45DC0014CD86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81E9A5CF2A3C45DC0014CD86 /* PBXTargetDependency */,
+			);
+			name = LemmingTests;
+			productName = LemmingTests;
+			productReference = 81E9A5CA2A3C45DC0014CD86 /* LemmingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -248,6 +301,10 @@
 				TargetAttributes = {
 					819217072A364A950015BEF3 = {
 						CreatedOnToolsVersion = 14.3;
+					};
+					81E9A5C92A3C45DC0014CD86 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 819217072A364A950015BEF3;
 					};
 				};
 			};
@@ -270,6 +327,7 @@
 			projectRoot = "";
 			targets = (
 				819217072A364A950015BEF3 /* Lemming */,
+				81E9A5C92A3C45DC0014CD86 /* LemmingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -281,6 +339,13 @@
 			files = (
 				819217142A364A960015BEF3 /* Preview Assets.xcassets in Resources */,
 				819217102A364A960015BEF3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81E9A5C82A3C45DC0014CD86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +385,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		81E9A5C62A3C45DC0014CD86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81E9A5D42A3C45F00014CD86 /* CommentParsingTests.swift in Sources */,
+				81E9A5CD2A3C45DC0014CD86 /* LemmingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		81E9A5CF2A3C45DC0014CD86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 819217072A364A950015BEF3 /* Lemming */;
+			targetProxy = 81E9A5CE2A3C45DC0014CD86 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		819217152A364A960015BEF3 /* Debug */ = {
@@ -508,6 +590,47 @@
 			};
 			name = Release;
 		};
+		81E9A5D02A3C45DC0014CD86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6Y9C574C9M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotky.LemmingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lemming.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lemming";
+			};
+			name = Debug;
+		};
+		81E9A5D12A3C45DC0014CD86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6Y9C574C9M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotky.LemmingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lemming.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lemming";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -525,6 +648,15 @@
 			buildConfigurations = (
 				819217182A364A960015BEF3 /* Debug */,
 				819217192A364A960015BEF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81E9A5D22A3C45DC0014CD86 /* Build configuration list for PBXNativeTarget "LemmingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81E9A5D02A3C45DC0014CD86 /* Debug */,
+				81E9A5D12A3C45DC0014CD86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

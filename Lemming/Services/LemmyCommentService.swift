@@ -14,19 +14,12 @@ struct LemmyCommentService: CommentService {
     @Dependency(\.dateFormatterService) var dateFormatterService
     
     func getComments(forPost postId: Int) async -> [CommentModel] {
-        let request = GetCommentsRequest(post_id: postId)
-        // Send the request to the Lemmy API
-        return await getCommentsFromRequest(request)
-    }
-    
-    func getComments(forComment commentId: Int) async -> [CommentModel] {
-        let request = GetCommentsRequest(parent_id: commentId)
-        // Send the request to the Lemmy API
+        let request = GetCommentsRequest(max_depth: 15, post_id: postId, type_: .all)
         return await getCommentsFromRequest(request)
     }
     
     private func getCommentsFromRequest(_ request: GetCommentsRequest) async -> [CommentModel] {
-        let api = LemmyAPI(baseUrl: URL(string: "https://lemmy.ml/api/v3")!)
+        let api = LemmyAPI(baseUrl: URL(string: "https://sh.itjust.works/api/v3")!)
         do {
             let response = try await api.request(request)
             return response.comments.map { commentView in
@@ -37,11 +30,13 @@ struct LemmyCommentService: CommentService {
                                     timestamp: commentTimestamp,
                                     timestampDescription: dateFormatterService.relativeDateTimeDescription(for: commentTimestamp),
                                     user: commentView.creator.name,
+                                    path: comment.path,
                                     child_count: commentView.counts.child_count,
                                     downvotes: commentView.counts.downvotes,
                                     score: commentView.counts.score,
                                     upvotes: commentView.counts.upvotes,
-                                    my_vote: commentView.my_vote)
+                                    my_vote: commentView.my_vote,
+                                    children: [])
             }
         } catch {
             print("Lemmy error \(error)")

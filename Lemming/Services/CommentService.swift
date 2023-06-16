@@ -9,5 +9,4 @@ import Foundation
 
 protocol CommentService {
     func getComments(forPost postId: Int) async -> [CommentModel]
-    func getComments(forComment commentId: Int) async -> [CommentModel]
 }

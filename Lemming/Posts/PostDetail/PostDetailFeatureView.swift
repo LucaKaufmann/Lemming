@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import CachedAsyncImage
 
 struct PostDetailFeatureView: View {
         
@@ -16,10 +17,12 @@ struct PostDetailFeatureView: View {
     struct ViewState: Equatable {
         let post: PostModel
         let comments: [CommentModel]
+        let isLoading: Bool
         
         init(state: PostDetailFeature.State) {
             self.post = state.post
             self.comments = state.comments
+            self.isLoading = state.isLoading
         }
     }
     
@@ -30,7 +33,7 @@ struct PostDetailFeatureView: View {
                     PostsRowView(post: viewStore.post, showThumbnail: false)
                     Divider()
                     if let imageUrl = viewStore.post.url {
-                        AsyncImage(url: imageUrl) { phase in
+                        CachedAsyncImage(url: imageUrl) { phase in
                             if let image = phase.image {
                                 image
                                     .resizable()
@@ -48,8 +51,14 @@ struct PostDetailFeatureView: View {
                 }
                 Divider()
                 LazyVStack {
-                    ForEach(viewStore.comments) { comment in
+                    ForEach(Array(viewStore.comments.enumerated()), id: \.element) { index, comment in
                         CommentDetailView(comment: comment)
+                            .padding()
+//                            .onAppear {
+//                                if index == viewStore.comments.count - 3 && !viewStore.isLoading {
+//                                    viewStore.send(.loadNextPage)
+//                                }
+//                            }
                         Divider()
                     }
                 }
@@ -124,11 +133,11 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                                        timestamp: Date(),
                                        timestampDescription: "now",
                               user: "LemmingFan123")
-        PostDetailFeatureView(store: Store(initialState: .init(post: textPost, comments: []), reducer: PostDetailFeature()))
+        PostDetailFeatureView(store: Store(initialState: .init(post: textPost, currentPage: 1, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Text post")
-        PostDetailFeatureView(store: Store(initialState: .init(post: imagePost, comments: []), reducer: PostDetailFeature()))
+        PostDetailFeatureView(store: Store(initialState: .init(post: imagePost, currentPage: 1, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Image post")
-        PostDetailFeatureView(store: Store(initialState: .init(post: imageErrorPost, comments: []), reducer: PostDetailFeature()))
+        PostDetailFeatureView(store: Store(initialState: .init(post: imageErrorPost, currentPage: 1, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Image error post")
     }
 }

@@ -15,7 +15,7 @@ struct LemmingApp: App {
             RootView(store: Store(initialState: RootFeature.State(posts: .init(posts: .init(posts: [], currentPage: 0, isLoading: false)),
                                                                   account: "account",
                                                                   search: "search",
-                                                                  settings: "settings"), reducer: RootFeature()._printChanges()))
+                                                                  settings: "settings"), reducer: RootFeature()))
         }
     }
 }

@@ -25,12 +25,41 @@ struct CommentDetailView: View {
                     .foregroundColor(Color.LemmingColors.error)
             }.font(.caption)
             Text(comment.content)
-        }.padding()
+            Group {
+                ForEach(comment.children) { childComment in
+                    CommentDetailView(comment: childComment)
+                        .padding(.top)
+                }
+            }.padding(.leading)
+        }
     }
 }
 
 struct CommentDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentDetailView(comment: CommentModel(id: 1, content: "This is a test comment", timestamp: Date(), timestampDescription: "1h ago", user: "Codable", child_count: 3, downvotes: 0, score: 100, upvotes: 1, my_vote: nil))
+        CommentDetailView(comment: CommentModel(id: 1,
+                                                content: "This is a test comment",
+                                                timestamp: Date(),
+                                                timestampDescription: "1h ago",
+                                                user: "Codable",
+                                                path: "",
+                                                child_count: 3, downvotes: 0,
+                                                score: 100,
+                                                upvotes: 1,
+                                                my_vote: nil,
+                                                children: [
+                                                    CommentModel(id: 2,
+                                                                                            content: "This is a child test comment",
+                                                                                            timestamp: Date(),
+                                                                                            timestampDescription: "1h ago",
+                                                                                            user: "Codable",
+                                                                                            path: "",
+                                                                                            child_count: 3, downvotes: 0,
+                                                                                            score: 100,
+                                                                                            upvotes: 1,
+                                                                                            my_vote: nil,
+                                                                                            children: [])
+                                                
+                                                ]))
     }
 }
