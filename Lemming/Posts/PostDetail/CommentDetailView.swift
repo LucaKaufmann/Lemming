@@ -9,10 +9,29 @@ import SwiftUI
 
 struct CommentDetailView: View {
     
+    @State var isExpanded = true
+    
     let comment: CommentModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        DisclosureGroup(isExpanded: $isExpanded) {
+            VStack(alignment: .leading) {
+                Text(comment.content)
+                LazyVStack {
+                    ForEach(comment.children) { childComment in
+                        HStack {
+                            Rectangle()
+                                .fill(Color("primary"))
+                                .frame(width: 2, alignment: .center)
+                                .opacity(childComment.child_count > 0 ? 1 : 0)
+                            CommentDetailView(comment: childComment)
+                        }
+                        .padding(.top)
+                        
+                    }
+                }
+            }
+        } label: {
             HStack {
                 Text(comment.user)
                     .foregroundColor(Color("lemmingGrayDark"))
@@ -23,23 +42,9 @@ struct CommentDetailView: View {
                     .foregroundColor(Color("lemmingOrange"))
                 Text("\(Image(systemName: IconConstants.downvote)) \(comment.downvotes)")
                     .foregroundColor(Color.LemmingColors.error)
-            }.font(.caption)
-            Text(comment.content)
-            Group {
-                ForEach(comment.children) { childComment in
-                    HStack {
-                        Rectangle()
-                                .fill(Color("primary"))
-                                .frame(width: 2, alignment: .center)
-                                .opacity(childComment.child_count > 0 ? 1 : 0)
-                        CommentDetailView(comment: childComment)
-                    }
-                        .padding(.top)
-                        
-                }
             }
-//            .padding(.leading)
-        }
+            .font(.caption)
+        }.accentColor(Color("lemmingOrange"))
     }
 }
 
