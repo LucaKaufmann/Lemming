@@ -15,14 +15,10 @@ struct RootView: View {
     var body: some View {
         ZStack {
             WithViewStore(self.store, observe: \.selectedTab) { viewStore in
-                Color.red.ignoresSafeArea()
                 TabView(selection: viewStore.binding(send: RootFeature.Action.selectedTabChanged)) {
                     PostsRootFeatureView(store: store.scope(state: \.posts, action: RootFeature.Action.posts))
                         .tabItem { Text("Posts") }
                         .tag(RootFeature.Tab.posts)
-//                    PostsFeatureView(store: store.scope(state: \.posts, action: RootFeature.Action.posts))
-//                        .tabItem { Text("Posts") }
-//                        .tag(RootFeature.Tab.posts)
                     
                     Text("Account")
                         .tabItem { Text("Account") }

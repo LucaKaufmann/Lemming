@@ -13,8 +13,8 @@ struct LemmyCommentService: CommentService {
     
     @Dependency(\.dateFormatterService) var dateFormatterService
     
-    func getComments(forPost postId: Int) async -> [CommentModel] {
-        let request = GetCommentsRequest(max_depth: 15, post_id: postId, type_: .all)
+    func getComments(forPost postId: Int, sort: _CommentSortType = .hot, origin: CommentOriginType = .all) async -> [CommentModel] {
+        let request = GetCommentsRequest(max_depth: 15, post_id: postId, sort: CommentSortType(rawValue: sort.rawValue), type_: ListingType(rawValue: origin.rawValue))
         return await getCommentsFromRequest(request)
     }
     

@@ -12,7 +12,7 @@ struct CommentDetailView: View {
     let comment: CommentModel
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             HStack {
                 Text(comment.user)
                     .foregroundColor(Color("lemmingGrayDark"))
@@ -27,10 +27,18 @@ struct CommentDetailView: View {
             Text(comment.content)
             Group {
                 ForEach(comment.children) { childComment in
-                    CommentDetailView(comment: childComment)
+                    HStack {
+                        Rectangle()
+                                .fill(Color("primary"))
+                                .frame(width: 2, alignment: .center)
+                                .opacity(childComment.child_count > 0 ? 1 : 0)
+                        CommentDetailView(comment: childComment)
+                    }
                         .padding(.top)
+                        
                 }
-            }.padding(.leading)
+            }
+//            .padding(.leading)
         }
     }
 }

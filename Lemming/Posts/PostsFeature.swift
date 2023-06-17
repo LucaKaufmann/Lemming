@@ -45,7 +45,7 @@ struct PostsFeature: ReducerProtocol {
                     state.isLoading = true
                     state.currentPage = 1
                     return .task {
-                        let posts = await postService.getPosts(page: 1)
+                        let posts = await postService.getPosts(page: 1, sort: .hot, origin: .all)
                         return .updateWithPosts(posts)
                     }
                 case .loadNextPage:
@@ -53,7 +53,7 @@ struct PostsFeature: ReducerProtocol {
                     let page = state.currentPage + 1
                     let ids = state.posts.map { $0.id }
                     return .task {
-                        let posts = await postService.getPosts(page: page)
+                        let posts = await postService.getPosts(page: page, sort: .hot, origin: .all)
                         let filteredPosts = posts.filter({ !ids.contains($0.id) })
                         return .appendPosts(filteredPosts)
                     }

@@ -38,25 +38,50 @@ struct PostsRowView: View {
             }
             Spacer()
             if showThumbnail {
-                if let thumbnailUrl = post.thumbnail_url {
-                    CachedAsyncImage(url: thumbnailUrl) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 60, height: 60, alignment: .center)
-                                    .clipped()
-                        } else if phase.error != nil {
-                            Color.red
-                                .frame(width: 75)
-                        } else {
-                            ProgressView()
-                                .frame(width: 75)
-                        }
-                    }
-                }
+                ThumbnailView(thumbnailUrl: post.thumbnail_url)
+                    .frame(width: 60, height: 60, alignment: .center)
             }
         }.padding()
+    }
+}
+
+struct ThumbnailView: View {
+    
+    let thumbnailUrl: URL?
+
+    var body: some View {
+        if let thumbnailUrl {
+            CachedAsyncImage(url: thumbnailUrl) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 60, height: 60, alignment: .center)
+                        .clipped()
+                } else if phase.error != nil {
+                    TextPostThumbnail()
+                } else {
+                    ProgressView()
+                }
+            }
+        } else {
+            TextPostThumbnail()
+                .padding(5)
+        }
+    }
+}
+
+struct TextPostThumbnail: View {
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: 8)
+            .stroke(lineWidth: 2)
+            .overlay {
+                Image(systemName: "text.alignleft")
+                    .resizable()
+                    .padding(10)
+            }
+            .foregroundColor(Color("lemmingGray"))
     }
 }
 
@@ -64,6 +89,11 @@ struct PostsRowView: View {
 struct PostsRowView_Previews: PreviewProvider {
     static var previews: some View {
         PostsRowView(post: PostModel.mockPosts.first!, showThumbnail: false)
+            .frame(height: 75)
+            .background {
+                Color.LemmingColors.background
+            }
+        PostsRowView(post: PostModel.mockPosts.first!, showThumbnail: true)
             .frame(height: 75)
             .background {
                 Color.LemmingColors.background

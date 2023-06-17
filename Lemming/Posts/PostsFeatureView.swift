@@ -27,15 +27,24 @@ struct PostsFeatureView: View {
             ScrollView {
                 LazyVStack {
                     ForEach(Array(viewStore.posts.enumerated()), id: \.element) { index, post in
-                        PostsRowView(post: post, showThumbnail: true)
-                            .onAppear {
-                                if index == viewStore.posts.count - 3 && !viewStore.isLoading {
-                                    viewStore.send(.loadNextPage)
+                        Button(action: {
+                            viewStore.send(.tappedOnPost(post))
+                        }, label: {
+                            PostsRowView(post: post, showThumbnail: true)
+                                .contentShape(Rectangle())
+                                .onAppear {
+                                    if index == viewStore.posts.count - 3 && !viewStore.isLoading {
+                                        viewStore.send(.loadNextPage)
+                                    }
                                 }
-                            }
-                            .onTapGesture {
-                                viewStore.send(.tappedOnPost(post))
-                            }
+                        })
+                        .buttonStyle(.plain)
+
+
+    
+//                            .onTapGesture {
+//                                viewStore.send(.tappedOnPost(post))
+//                            }
                         Divider()
                     }
                 }
@@ -49,7 +58,7 @@ struct PostsFeatureView: View {
                 viewStore.send(.onAppear)
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .primaryAction) {
                     Button("Refresh") {
                         viewStore.send(.refreshPosts)
                     }

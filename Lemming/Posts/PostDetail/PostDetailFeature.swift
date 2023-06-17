@@ -14,7 +14,6 @@ struct PostDetailFeature: ReducerProtocol {
     
     struct State: Equatable {
         var post: PostModel
-        var currentPage: Int
         var comments: [CommentModel]
         
         var isLoading: Bool
@@ -25,7 +24,6 @@ struct PostDetailFeature: ReducerProtocol {
         case onAppear
         case buildCommentGraph([CommentModel])
         case updateComments([CommentModel])
-        case loadNextPage
     }
     
     var body: some ReducerProtocolOf<PostDetailFeature> {
@@ -35,19 +33,7 @@ struct PostDetailFeature: ReducerProtocol {
                     let postId = state.post.id
                     state.isLoading = true
                     return .task {
-                        let comments = await commentService.getComments(forPost: postId)
-                        return .buildCommentGraph(comments)
-                    }
-                case .loadNextPage:
-                    state.isLoading = true
-                    let postId = state.post.id
-                    let page = state.currentPage + 1
-                    return .task {
-//                        let posts = await postService.getPosts(page: page)
-//                        let filteredPosts = posts.filter({ !ids.contains($0.id) })
-//                        return .appendPosts(filteredPosts)
-                        
-                        let comments = await commentService.getComments(forPost: postId)
+                        let comments = await commentService.getComments(forPost: postId, sort: .hot, origin: .all)
                         return .buildCommentGraph(comments)
                     }
                 case .tappedUpvote:

@@ -27,7 +27,7 @@ struct PostsRootFeature: ReducerProtocol {
                 case .posts(let action):
                     switch action {
                         case .delegate(.goToPost(let post)):
-                            state.path.append(.detailPost(.init(post: post, currentPage: 1, comments: [], isLoading: false)))
+                            state.path.append(.detailPost(.init(post: post, comments: [], isLoading: false)))
                             return .none
                         default:
                             break

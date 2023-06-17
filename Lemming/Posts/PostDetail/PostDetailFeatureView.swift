@@ -52,17 +52,26 @@ struct PostDetailFeatureView: View {
                 Divider()
                 LazyVStack {
                     ForEach(Array(viewStore.comments.enumerated()), id: \.element) { index, comment in
-                        CommentDetailView(comment: comment)
+                        HStack {
+//                            Spacer()
+                            Rectangle()
+                                    .fill(Color("primary"))
+                                    .frame(width: 2, alignment: .center)
+                                    .opacity(comment.child_count > 0 ? 1 : 0)
+                            CommentDetailView(comment: comment)
+                        }
                             .padding()
-//                            .onAppear {
-//                                if index == viewStore.comments.count - 3 && !viewStore.isLoading {
-//                                    viewStore.send(.loadNextPage)
-//                                }
-//                            }
                         Divider()
                     }
                 }
-            }.onAppear {
+            }
+            .background {
+                Color
+                    .LemmingColors
+                    .background
+                    .ignoresSafeArea()
+            }
+            .onAppear {
                 viewStore.send(.onAppear)
             }
         }
@@ -133,11 +142,11 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                                        timestamp: Date(),
                                        timestampDescription: "now",
                               user: "LemmingFan123")
-        PostDetailFeatureView(store: Store(initialState: .init(post: textPost, currentPage: 1, comments: [], isLoading: false), reducer: PostDetailFeature()))
+        PostDetailFeatureView(store: Store(initialState: .init(post: textPost, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Text post")
-        PostDetailFeatureView(store: Store(initialState: .init(post: imagePost, currentPage: 1, comments: [], isLoading: false), reducer: PostDetailFeature()))
+        PostDetailFeatureView(store: Store(initialState: .init(post: imagePost, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Image post")
-        PostDetailFeatureView(store: Store(initialState: .init(post: imageErrorPost, currentPage: 1, comments: [], isLoading: false), reducer: PostDetailFeature()))
+        PostDetailFeatureView(store: Store(initialState: .init(post: imageErrorPost, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Image error post")
     }
 }
