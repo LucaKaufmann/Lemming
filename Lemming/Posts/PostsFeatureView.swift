@@ -54,16 +54,19 @@ struct PostsFeatureView: View {
                     .background
                     .ignoresSafeArea()
             }
+            .refreshable {
+                viewStore.send(.refreshPosts)
+            }
             .onAppear {
                 viewStore.send(.onAppear)
             }
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button("Refresh") {
-                        viewStore.send(.refreshPosts)
-                    }
-                }
-            }
+//            .toolbar {
+//                ToolbarItem(placement: .primaryAction) {
+//                    Button("Refresh") {
+//                        viewStore.send(.refreshPosts)
+//                    }
+//                }
+//            }
         }
     }
 }

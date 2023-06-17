@@ -57,7 +57,7 @@ struct ThumbnailView: View {
                         .resizable()
                         .scaledToFill()
                         .frame(width: 60, height: 60, alignment: .center)
-                        .clipped()
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                 } else if phase.error != nil {
                     TextPostThumbnail()
                 } else {
@@ -75,13 +75,15 @@ struct TextPostThumbnail: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 8)
-            .stroke(lineWidth: 2)
+            .fill()
             .overlay {
                 Image(systemName: "text.alignleft")
                     .resizable()
                     .padding(10)
+                    .foregroundColor(Color.LemmingColors.text)
             }
             .foregroundColor(Color("lemmingGray"))
+            .opacity(0.3)
     }
 }
 
