@@ -19,7 +19,7 @@ struct LemmyCommentService: CommentService {
     }
     
     private func getCommentsFromRequest(_ request: GetCommentsRequest) async -> [CommentModel] {
-        let api = LemmyAPI(baseUrl: URL(string: "https://sh.itjust.works/api/v3")!)
+        let api = LemmyAPI(baseUrl: URL(string: "https://lemmy.ml/api/v3")!)
         do {
             let response = try await api.request(request)
             return response.comments.map { commentView in

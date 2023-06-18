@@ -14,7 +14,7 @@ struct LemmyPostService: PostService {
     @Dependency(\.dateFormatterService) var dateFormatterService
     
     func getPosts(page: Int = 0, sort: PostSortType = .hot, origin: PostOriginType = .all) async -> [PostModel] {
-        if let url = URL(string: "https://sh.itjust.works/api/v3") {
+        if let url = URL(string: "https://lemmy.ml/api/v3") {
             // Create an instance of the Lemmy API with the base URL of your Lemmy instance
             let api = LemmyAPI(baseUrl: url)
 
