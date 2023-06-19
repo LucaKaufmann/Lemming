@@ -5,6 +5,7 @@
 //  Created by Luca Kaufmann on 12.6.2023.
 //
 
+import Foundation
 import ComposableArchitecture
 
 struct PostsFeature: ReducerProtocol {
@@ -14,6 +15,7 @@ struct PostsFeature: ReducerProtocol {
     struct State: Equatable {
         var posts: [PostModel]
         var currentPage: Int
+        var currentAccount: LemmingAccountModel?
         var isLoading: Bool
     }
     
@@ -44,19 +46,34 @@ struct PostsFeature: ReducerProtocol {
                 case .refreshPosts:
                     state.isLoading = true
                     state.currentPage = 1
-                    return .task {
-                        let posts = await postService.getPosts(page: 1, sort: .hot, origin: .all)
-                        return .updateWithPosts(posts)
+                    
+                    if let account = state.currentAccount {
+                        return .task {
+                            let posts = try await postService.getPosts(page: 1,
+                                                                   sort: .hot,
+                                                                   origin: .all,
+                                                                   account: account,
+                                                                   previewInstance: nil)
+                            return .updateWithPosts(posts)
+                        }
                     }
+                    return .none
                 case .loadNextPage:
                     state.isLoading = true
                     let page = state.currentPage + 1
                     let ids = state.posts.map { $0.id }
-                    return .task {
-                        let posts = await postService.getPosts(page: page, sort: .hot, origin: .all)
-                        let filteredPosts = posts.filter({ !ids.contains($0.id) })
-                        return .appendPosts(filteredPosts)
+                    if let account = state.currentAccount {
+                        return .task {
+                            let posts = try await postService.getPosts(page: page,
+                                                                   sort: .hot,
+                                                                   origin: .all,
+                                                                   account: account,
+                                                                   previewInstance: nil)
+                            let filteredPosts = posts.filter({ !ids.contains($0.id) })
+                            return .appendPosts(posts)
+                        }
                     }
+                    return .none
                 case .updateWithPosts(let posts):
                     state.posts = posts
                     state.isLoading = false

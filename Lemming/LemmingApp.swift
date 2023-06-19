@@ -10,12 +10,16 @@ import ComposableArchitecture
 
 @main
 struct LemmingApp: App {
+    
+    @Dependency(\.accountService) var accountService
+    
     var body: some Scene {
         WindowGroup {
-            RootView(store: Store(initialState: RootFeature.State(posts: .init(posts: .init(posts: [], currentPage: 0, isLoading: false)),
-                                                                  account: "account",
+            RootView(store: Store(initialState: RootFeature.State(postsRoot: .init(postsFeature: .init(posts: [], currentPage: 0, currentAccount: accountService.getCurrentAccount(), isLoading: false)),
+                                                                  account: .init(currentAccount: accountService.getCurrentAccount(), availableAccounts: accountService.getAccounts()),
                                                                   search: "search",
-                                                                  settings: "settings"), reducer: RootFeature()))
+                                                                  settings: "settings",
+                                                                  isLoggedIn: false), reducer: RootFeature()))
         }
     }
 }

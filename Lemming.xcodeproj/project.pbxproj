@@ -13,6 +13,19 @@
 		810E07982A39B83B00CCBDBE /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E07972A39B83B00CCBDBE /* CommentModel.swift */; };
 		810E079A2A39BC8400CCBDBE /* LemmyCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E07992A39BC8400CCBDBE /* LemmyCommentService.swift */; };
 		810E079C2A39C74900CCBDBE /* CommentServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E079B2A39C74900CCBDBE /* CommentServiceDependency.swift */; };
+		818E8A032A3EC4C400013875 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A022A3EC4C400013875 /* AccountService.swift */; };
+		818E8A052A3EC5A800013875 /* LemmingAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A042A3EC5A800013875 /* LemmingAccountModel.swift */; };
+		818E8A082A3EC7B700013875 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A072A3EC7B700013875 /* KeychainWrapper.swift */; };
+		818E8A0A2A3EC7E700013875 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A092A3EC7E700013875 /* KeychainItemAccessibility.swift */; };
+		818E8A0F2A3F2DDC00013875 /* LemmyAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A0E2A3F2DDC00013875 /* LemmyAccountService.swift */; };
+		818E8A142A3F40A400013875 /* AccountFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A132A3F40A400013875 /* AccountFeature.swift */; };
+		818E8A162A3F419E00013875 /* AccountFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A152A3F419E00013875 /* AccountFeatureView.swift */; };
+		818E8A182A3F473900013875 /* AccountRootFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A172A3F473900013875 /* AccountRootFeature.swift */; };
+		818E8A1A2A3F983300013875 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A192A3F983300013875 /* UserDefaultsKeys.swift */; };
+		818E8A1C2A3F990200013875 /* AccountServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A1B2A3F990200013875 /* AccountServiceKey.swift */; };
+		818E8A1F2A40326E00013875 /* AddAccountFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A1E2A40326E00013875 /* AddAccountFeature.swift */; };
+		818E8A212A403B9700013875 /* AddAccountFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A202A403B9700013875 /* AddAccountFeatureView.swift */; };
+		818E8A242A40630600013875 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 818E8A232A40630600013875 /* KeychainSwift */; };
 		8192170C2A364A950015BEF3 /* LemmingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192170B2A364A950015BEF3 /* LemmingApp.swift */; };
 		8192170E2A364A950015BEF3 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192170D2A364A950015BEF3 /* RootView.swift */; };
 		819217102A364A960015BEF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8192170F2A364A960015BEF3 /* Assets.xcassets */; };
@@ -59,6 +72,18 @@
 		810E07972A39B83B00CCBDBE /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		810E07992A39BC8400CCBDBE /* LemmyCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyCommentService.swift; sourceTree = "<group>"; };
 		810E079B2A39C74900CCBDBE /* CommentServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentServiceDependency.swift; sourceTree = "<group>"; };
+		818E8A022A3EC4C400013875 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		818E8A042A3EC5A800013875 /* LemmingAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmingAccountModel.swift; sourceTree = "<group>"; };
+		818E8A072A3EC7B700013875 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		818E8A092A3EC7E700013875 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
+		818E8A0E2A3F2DDC00013875 /* LemmyAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyAccountService.swift; sourceTree = "<group>"; };
+		818E8A132A3F40A400013875 /* AccountFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFeature.swift; sourceTree = "<group>"; };
+		818E8A152A3F419E00013875 /* AccountFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFeatureView.swift; sourceTree = "<group>"; };
+		818E8A172A3F473900013875 /* AccountRootFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRootFeature.swift; sourceTree = "<group>"; };
+		818E8A192A3F983300013875 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		818E8A1B2A3F990200013875 /* AccountServiceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServiceKey.swift; sourceTree = "<group>"; };
+		818E8A1E2A40326E00013875 /* AddAccountFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountFeature.swift; sourceTree = "<group>"; };
+		818E8A202A403B9700013875 /* AddAccountFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountFeatureView.swift; sourceTree = "<group>"; };
 		819217082A364A950015BEF3 /* Lemming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lemming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8192170B2A364A950015BEF3 /* LemmingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmingApp.swift; sourceTree = "<group>"; };
 		8192170D2A364A950015BEF3 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -96,6 +121,7 @@
 			files = (
 				81B982EB2A39E88600D2A3F7 /* CachedAsyncImage in Frameworks */,
 				81F7020F2A386D3600484D6F /* Lemmy-Swift-Client in Frameworks */,
+				818E8A242A40630600013875 /* KeychainSwift in Frameworks */,
 				8192171C2A364AEF0015BEF3 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +146,70 @@
 			path = PostDetail;
 			sourceTree = "<group>";
 		};
+		818E8A062A3EC7A600013875 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				818E8A072A3EC7B700013875 /* KeychainWrapper.swift */,
+				818E8A092A3EC7E700013875 /* KeychainItemAccessibility.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		818E8A0B2A3F2DBA00013875 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				81F702112A386F3200484D6F /* PostService.swift */,
+				81F702132A386F5300484D6F /* LemmyPostService.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		818E8A0C2A3F2DBF00013875 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				810E07952A39B7F300CCBDBE /* CommentService.swift */,
+				810E07992A39BC8400CCBDBE /* LemmyCommentService.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		818E8A0D2A3F2DC400013875 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				818E8A022A3EC4C400013875 /* AccountService.swift */,
+				818E8A0E2A3F2DDC00013875 /* LemmyAccountService.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		818E8A122A3F409600013875 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				818E8A1D2A40326000013875 /* AddAccount */,
+				818E8A132A3F40A400013875 /* AccountFeature.swift */,
+				818E8A152A3F419E00013875 /* AccountFeatureView.swift */,
+				818E8A172A3F473900013875 /* AccountRootFeature.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		818E8A1D2A40326000013875 /* AddAccount */ = {
+			isa = PBXGroup;
+			children = (
+				818E8A1E2A40326E00013875 /* AddAccountFeature.swift */,
+				818E8A202A403B9700013875 /* AddAccountFeatureView.swift */,
+			);
+			path = AddAccount;
+			sourceTree = "<group>";
+		};
+		818E8A252A40746200013875 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8192170F2A364A960015BEF3 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		819216FF2A364A950015BEF3 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +231,8 @@
 		8192170A2A364A950015BEF3 /* Lemming */ = {
 			isa = PBXGroup;
 			children = (
+				818E8A122A3F409600013875 /* Account */,
+				818E8A062A3EC7A600013875 /* Utility */,
 				81B982EF2A3A409D00D2A3F7 /* Constants */,
 				81B982EC2A39E88C00D2A3F7 /* Extensions */,
 				81F702152A386FED00484D6F /* Dependencies */,
@@ -151,8 +243,8 @@
 				8192170B2A364A950015BEF3 /* LemmingApp.swift */,
 				8192171E2A364B790015BEF3 /* RootFeature.swift */,
 				8192170D2A364A950015BEF3 /* RootView.swift */,
-				8192170F2A364A960015BEF3 /* Assets.xcassets */,
 				819217112A364A960015BEF3 /* Lemming.entitlements */,
+				818E8A252A40746200013875 /* Resources */,
 				819217122A364A960015BEF3 /* Preview Content */,
 				81E9A5D52A3CD2210014CD86 /* LemmyAPIPlayground.playground */,
 			);
@@ -195,6 +287,7 @@
 			children = (
 				8192172D2A3735B80015BEF3 /* PostModel.swift */,
 				810E07972A39B83B00CCBDBE /* CommentModel.swift */,
+				818E8A042A3EC5A800013875 /* LemmingAccountModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				81B982F02A3A40AF00D2A3F7 /* IconConstants.swift */,
+				818E8A192A3F983300013875 /* UserDefaultsKeys.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -227,10 +321,9 @@
 		81F702102A386F1B00484D6F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				81F702112A386F3200484D6F /* PostService.swift */,
-				81F702132A386F5300484D6F /* LemmyPostService.swift */,
-				810E07952A39B7F300CCBDBE /* CommentService.swift */,
-				810E07992A39BC8400CCBDBE /* LemmyCommentService.swift */,
+				818E8A0D2A3F2DC400013875 /* Account */,
+				818E8A0C2A3F2DBF00013875 /* Comment */,
+				818E8A0B2A3F2DBA00013875 /* Post */,
 				81B982E72A39E10800D2A3F7 /* DateFormatterService.swift */,
 			);
 			path = Services;
@@ -242,6 +335,7 @@
 				81F702162A38700000484D6F /* PostServiceDependency.swift */,
 				810E079B2A39C74900CCBDBE /* CommentServiceDependency.swift */,
 				81B982E52A39E08300D2A3F7 /* RelativeDateTimeFormatterDependency.swift */,
+				818E8A1B2A3F990200013875 /* AccountServiceKey.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -266,6 +360,7 @@
 				8192171B2A364AEF0015BEF3 /* ComposableArchitecture */,
 				81F7020E2A386D3600484D6F /* Lemmy-Swift-Client */,
 				81B982EA2A39E88600D2A3F7 /* CachedAsyncImage */,
+				818E8A232A40630600013875 /* KeychainSwift */,
 			);
 			productName = Lemming;
 			productReference = 819217082A364A950015BEF3 /* Lemming.app */;
@@ -321,6 +416,7 @@
 				8192171A2A364AEF0015BEF3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				81F7020D2A386D3600484D6F /* XCRemoteSwiftPackageReference "Lemmy-Swift-Client" */,
 				81B982E92A39E88600D2A3F7 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+				818E8A222A40630600013875 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 819217092A364A950015BEF3 /* Products */;
 			projectDirPath = "";
@@ -364,22 +460,34 @@
 				81B982F52A3A5E1600D2A3F7 /* PostsRootFeatureView.swift in Sources */,
 				810E07962A39B7F300CCBDBE /* CommentService.swift in Sources */,
 				8192172C2A3734F20015BEF3 /* PostsFeatureView.swift in Sources */,
+				818E8A142A3F40A400013875 /* AccountFeature.swift in Sources */,
 				81B982F32A3A5DBA00D2A3F7 /* PostsRootFeature.swift in Sources */,
+				818E8A032A3EC4C400013875 /* AccountService.swift in Sources */,
 				819217262A370BE70015BEF3 /* LemmingButtons.swift in Sources */,
+				818E8A0F2A3F2DDC00013875 /* LemmyAccountService.swift in Sources */,
+				818E8A052A3EC5A800013875 /* LemmingAccountModel.swift in Sources */,
 				819217292A3732E10015BEF3 /* PostsFeature.swift in Sources */,
 				81B982E82A39E10800D2A3F7 /* DateFormatterService.swift in Sources */,
 				81F702122A386F3200484D6F /* PostService.swift in Sources */,
 				81F702172A38700000484D6F /* PostServiceDependency.swift in Sources */,
 				810E079C2A39C74900CCBDBE /* CommentServiceDependency.swift in Sources */,
+				818E8A212A403B9700013875 /* AddAccountFeatureView.swift in Sources */,
 				81B982E62A39E08300D2A3F7 /* RelativeDateTimeFormatterDependency.swift in Sources */,
+				818E8A1F2A40326E00013875 /* AddAccountFeature.swift in Sources */,
 				81B982EE2A39E89900D2A3F7 /* URLCache+imageCache.swift in Sources */,
 				810E07942A39AB2600CCBDBE /* PostDetailFeatureView.swift in Sources */,
+				818E8A1A2A3F983300013875 /* UserDefaultsKeys.swift in Sources */,
 				810E07982A39B83B00CCBDBE /* CommentModel.swift in Sources */,
 				8192170E2A364A950015BEF3 /* RootView.swift in Sources */,
+				818E8A162A3F419E00013875 /* AccountFeatureView.swift in Sources */,
 				819217242A37093E0015BEF3 /* DesignSystemPreview.swift in Sources */,
+				818E8A0A2A3EC7E700013875 /* KeychainItemAccessibility.swift in Sources */,
 				81F702142A386F5300484D6F /* LemmyPostService.swift in Sources */,
 				81B982F12A3A40AF00D2A3F7 /* IconConstants.swift in Sources */,
 				819217302A3737410015BEF3 /* PostsRowView.swift in Sources */,
+				818E8A182A3F473900013875 /* AccountRootFeature.swift in Sources */,
+				818E8A082A3EC7B700013875 /* KeychainWrapper.swift in Sources */,
+				818E8A1C2A3F990200013875 /* AccountServiceKey.swift in Sources */,
 				8192171F2A364B790015BEF3 /* RootFeature.swift in Sources */,
 				8192170C2A364A950015BEF3 /* LemmingApp.swift in Sources */,
 			);
@@ -666,6 +774,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		818E8A222A40630600013875 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.0;
+			};
+		};
 		8192171A2A364AEF0015BEF3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -693,6 +809,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		818E8A232A40630600013875 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 818E8A222A40630600013875 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		8192171B2A364AEF0015BEF3 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8192171A2A364AEF0015BEF3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;

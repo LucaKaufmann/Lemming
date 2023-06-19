@@ -14,7 +14,7 @@ struct PostsRootFeatureView: View {
     
     var body: some View {
         NavigationStackStore(self.store.scope(state: \.path, action: { .path($0) })) {
-            PostsFeatureView(store: store.scope(state: \.posts, action: PostsRootFeature.Action.posts))
+            PostsFeatureView(store: store.scope(state: \.postsFeature, action: PostsRootFeature.Action.postsFeature))
             } destination: { state in
                 switch state {
                     case .detailPost:
@@ -32,6 +32,6 @@ struct PostsRootFeatureView: View {
 
 struct PostsRootFeatureView_Previews: PreviewProvider {
     static var previews: some View {
-        PostsRootFeatureView(store: Store(initialState: .init(posts: PostsFeature.State(posts: PostModel.mockPosts, currentPage: 0, isLoading: false)), reducer: PostsRootFeature()))
+        PostsRootFeatureView(store: Store(initialState: .init(postsFeature: PostsFeature.State(posts: PostModel.mockPosts, currentPage: 0, isLoading: false)), reducer: PostsRootFeature()))
     }
 }

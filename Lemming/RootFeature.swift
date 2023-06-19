@@ -15,17 +15,19 @@ struct RootFeature: ReducerProtocol {
     }
     
     struct State: Equatable {
-        var posts: PostsRootFeature.State
-        var account: String
+        var postsRoot: PostsRootFeature.State
+        var account: AccountFeature.State
         var search: String
         var settings: String
         
         var selectedTab: Tab = .posts
+        var isLoggedIn: Bool
     }
     
     enum Action: Equatable {
         case selectedTabChanged(Tab)
         case posts(PostsRootFeature.Action)
+        case account(AccountFeature.Action)
     }
     
     var body: some ReducerProtocolOf<Self> {
@@ -34,12 +36,24 @@ struct RootFeature: ReducerProtocol {
                 case .selectedTabChanged(let tab):
                     state.selectedTab = tab
                     return .none
+                case .account(.delegate(let action)):
+                    switch action {
+                        case .updateCurrentAccount(let account):
+                            state.postsRoot.postsFeature.currentAccount = account
+                            state.postsRoot.postsFeature.posts = []
+                            return .none
+                        default:
+                            return .none
+                    }
                 default:
                     return .none
             }
         }
-        Scope(state: \.posts, action: /Action.posts) {
+        Scope(state: \.postsRoot, action: /Action.posts) {
             PostsRootFeature()
+        }
+        Scope(state: \.account, action: /Action.account) {
+            AccountFeature()
         }
     }
 }

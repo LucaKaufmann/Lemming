@@ -39,6 +39,10 @@ enum PostOriginType: String {
     case subscribed = "Subscribed"
 }
 
+enum PostServiceError: Error {
+    case instanceUrlError
+}
+
 protocol PostService {
-    func getPosts(page: Int, sort: PostSortType, origin: PostOriginType) async -> [PostModel] 
+    func getPosts(page: Int, sort: PostSortType, origin: PostOriginType, account: LemmingAccountModel?, previewInstance: URL?) async throws -> [PostModel]
 }

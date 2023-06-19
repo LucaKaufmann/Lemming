@@ -12,19 +12,19 @@ struct PostsRootFeature: ReducerProtocol {
     
     struct State: Equatable {
         var path = StackState<Path.State>()
-        var posts: PostsFeature.State
+        var postsFeature: PostsFeature.State
     }
     
     enum Action: Equatable {
         case path(StackAction<Path.State, Path.Action>)
 
-        case posts(PostsFeature.Action)
+        case postsFeature(PostsFeature.Action)
     }
     
     var body: some ReducerProtocolOf<Self> {
         Reduce { state, action in
             switch action {
-                case .posts(let action):
+                case .postsFeature(let action):
                     switch action {
                         case .delegate(.goToPost(let post)):
                             state.path.append(.detailPost(.init(post: post, comments: [], isLoading: false)))
@@ -39,7 +39,7 @@ struct PostsRootFeature: ReducerProtocol {
         }.forEach(\.path, action: /Action.path) {
             Path()
         }
-        Scope(state: \.posts, action: /Action.posts) {
+        Scope(state: \.postsFeature, action: /Action.postsFeature) {
             PostsFeature()
         }
     }
