@@ -17,9 +17,12 @@ struct PostsFeature: ReducerProtocol {
         var currentPage: Int
         var currentAccount: LemmingAccountModel?
         var isLoading: Bool
+        
+        @BindingState var sort: PostSortType
+        @BindingState var origin: PostOriginType
     }
     
-    enum Action: Equatable {
+    enum Action: Equatable, BindableAction {
         case onAppear
         case refreshPosts
         case loadNextPage
@@ -28,6 +31,7 @@ struct PostsFeature: ReducerProtocol {
         case tappedOnPost(PostModel)
 
         case delegate(Delegate)
+        case binding(BindingAction<State>)
         
         enum Delegate: Equatable {
           case goToPost(PostModel)
@@ -35,6 +39,7 @@ struct PostsFeature: ReducerProtocol {
     }
     
     var body: some ReducerProtocolOf<Self> {
+        BindingReducer()
         Reduce { state, action in
             switch action {
                 case .onAppear:
@@ -47,11 +52,14 @@ struct PostsFeature: ReducerProtocol {
                     state.isLoading = true
                     state.currentPage = 1
                     
+                    let sortingType = state.sort
+                    let originType = state.origin
+                    
                     if let account = state.currentAccount {
                         return .task {
                             let posts = try await postService.getPosts(page: 1,
-                                                                   sort: .hot,
-                                                                   origin: .all,
+                                                                   sort: sortingType,
+                                                                   origin: originType,
                                                                    account: account,
                                                                    previewInstance: nil)
                             return .updateWithPosts(posts)
@@ -62,15 +70,18 @@ struct PostsFeature: ReducerProtocol {
                     state.isLoading = true
                     let page = state.currentPage + 1
                     let ids = state.posts.map { $0.id }
+                    let sortingType = state.sort
+                    let originType = state.origin
+                    
                     if let account = state.currentAccount {
                         return .task {
                             let posts = try await postService.getPosts(page: page,
-                                                                   sort: .hot,
-                                                                   origin: .all,
-                                                                   account: account,
-                                                                   previewInstance: nil)
+                                                                       sort: sortingType,
+                                                                       origin: originType,
+                                                                       account: account,
+                                                                       previewInstance: nil)
                             let filteredPosts = posts.filter({ !ids.contains($0.id) })
-                            return .appendPosts(posts)
+                            return .appendPosts(filteredPosts)
                         }
                     }
                     return .none
@@ -90,6 +101,10 @@ struct PostsFeature: ReducerProtocol {
                 case .tappedOnPost(let post):
                     return .send(.delegate(.goToPost(post)))
                 case .delegate(_):
+                    return .none
+                case .binding(\.$sort), .binding(\.$origin):
+                    return .send(.refreshPosts)
+                case .binding(_):
                     return .none
             }
         }

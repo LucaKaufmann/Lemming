@@ -39,13 +39,13 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView(store: Store(initialState: RootFeature.State(postsRoot: .init(postsFeature: .init(posts: PostModel.mockPosts, currentPage: 0, isLoading: false)),
+        RootView(store: Store(initialState: RootFeature.State(postsRoot: .init(postsFeature: .init(posts: PostModel.mockPosts, currentPage: 0, isLoading: false, sort: .hot, origin: .all)),
                                                               account: .init(availableAccounts: []),
                                                               search: "search",
                                                               settings: "settings", isLoggedIn: false), reducer: RootFeature()._printChanges()))
         .previewDisplayName("Not logged in")
 
-        RootView(store: Store(initialState: RootFeature.State(postsRoot: .init(postsFeature: .init(posts: PostModel.mockPosts, currentPage: 0, isLoading: false)),
+        RootView(store: Store(initialState: RootFeature.State(postsRoot: .init(postsFeature: .init(posts: PostModel.mockPosts, currentPage: 0, isLoading: false, sort: .hot, origin: .all)),
                                                               account: .init(availableAccounts: []),
                                                               search: "search",
                                                               settings: "settings", isLoggedIn: true), reducer: RootFeature()._printChanges()))

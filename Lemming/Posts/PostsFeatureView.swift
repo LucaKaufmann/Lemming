@@ -12,18 +12,22 @@ struct PostsFeatureView: View {
     
     let store: StoreOf<PostsFeature>
     
-    struct ViewState: Equatable {
+    struct ViewState: Equatable, Hashable {
         let posts: [PostModel]
         let isLoading: Bool
+        let sort: PostSortType
+        let origin: PostOriginType
         
         init(state: PostsFeature.State) {
             self.posts = state.posts
             self.isLoading = state.isLoading
+            self.sort = state.sort
+            self.origin = state.origin
         }
     }
     
     var body: some View {
-        WithViewStore(store, observe: ViewState.init ) { viewStore in
+        WithViewStore(store, observe: { $0 } ) { viewStore in
             ScrollView {
                 LazyVStack {
                     ForEach(Array(viewStore.posts.enumerated()), id: \.element) { index, post in
@@ -39,16 +43,33 @@ struct PostsFeatureView: View {
                                 }
                         })
                         .buttonStyle(.plain)
-
-
-    
-//                            .onTapGesture {
-//                                viewStore.send(.tappedOnPost(post))
-//                            }
                         Divider()
                     }
                 }
-            }.background {
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Menu("Settings") {
+                        Menu("Sorting") {
+                            Picker("Accounts", selection: viewStore.binding(\.$sort)) {
+                                ForEach(PostSortType.allCases, id: \.self) { sortType in
+                                    Text(sortType.rawValue)
+                                        .tag(sortType)
+                                }
+                            }
+                        }
+                        Menu("Origin") {
+                            Picker("Origin", selection: viewStore.binding(\.$origin)) {
+                                ForEach(PostOriginType.allCases, id: \.self) { originType in
+                                    Text(originType.rawValue)
+                                        .tag(originType)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .background {
                 Color
                     .LemmingColors
                     .background
@@ -73,6 +94,8 @@ struct PostsFeatureView: View {
 
 struct PostsFeatureView_Previews: PreviewProvider {
     static var previews: some View {
-        PostsFeatureView(store: Store(initialState: PostsFeature.State(posts: PostModel.mockPosts, currentPage: 0, isLoading: false), reducer: PostsFeature()))
+        NavigationView {
+            PostsFeatureView(store: Store(initialState: PostsFeature.State(posts: PostModel.mockPosts, currentPage: 0, isLoading: false, sort: .hot, origin: .all), reducer: PostsFeature()))
+        }
     }
 }

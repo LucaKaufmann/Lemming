@@ -15,7 +15,12 @@ struct LemmingApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootView(store: Store(initialState: RootFeature.State(postsRoot: .init(postsFeature: .init(posts: [], currentPage: 0, currentAccount: accountService.getCurrentAccount(), isLoading: false)),
+            RootView(store: Store(initialState: RootFeature.State(postsRoot: .init(postsFeature: .init(posts: [],
+                                                                                                       currentPage: 0,
+                                                                                                       currentAccount: accountService.getCurrentAccount(),
+                                                                                                       isLoading: false,
+                                                                                                       sort: .hot,
+                                                                                                       origin: .all)),
                                                                   account: .init(currentAccount: accountService.getCurrentAccount(), availableAccounts: accountService.getAccounts()),
                                                                   search: "search",
                                                                   settings: "settings",

@@ -103,69 +103,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1CFF314C-9A31-4C01-B4F6-1D3398A03431"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lemming/Services/Post/LemmyPostService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "getPosts(page:sort:origin:account:previewInstance:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1CFF314C-9A31-4C01-B4F6-1D3398A03431 - 2d0ae09a687f03fb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for Lemming.LemmyPostService.getPosts(page: Swift.Int, sort: Lemming.PostSortType, origin: Lemming.PostOriginType, account: Swift.Optional&lt;Lemming.LemmingAccountModel&gt;, previewInstance: Swift.Optional&lt;Foundation.URL&gt;) async throws -&gt; Swift.Array&lt;Lemming.PostModel&gt;"
-                  moduleName = "Lemming"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/luca/git/Lemming/Lemming/Services/Post/LemmyPostService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
-                  offsetFromSymbolStart = "180">
-               </Location>
-               <Location
-                  uuid = "1CFF314C-9A31-4C01-B4F6-1D3398A03431 - 2d0ae09a687f03fb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for Lemming.LemmyPostService.getPosts(page: Swift.Int, sort: Lemming.PostSortType, origin: Lemming.PostOriginType, account: Swift.Optional&lt;Lemming.LemmingAccountModel&gt;, previewInstance: Swift.Optional&lt;Foundation.URL&gt;) async throws -&gt; Swift.Array&lt;Lemming.PostModel&gt;"
-                  moduleName = "Lemming"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/luca/git/Lemming/Lemming/Services/Post/LemmyPostService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
-                  offsetFromSymbolStart = "200">
-               </Location>
-               <Location
-                  uuid = "1CFF314C-9A31-4C01-B4F6-1D3398A03431 - 2d0ae09a687f03fb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for Lemming.LemmyPostService.getPosts(page: Swift.Int, sort: Lemming.PostSortType, origin: Lemming.PostOriginType, account: Swift.Optional&lt;Lemming.LemmingAccountModel&gt;, previewInstance: Swift.Optional&lt;Foundation.URL&gt;) async throws -&gt; Swift.Array&lt;Lemming.PostModel&gt;"
-                  moduleName = "Lemming"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/luca/git/Lemming/Lemming/Services/Post/LemmyPostService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
-                  offsetFromSymbolStart = "212">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "3CC79176-4520-4271-9D2B-B1DF75BA8613"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -207,6 +144,36 @@
                   startingLineNumber = "18"
                   endingLineNumber = "18"
                   offsetFromSymbolStart = "1740">
+               </Location>
+               <Location
+                  uuid = "3CC79176-4520-4271-9D2B-B1DF75BA8613 - 391d3e23c095c150"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Lemming.LemmyPostService.getPosts(page: Swift.Int, sort: Lemming.PostSortType, origin: Lemming.PostOriginType, account: Swift.Optional&lt;Lemming.LemmingAccountModel&gt;, previewInstance: Swift.Optional&lt;Foundation.URL&gt;) async throws -&gt; Swift.Array&lt;Lemming.PostModel&gt;"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Services/Post/LemmyPostService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "1864">
+               </Location>
+               <Location
+                  uuid = "3CC79176-4520-4271-9D2B-B1DF75BA8613 - 391d3e23c095c150"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Lemming.LemmyPostService.getPosts(page: Swift.Int, sort: Lemming.PostSortType, origin: Lemming.PostOriginType, account: Swift.Optional&lt;Lemming.LemmingAccountModel&gt;, previewInstance: Swift.Optional&lt;Foundation.URL&gt;) async throws -&gt; Swift.Array&lt;Lemming.PostModel&gt;"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Services/Post/LemmyPostService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "2000">
                </Location>
             </Locations>
          </BreakpointContent>

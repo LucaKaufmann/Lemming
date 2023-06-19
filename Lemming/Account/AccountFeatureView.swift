@@ -41,7 +41,7 @@ struct AccountFeatureView: View {
                 .toolbar {
                     ToolbarItem(placement: .automatic) {
                         Picker("Accounts", selection: viewStore.binding(\.$currentAccount)) {
-                            Text("Select account")
+                            Text("Add account")
                                 .tag(nil as LemmingAccountModel?)
                             ForEach(viewStore.availableAccounts) { account in
                                 Text(account.id)
