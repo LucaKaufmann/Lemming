@@ -61,6 +61,7 @@ struct AccountFeature: ReducerProtocol {
                         case .presented(.loginSuccessful(let account)):
                             state.currentAccount = account
                             accountService.setCurrentAccount(account)
+                            state.addAccountSheet = nil
                             return .send(.updateAvailableAccounts(accountService.getAccounts()))
                         default:
                             return .none
