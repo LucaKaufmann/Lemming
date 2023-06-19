@@ -19,7 +19,6 @@ struct LemmyPostService: PostService {
         }
         let api = LemmyAPI(baseUrl: instanceUrl.appending(path: "/api/v3"))
 
-        // Create a SearchRequest object with the `q` parameter
         let request = GetPostsRequest(auth: account?.jwt, page: page, sort: SortType(rawValue: sort.rawValue), type_: ListingType(rawValue: origin.rawValue))
         // Send the request to the Lemmy API
         do {

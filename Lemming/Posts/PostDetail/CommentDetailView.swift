@@ -16,7 +16,7 @@ struct CommentDetailView: View {
     var body: some View {
         DisclosureGroup(isExpanded: $isExpanded) {
             VStack(alignment: .leading) {
-                Text(comment.content)
+                Text(LocalizedStringKey(comment.content))
                 LazyVStack {
                     ForEach(comment.children) { childComment in
                         HStack {

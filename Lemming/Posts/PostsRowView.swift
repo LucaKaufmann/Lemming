@@ -17,7 +17,7 @@ struct PostsRowView: View {
         HStack {
             VStack(alignment: .leading, spacing: 12) {
                 HStack(alignment: .bottom) {
-                    Text(post.title)
+                    Text(LocalizedStringKey(post.title))
                 }
                 Spacer()
                 HStack {

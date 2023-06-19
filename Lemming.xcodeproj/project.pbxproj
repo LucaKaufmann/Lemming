@@ -13,6 +13,8 @@
 		810E07982A39B83B00CCBDBE /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E07972A39B83B00CCBDBE /* CommentModel.swift */; };
 		810E079A2A39BC8400CCBDBE /* LemmyCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E07992A39BC8400CCBDBE /* LemmyCommentService.swift */; };
 		810E079C2A39C74900CCBDBE /* CommentServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E079B2A39C74900CCBDBE /* CommentServiceDependency.swift */; };
+		81727D742A40E9FA0035FF22 /* URL+URLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81727D732A40E9FA0035FF22 /* URL+URLType.swift */; };
+		81727D762A40EA8C0035FF22 /* PostDetailLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81727D752A40EA8C0035FF22 /* PostDetailLinkView.swift */; };
 		818E8A032A3EC4C400013875 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A022A3EC4C400013875 /* AccountService.swift */; };
 		818E8A052A3EC5A800013875 /* LemmingAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A042A3EC5A800013875 /* LemmingAccountModel.swift */; };
 		818E8A082A3EC7B700013875 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A072A3EC7B700013875 /* KeychainWrapper.swift */; };
@@ -72,6 +74,8 @@
 		810E07972A39B83B00CCBDBE /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		810E07992A39BC8400CCBDBE /* LemmyCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyCommentService.swift; sourceTree = "<group>"; };
 		810E079B2A39C74900CCBDBE /* CommentServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentServiceDependency.swift; sourceTree = "<group>"; };
+		81727D732A40E9FA0035FF22 /* URL+URLType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+URLType.swift"; sourceTree = "<group>"; };
+		81727D752A40EA8C0035FF22 /* PostDetailLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailLinkView.swift; sourceTree = "<group>"; };
 		818E8A022A3EC4C400013875 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		818E8A042A3EC5A800013875 /* LemmingAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmingAccountModel.swift; sourceTree = "<group>"; };
 		818E8A072A3EC7B700013875 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 				810E07912A39AA0300CCBDBE /* PostDetailFeature.swift */,
 				810E07932A39AB2600CCBDBE /* PostDetailFeatureView.swift */,
 				81B982E02A39DA5D00D2A3F7 /* CommentDetailView.swift */,
+				81727D752A40EA8C0035FF22 /* PostDetailLinkView.swift */,
 			);
 			path = PostDetail;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				81B982ED2A39E89900D2A3F7 /* URLCache+imageCache.swift */,
+				81727D732A40E9FA0035FF22 /* URL+URLType.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -465,8 +471,10 @@
 				818E8A032A3EC4C400013875 /* AccountService.swift in Sources */,
 				819217262A370BE70015BEF3 /* LemmingButtons.swift in Sources */,
 				818E8A0F2A3F2DDC00013875 /* LemmyAccountService.swift in Sources */,
+				81727D762A40EA8C0035FF22 /* PostDetailLinkView.swift in Sources */,
 				818E8A052A3EC5A800013875 /* LemmingAccountModel.swift in Sources */,
 				819217292A3732E10015BEF3 /* PostsFeature.swift in Sources */,
+				81727D742A40E9FA0035FF22 /* URL+URLType.swift in Sources */,
 				81B982E82A39E10800D2A3F7 /* DateFormatterService.swift in Sources */,
 				81F702122A386F3200484D6F /* PostService.swift in Sources */,
 				81F702172A38700000484D6F /* PostServiceDependency.swift in Sources */,

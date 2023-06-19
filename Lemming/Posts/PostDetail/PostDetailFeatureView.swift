@@ -32,21 +32,26 @@ struct PostDetailFeatureView: View {
                 VStack {
                     PostsRowView(post: viewStore.post, showThumbnail: false)
                     Divider()
-                    if let imageUrl = viewStore.post.url {
-                        CachedAsyncImage(url: imageUrl) { phase in
-                            if let image = phase.image {
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                            } else if phase.error != nil {
-                                Color.red
-                            } else {
-                                ProgressView()
+                    if let postUrl = viewStore.post.url {
+                        if postUrl.isImage {
+                            CachedAsyncImage(url: postUrl) { phase in
+                                if let image = phase.image {
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                } else if phase.error != nil {
+                                    Color.red
+                                } else {
+                                    ProgressView()
+                                }
                             }
+                        } else {
+                            PostDetailLinkView(thumbnailUrl: viewStore.post.thumbnail_url, postUrl: postUrl)
+                                .padding()
                         }
                     }
                     if let body = viewStore.post.body {
-                        Text(body).padding()
+                        Text(LocalizedStringKey(body)).padding()
                     }
                 }
                 Divider()
@@ -142,11 +147,28 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                                        timestamp: Date(),
                                        timestampDescription: "now",
                               user: "LemmingFan123")
+        let linkPost = PostModel(id: 3,
+                              title: "How are they so cute?",
+                              body: nil,
+                              embed_description: nil,
+                              embed_title: nil,
+                              embed_video_url: nil,
+                              thumbnail_url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
+                              url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus"),
+                              community: "lemmings",
+                              numberOfUpvotes: 1,
+                              numberOfComments: 0,
+                                       timestamp: Date(),
+                                       timestampDescription: "now",
+                              user: "LemmingFan123")
         PostDetailFeatureView(store: Store(initialState: .init(post: textPost, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Text post")
         PostDetailFeatureView(store: Store(initialState: .init(post: imagePost, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Image post")
         PostDetailFeatureView(store: Store(initialState: .init(post: imageErrorPost, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Image error post")
+        PostDetailFeatureView(store: Store(initialState: .init(post: linkPost, comments: [], isLoading: false), reducer: PostDetailFeature()))
+            .previewDisplayName("Link post")
+
     }
 }
