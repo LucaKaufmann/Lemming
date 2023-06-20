@@ -151,6 +151,17 @@
 			path = PostDetail;
 			sourceTree = "<group>";
 		};
+		81521DC62A42496800F77F14 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				8192171E2A364B790015BEF3 /* RootFeature.swift */,
+				8192170D2A364A950015BEF3 /* RootView.swift */,
+				819217272A3732D00015BEF3 /* Posts */,
+				818E8A122A3F409600013875 /* Account */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
 		818E8A062A3EC7A600013875 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,18 +247,15 @@
 		8192170A2A364A950015BEF3 /* Lemming */ = {
 			isa = PBXGroup;
 			children = (
-				818E8A122A3F409600013875 /* Account */,
+				81521DC62A42496800F77F14 /* Features */,
 				818E8A062A3EC7A600013875 /* Utility */,
 				81B982EF2A3A409D00D2A3F7 /* Constants */,
 				81B982EC2A39E88C00D2A3F7 /* Extensions */,
 				81F702152A386FED00484D6F /* Dependencies */,
 				81F702102A386F1B00484D6F /* Services */,
 				8192172A2A37334F0015BEF3 /* Models */,
-				819217272A3732D00015BEF3 /* Posts */,
 				819217222A3708F70015BEF3 /* DesignSystem */,
 				8192170B2A364A950015BEF3 /* LemmingApp.swift */,
-				8192171E2A364B790015BEF3 /* RootFeature.swift */,
-				8192170D2A364A950015BEF3 /* RootView.swift */,
 				819217112A364A960015BEF3 /* Lemming.entitlements */,
 				818E8A252A40746200013875 /* Resources */,
 				819217122A364A960015BEF3 /* Preview Content */,
