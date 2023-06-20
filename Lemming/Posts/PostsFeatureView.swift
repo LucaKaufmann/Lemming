@@ -106,6 +106,11 @@ struct PostsFeatureView: View {
             .onAppear {
                 viewStore.send(.onAppear)
             }
+            .overlay {
+                if viewStore.isLoading && viewStore.posts.count == 0 {
+                    ProgressView()
+                }
+            }
         }
     }
 }

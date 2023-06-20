@@ -56,6 +56,9 @@ struct PostDetailFeatureView: View {
                 }
                 Divider()
                 LazyVStack {
+                    if viewStore.isLoading {
+                        ProgressView()
+                    }
                     ForEach(Array(viewStore.comments.enumerated()), id: \.element) { index, comment in
                         HStack {
 //                            Spacer()
