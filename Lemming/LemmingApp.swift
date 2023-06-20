@@ -24,7 +24,7 @@ struct LemmingApp: App {
                                                                   account: .init(currentAccount: accountService.getCurrentAccount(), availableAccounts: accountService.getAccounts()),
                                                                   search: "search",
                                                                   settings: "settings",
-                                                                  isLoggedIn: false), reducer: RootFeature()))
+                                                                  isLoggedIn: false), reducer: RootFeature()._printChanges()))
         }
     }
 }

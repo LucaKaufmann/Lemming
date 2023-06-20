@@ -19,7 +19,7 @@ struct PostsFeatureView: View {
         let origin: PostOriginType
         
         init(state: PostsFeature.State) {
-            self.posts = state.posts
+            self.posts = state.posts.elements
             self.isLoading = state.isLoading
             self.sort = state.sort
             self.origin = state.origin
@@ -28,25 +28,56 @@ struct PostsFeatureView: View {
     
     var body: some View {
         WithViewStore(store, observe: { $0 } ) { viewStore in
-            ScrollView {
-                LazyVStack {
-                    ForEach(Array(viewStore.posts.enumerated()), id: \.element) { index, post in
-                        Button(action: {
-                            viewStore.send(.tappedOnPost(post))
-                        }, label: {
-                            PostsRowView(post: post, showThumbnail: true)
-                                .contentShape(Rectangle())
-                                .onAppear {
-                                    if index == viewStore.posts.count - 3 && !viewStore.isLoading {
-                                        viewStore.send(.loadNextPage)
-                                    }
+            List {
+                ForEach(Array(viewStore.posts.enumerated()), id: \.element) { index, post in
+                    Button(action: {
+                        viewStore.send(.tappedOnPost(post))
+                    }, label: {
+                        PostsRowView(post: post, showThumbnail: true)
+                            .contentShape(Rectangle())
+                            .onAppear {
+                                if index == viewStore.posts.count - 3 && !viewStore.isLoading {
+                                    viewStore.send(.loadNextPage)
                                 }
-                        })
-                        .buttonStyle(.plain)
-                        Divider()
+                            }
+                    })
+                    .buttonStyle(.plain)
+                    .listRowBackground(Color.clear)
+                    .swipeActions(edge: .leading) {
+                        if post.my_vote == 1 {
+                            Button {
+                                viewStore.send(.upvotePost(post))
+                            } label: {
+                                Label("Remove upvote", systemImage: IconConstants.neutralVote)
+                            }
+                            .tint(Color("lemmingOrange"))
+                        } else {
+                            Button {
+                                viewStore.send(.upvotePost(post))
+                            } label: {
+                                Label("Upvote", systemImage: IconConstants.upvote)
+                            }
+                            .tint(Color("lemmingGreen"))
+                        }
+                    }
+                    .swipeActions(edge: .trailing) {
+                        Button {
+                            
+                        } label: {
+                            Label("Comment", systemImage: IconConstants.comment)
+                        }
+                        .tint(Color.LemmingColors.primary)
                     }
                 }
             }
+            .background {
+                Color
+                    .LemmingColors
+                    .background
+                    .ignoresSafeArea()
+            }
+            .scrollContentBackground(.hidden)
+            .listStyle(.plain)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Menu("Settings") {
@@ -69,25 +100,12 @@ struct PostsFeatureView: View {
                     }
                 }
             }
-            .background {
-                Color
-                    .LemmingColors
-                    .background
-                    .ignoresSafeArea()
-            }
             .refreshable {
                 viewStore.send(.refreshPosts)
             }
             .onAppear {
                 viewStore.send(.onAppear)
             }
-//            .toolbar {
-//                ToolbarItem(placement: .primaryAction) {
-//                    Button("Refresh") {
-//                        viewStore.send(.refreshPosts)
-//                    }
-//                }
-//            }
         }
     }
 }
@@ -95,7 +113,7 @@ struct PostsFeatureView: View {
 struct PostsFeatureView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PostsFeatureView(store: Store(initialState: PostsFeature.State(posts: PostModel.mockPosts, currentPage: 0, isLoading: false, sort: .hot, origin: .all), reducer: PostsFeature()))
+            PostsFeatureView(store: Store(initialState: PostsFeature.State(posts: IdentifiedArray(uniqueElements: PostModel.mockPosts), currentPage: 0, isLoading: false, sort: .hot, origin: .all), reducer: PostsFeature()))
         }
     }
 }

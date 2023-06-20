@@ -64,8 +64,13 @@ struct PostDetailFeatureView: View {
                                     .frame(width: 2, alignment: .center)
                                     .opacity(comment.child_count > 0 ? 1 : 0)
                             CommentDetailView(comment: comment)
-                        }
-                            .padding()
+                        }.padding()
+                        .swipeActions {
+                                    Button("Order") {
+                                        print("Awesome!")
+                                    }
+                                    .tint(.green)
+                                }
                         Divider()
                     }
                 }
@@ -116,6 +121,7 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               community: "swift",
                               numberOfUpvotes: 123,
                               numberOfComments: 1,
+                                 my_vote: 1,
                                  timestamp: Date(),
                                  timestampDescription: "1d ago",
                               user: "Codable")
@@ -130,6 +136,7 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               community: "lemmings",
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
+                                  my_vote: 0,
                                   timestamp: Date(),
                                   timestampDescription: "1hr ago",
                               user: "LemmingFan123")
@@ -144,6 +151,7 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               community: "lemmings",
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
+                                       my_vote: -1,
                                        timestamp: Date(),
                                        timestampDescription: "now",
                               user: "LemmingFan123")
@@ -158,6 +166,7 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               community: "lemmings",
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
+                                 my_vote: 0,
                                        timestamp: Date(),
                                        timestampDescription: "now",
                               user: "LemmingFan123")

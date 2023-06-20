@@ -21,7 +21,6 @@ extension AccountService {
         let keychain = KeychainSwift()
 
         let decoder = JSONDecoder()
-        print("Saved keys \(keychain.allKeys)")
         return keychain
             .allKeys
             .compactMap { key in

@@ -13,7 +13,7 @@ struct PostsFeature: ReducerProtocol {
     @Dependency(\.postService) var postService
     
     struct State: Equatable {
-        var posts: [PostModel]
+        var posts: IdentifiedArrayOf<PostModel>
         var currentPage: Int
         var currentAccount: LemmingAccountModel?
         var isLoading: Bool
@@ -28,8 +28,15 @@ struct PostsFeature: ReducerProtocol {
         case loadNextPage
         case appendPosts([PostModel])
         case updateWithPosts([PostModel])
+        case updatePost(PostModel)
+        case updatePostFailed(PostModel)
+        
+        /// User actions
         case tappedOnPost(PostModel)
+        case upvotePost(PostModel)
+        case commentOnPost(PostModel)
 
+        /// Library
         case delegate(Delegate)
         case binding(BindingAction<State>)
         
@@ -85,10 +92,6 @@ struct PostsFeature: ReducerProtocol {
                         }
                     }
                     return .none
-                case .updateWithPosts(let posts):
-                    state.posts = posts
-                    state.isLoading = false
-                    return .none
                 case .appendPosts(let posts):
                     guard !posts.isEmpty else {
                         return .none
@@ -97,9 +100,50 @@ struct PostsFeature: ReducerProtocol {
                     state.isLoading = false
                     state.currentPage += 1
                     return .none
+                case .updateWithPosts(let posts):
+                    state.posts = IdentifiedArray(uniqueElements: posts)
+                    state.isLoading = false
+                    return .none
+                case .updatePost(let post):
+                    print("updatePost myvote \(post.my_vote)")
+                    state.posts[id: post.id] = post
+                    return .none
+                case .updatePostFailed(let post):
                     
+                    return .none
+                    
+                /// User actions
                 case .tappedOnPost(let post):
                     return .send(.delegate(.goToPost(post)))
+                case .upvotePost(let post):
+                    guard let account = state.currentAccount else {
+                        return .none
+                    }
+                    if post.my_vote == 1 {
+                        return .task {
+                            do {
+                                let updatedPost = try await postService.removeUpvoteFrom(post: post, account: account)
+                                return .updatePost(updatedPost)
+                            } catch {
+                                print("Error updating post \(error)")
+                                return .updatePostFailed(post)
+                            }
+                        }
+                    } else {
+                        return .task {
+                            do {
+                                let updatedPost = try await postService.upvotePost(post: post, account: account)
+                                return .updatePost(updatedPost)
+                            } catch {
+                                print("Error updating post \(error)")
+                                return .updatePostFailed(post)
+                            }
+                        }
+                    }
+                case .commentOnPost(let post):
+                    return .none
+                    
+                /// Library
                 case .delegate(_):
                     return .none
                 case .binding(\.$sort), .binding(\.$origin):

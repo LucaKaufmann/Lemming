@@ -45,4 +45,8 @@ enum PostServiceError: Error {
 
 protocol PostService {
     func getPosts(page: Int, sort: PostSortType, origin: PostOriginType, account: LemmingAccountModel?, previewInstance: URL?) async throws -> [PostModel]
+    
+    func upvotePost(post: PostModel, account: LemmingAccountModel) async throws -> PostModel
+    func removeUpvoteFrom(post: PostModel, account: LemmingAccountModel) async throws -> PostModel
+    func downvotePost(post: PostModel, account: LemmingAccountModel) async throws -> PostModel
 }

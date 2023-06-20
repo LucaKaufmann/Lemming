@@ -20,6 +20,7 @@ struct PostModel: Equatable, Identifiable, Hashable {
     let community: String
     let numberOfUpvotes: Int
     let numberOfComments: Int
+    let my_vote: Int?
     let timestamp: Date?
     let timestampDescription: String
     let user: String
@@ -36,6 +37,7 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               community: "lemmy",
                               numberOfUpvotes: 420420,
                               numberOfComments: 1337,
+                              my_vote: 1,
                               timestamp: Date(),
                               timestampDescription: "1min ago",
                               user: "Admin")
@@ -70,6 +72,7 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               community: "swift",
                               numberOfUpvotes: 123,
                               numberOfComments: 1,
+                              my_vote: 0,
                               timestamp: Date(),
                               timestampDescription: "1hr ago",
                               user: "Codable")
@@ -84,6 +87,7 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               community: "lemmings",
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
+                              my_vote: -1,
                               timestamp: Date(),
                               timestampDescription: "1d ago",
                               user: "LemmingFan123")
