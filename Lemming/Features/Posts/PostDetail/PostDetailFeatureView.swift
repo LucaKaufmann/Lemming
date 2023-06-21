@@ -30,6 +30,7 @@ struct PostDetailFeatureView: View {
             ScrollView {
                 VStack {
                     PostsRowView(post: viewStore.post, showThumbnail: false)
+                        .padding(.horizontal)
                     Divider()
                     if let postUrl = viewStore.post.url {
                         if postUrl.isImage {
@@ -63,7 +64,6 @@ struct PostDetailFeatureView: View {
                     }
                     ForEach(Array(viewStore.comments.enumerated()), id: \.element) { index, comment in
                         HStack {
-//                            Spacer()
                             Rectangle()
                                     .fill(Color("primary"))
                                     .frame(width: 2, alignment: .center)

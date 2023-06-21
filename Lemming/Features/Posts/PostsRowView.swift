@@ -41,7 +41,7 @@ struct PostsRowView: View {
                 ThumbnailView(thumbnailUrl: post.thumbnail_url)
                     .frame(width: 60, height: 60, alignment: .center)
             }
-        }.padding()
+        }.padding(.vertical)
     }
 }
 

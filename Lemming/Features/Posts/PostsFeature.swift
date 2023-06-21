@@ -20,6 +20,8 @@ struct PostsFeature: ReducerProtocol {
         
         @BindingState var sort: PostSortType
         @BindingState var origin: PostOriginType
+        
+        @PresentationState var commentSheet: CommentSheetFeature.State?
     }
     
     enum Action: Equatable, BindableAction {
@@ -39,6 +41,9 @@ struct PostsFeature: ReducerProtocol {
         /// Library
         case delegate(Delegate)
         case binding(BindingAction<State>)
+        
+        /// Presentation
+        case commentSheet(PresentationAction<CommentSheetFeature.Action>)
         
         enum Delegate: Equatable {
           case goToPost(PostModel)
@@ -105,11 +110,9 @@ struct PostsFeature: ReducerProtocol {
                     state.isLoading = false
                     return .none
                 case .updatePost(let post):
-                    print("updatePost myvote \(post.my_vote)")
                     state.posts[id: post.id] = post
                     return .none
                 case .updatePostFailed(let post):
-                    
                     return .none
                     
                 /// User actions
@@ -141,6 +144,7 @@ struct PostsFeature: ReducerProtocol {
                         }
                     }
                 case .commentOnPost(let post):
+                    state.commentSheet = .init(post: post, commentText: "")
                     return .none
                     
                 /// Library
@@ -150,7 +154,13 @@ struct PostsFeature: ReducerProtocol {
                     return .send(.refreshPosts)
                 case .binding(_):
                     return .none
+                    
+                /// Presentation
+                case .commentSheet(_):
+                    return .none
             }
+        }.ifLet(\.$commentSheet, action: /Action.commentSheet) {
+            CommentSheetFeature()
         }
     }
 }

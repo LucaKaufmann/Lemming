@@ -16,8 +16,12 @@ struct LemmyAccountService: AccountService {
         let request = LoginRequest(username_or_email: username, password: password)
                 
         let response = try await api.request(request)
+        guard let jwt = response.jwt
+        else {
+            throw AccountServiceError.noTokenReturned
+        }
         let instanceString = instance.absoluteString
-        let account = LemmingAccountModel(instanceLink: instanceString, username: username, jwt: response.jwt)
+        let account = LemmingAccountModel(instanceLink: instanceString, username: username, jwt: jwt)
         let keychain = KeychainSwift()
         
         let encoder = JSONEncoder()

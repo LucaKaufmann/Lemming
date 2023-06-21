@@ -22,6 +22,7 @@ struct PostDetailLinkView: View {
             Text(postUrl.absoluteString.replacingOccurrences(of: "https://", with: ""))
                 .lineLimit(1)
                 .padding()
+            Spacer()
             Image(systemName: "chevron.right")
                 .padding(.trailing)
         }

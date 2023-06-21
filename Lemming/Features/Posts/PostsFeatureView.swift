@@ -28,6 +28,53 @@ struct PostsFeatureView: View {
     
     var body: some View {
         WithViewStore(store, observe: { $0 } ) { viewStore in
+            PostsListView(store: store)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Menu("Settings") {
+                        Menu("Sorting") {
+                            Picker("Accounts", selection: viewStore.binding(\.$sort)) {
+                                ForEach(PostSortType.allCases, id: \.self) { sortType in
+                                    Text(sortType.rawValue)
+                                        .tag(sortType)
+                                }
+                            }
+                        }
+                        Menu("Origin") {
+                            Picker("Origin", selection: viewStore.binding(\.$origin)) {
+                                ForEach(PostOriginType.allCases, id: \.self) { originType in
+                                    Text(originType.rawValue)
+                                        .tag(originType)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .refreshable {
+                viewStore.send(.refreshPosts)
+            }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
+            .overlay {
+                if viewStore.isLoading && viewStore.posts.count == 0 {
+                    ProgressView()
+                }
+            }
+            .sheet(store: store.scope(state: \.$commentSheet, action: PostsFeature.Action.commentSheet)) { store in
+                CommentSheetFeatureView(store: store)
+            }
+        }
+    }
+}
+
+struct PostsListView: View {
+    
+    let store: StoreOf<PostsFeature>
+    
+    var body: some View {
+        WithViewStore(store, observe: { $0 } ) { viewStore in
             List {
                 ForEach(Array(viewStore.posts.enumerated()), id: \.element) { index, post in
                     Button(action: {
@@ -62,12 +109,15 @@ struct PostsFeatureView: View {
                     }
                     .swipeActions(edge: .trailing) {
                         Button {
-                            
+                            viewStore.send(.commentOnPost(post))
                         } label: {
                             Label("Comment", systemImage: IconConstants.comment)
                         }
                         .tint(Color.LemmingColors.primary)
                     }
+                }
+                if viewStore.isLoading && viewStore.posts.count > 0 {
+                    ProgressView()
                 }
             }
             .background {
@@ -78,39 +128,6 @@ struct PostsFeatureView: View {
             }
             .scrollContentBackground(.hidden)
             .listStyle(.plain)
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Menu("Settings") {
-                        Menu("Sorting") {
-                            Picker("Accounts", selection: viewStore.binding(\.$sort)) {
-                                ForEach(PostSortType.allCases, id: \.self) { sortType in
-                                    Text(sortType.rawValue)
-                                        .tag(sortType)
-                                }
-                            }
-                        }
-                        Menu("Origin") {
-                            Picker("Origin", selection: viewStore.binding(\.$origin)) {
-                                ForEach(PostOriginType.allCases, id: \.self) { originType in
-                                    Text(originType.rawValue)
-                                        .tag(originType)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            .refreshable {
-                viewStore.send(.refreshPosts)
-            }
-            .onAppear {
-                viewStore.send(.onAppear)
-            }
-            .overlay {
-                if viewStore.isLoading && viewStore.posts.count == 0 {
-                    ProgressView()
-                }
-            }
         }
     }
 }

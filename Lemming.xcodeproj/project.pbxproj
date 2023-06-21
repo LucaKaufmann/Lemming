@@ -13,6 +13,8 @@
 		810E07982A39B83B00CCBDBE /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E07972A39B83B00CCBDBE /* CommentModel.swift */; };
 		810E079A2A39BC8400CCBDBE /* LemmyCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E07992A39BC8400CCBDBE /* LemmyCommentService.swift */; };
 		810E079C2A39C74900CCBDBE /* CommentServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E079B2A39C74900CCBDBE /* CommentServiceDependency.swift */; };
+		816F99062A431CA4004F0AE9 /* CommentSheetFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F99052A431CA4004F0AE9 /* CommentSheetFeature.swift */; };
+		816F99082A431DC3004F0AE9 /* CommentSheetFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F99072A431DC3004F0AE9 /* CommentSheetFeatureView.swift */; };
 		81727D742A40E9FA0035FF22 /* URL+URLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81727D732A40E9FA0035FF22 /* URL+URLType.swift */; };
 		81727D762A40EA8C0035FF22 /* PostDetailLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81727D752A40EA8C0035FF22 /* PostDetailLinkView.swift */; };
 		818E8A032A3EC4C400013875 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E8A022A3EC4C400013875 /* AccountService.swift */; };
@@ -74,6 +76,8 @@
 		810E07972A39B83B00CCBDBE /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		810E07992A39BC8400CCBDBE /* LemmyCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyCommentService.swift; sourceTree = "<group>"; };
 		810E079B2A39C74900CCBDBE /* CommentServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentServiceDependency.swift; sourceTree = "<group>"; };
+		816F99052A431CA4004F0AE9 /* CommentSheetFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSheetFeature.swift; sourceTree = "<group>"; };
+		816F99072A431DC3004F0AE9 /* CommentSheetFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSheetFeatureView.swift; sourceTree = "<group>"; };
 		81727D732A40E9FA0035FF22 /* URL+URLType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+URLType.swift"; sourceTree = "<group>"; };
 		81727D752A40EA8C0035FF22 /* PostDetailLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailLinkView.swift; sourceTree = "<group>"; };
 		818E8A022A3EC4C400013875 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
@@ -160,6 +164,15 @@
 				818E8A122A3F409600013875 /* Account */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		816F99042A431C93004F0AE9 /* CommentSheet */ = {
+			isa = PBXGroup;
+			children = (
+				816F99052A431CA4004F0AE9 /* CommentSheetFeature.swift */,
+				816F99072A431DC3004F0AE9 /* CommentSheetFeatureView.swift */,
+			);
+			path = CommentSheet;
 			sourceTree = "<group>";
 		};
 		818E8A062A3EC7A600013875 /* Utility */ = {
@@ -285,6 +298,7 @@
 		819217272A3732D00015BEF3 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				816F99042A431C93004F0AE9 /* CommentSheet */,
 				810E07902A39A9F600CCBDBE /* PostDetail */,
 				819217282A3732E10015BEF3 /* PostsFeature.swift */,
 				8192172B2A3734F20015BEF3 /* PostsFeatureView.swift */,
@@ -488,6 +502,7 @@
 				81F702172A38700000484D6F /* PostServiceDependency.swift in Sources */,
 				810E079C2A39C74900CCBDBE /* CommentServiceDependency.swift in Sources */,
 				818E8A212A403B9700013875 /* AddAccountFeatureView.swift in Sources */,
+				816F99062A431CA4004F0AE9 /* CommentSheetFeature.swift in Sources */,
 				81B982E62A39E08300D2A3F7 /* RelativeDateTimeFormatterDependency.swift in Sources */,
 				818E8A1F2A40326E00013875 /* AddAccountFeature.swift in Sources */,
 				81B982EE2A39E89900D2A3F7 /* URLCache+imageCache.swift in Sources */,
@@ -496,6 +511,7 @@
 				810E07982A39B83B00CCBDBE /* CommentModel.swift in Sources */,
 				8192170E2A364A950015BEF3 /* RootView.swift in Sources */,
 				818E8A162A3F419E00013875 /* AccountFeatureView.swift in Sources */,
+				816F99082A431DC3004F0AE9 /* CommentSheetFeatureView.swift in Sources */,
 				819217242A37093E0015BEF3 /* DesignSystemPreview.swift in Sources */,
 				818E8A0A2A3EC7E700013875 /* KeychainItemAccessibility.swift in Sources */,
 				81F702142A386F5300484D6F /* LemmyPostService.swift in Sources */,
@@ -818,8 +834,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rrainn/Lemmy-Swift-Client.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

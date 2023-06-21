@@ -8,6 +8,10 @@
 import Foundation
 import KeychainSwift
 
+enum AccountServiceError: Error {
+    case noTokenReturned
+}
+
 protocol AccountService {
     func getAccounts() -> [LemmingAccountModel]
     func loginWith(username: String, password: String, instance: URL) async throws -> LemmingAccountModel

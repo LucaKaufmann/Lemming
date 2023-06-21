@@ -25,6 +25,11 @@ enum CommentOriginType: String {
     case subscribed = "Subscribed"
 }
 
+enum CommentServiceError: Error {
+    case instanceUrlError
+}
+
 protocol CommentService {
-    func getComments(forPost postId: Int, sort: _CommentSortType, origin: CommentOriginType) async -> [CommentModel]
+    func getComments(forPost postId: Int, sort: _CommentSortType, origin: CommentOriginType, account: LemmingAccountModel?, previewInstance: URL?) async throws -> [CommentModel]
+    func postReplyTo(comment: CommentModel?, post: PostModel, replyText: String, account: LemmingAccountModel) async throws -> CommentModel
 }

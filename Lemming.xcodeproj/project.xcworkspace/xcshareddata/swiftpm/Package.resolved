@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/rrainn/Lemmy-Swift-Client.git",
       "state" : {
-        "revision" : "d5ddbf98cd48f09ca95dfea78f714e6eb2da920b",
-        "version" : "1.0.1"
+        "branch" : "main",
+        "revision" : "9f5d26639b2c7a90a3532a505749dce9b87ef9b2"
       }
     },
     {
@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-composable-architecture",
       "state" : {
-        "revision" : "8b98ba40a2bc8e70579397f906ceb325e7c04b2f",
-        "version" : "0.54.0"
+        "revision" : "3fa456c04636978288ca6aa5acbe7b642bee3328",
+        "version" : "0.54.1"
       }
     },
     {

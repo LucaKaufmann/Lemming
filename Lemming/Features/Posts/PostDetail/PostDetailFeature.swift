@@ -12,6 +12,7 @@ import UIKit
 struct PostDetailFeature: ReducerProtocol {
     
     @Dependency(\.commentService) var commentService
+    @Dependency(\.accountService) var accountService
     
     struct State: Equatable {
         var post: PostModel
@@ -36,7 +37,7 @@ struct PostDetailFeature: ReducerProtocol {
                     let postId = state.post.id
                     state.isLoading = true
                     return .task {
-                        let comments = await commentService.getComments(forPost: postId, sort: .hot, origin: .all)
+                        let comments = try await commentService.getComments(forPost: postId, sort: .hot, origin: .all, account: accountService.getCurrentAccount(), previewInstance: nil)
                         return .buildCommentGraph(comments)
                     }
                 case .tappedUpvote:
