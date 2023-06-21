@@ -27,7 +27,7 @@ struct PostDetailLinkView: View {
         }
         .background {
             RoundedRectangle(cornerRadius: 12)
-                .foregroundColor(Color("lemmingBeige"))
+                .foregroundColor(Color("lemmingGray"))
         }
     }
 }

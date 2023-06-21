@@ -7,6 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
+import UIKit
 
 struct PostDetailFeature: ReducerProtocol {
     
@@ -22,6 +23,8 @@ struct PostDetailFeature: ReducerProtocol {
     enum Action: Equatable {
         case tappedUpvote
         case onAppear
+        case openUrl(URL)
+        
         case buildCommentGraph([CommentModel])
         case updateComments([CommentModel])
     }
@@ -37,6 +40,9 @@ struct PostDetailFeature: ReducerProtocol {
                         return .buildCommentGraph(comments)
                     }
                 case .tappedUpvote:
+                    return .none
+                case .openUrl(let url):
+                    UIApplication.shared.open(url)
                     return .none
                 case .buildCommentGraph(let newComments):
                     let ids = state.comments.map { $0.id }
