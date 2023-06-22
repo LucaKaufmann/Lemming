@@ -9,7 +9,7 @@ import Foundation
 
 extension URL {
     var isImage: Bool {
-        let imageFormats = ["jpg", "png", "gif", "jpeg"]
+        let imageFormats = ["jpg", "png", "gif", "jpeg", "webp"]
 
         let pathExtention = self.pathExtension
         return imageFormats.contains(pathExtention)
