@@ -69,7 +69,7 @@ struct PostDetailFeatureView: View {
                                     .fill(Color("primary"))
                                     .frame(width: 2, alignment: .center)
                                     .opacity(comment.child_count > 0 ? 1 : 0)
-                            CommentDetailView(comment: comment)
+                            CommentDetailView(comment: comment, store: store)
                         }.padding()
                         .swipeActions {
                                     Button("Order") {

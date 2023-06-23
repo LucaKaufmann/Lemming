@@ -34,21 +34,21 @@ struct LemmyCommentService: CommentService {
         return commentModelFrom(response.comment_view)
     }
     
-    func upvote(comment: CommentModel, post: PostModel, account: LemmingAccountModel) async throws -> CommentModel {
+    func upvote(comment: CommentModel, account: LemmingAccountModel) async throws -> CommentModel {
         guard let instanceUrl = URL(string: account.instanceLink) else {
             throw CommentServiceError.instanceUrlError
         }
         return try await likeComment(id: comment.id, auth: account.jwt, instanceUrl: instanceUrl, score: 1)
     }
     
-    func removeUpvoteFrom(comment: CommentModel, post: PostModel, account: LemmingAccountModel) async throws -> CommentModel {
+    func removeUpvoteFrom(comment: CommentModel, account: LemmingAccountModel) async throws -> CommentModel {
         guard let instanceUrl = URL(string: account.instanceLink) else {
             throw CommentServiceError.instanceUrlError
         }
         return try await likeComment(id: comment.id, auth: account.jwt, instanceUrl: instanceUrl, score: 0)
     }
     
-    func downvote(comment: CommentModel, post: PostModel, account: LemmingAccountModel) async throws -> CommentModel {
+    func downvote(comment: CommentModel, account: LemmingAccountModel) async throws -> CommentModel {
         guard let instanceUrl = URL(string: account.instanceLink) else {
             throw CommentServiceError.instanceUrlError
         }

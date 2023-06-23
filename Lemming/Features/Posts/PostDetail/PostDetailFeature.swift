@@ -28,7 +28,11 @@ struct PostDetailFeature: ReducerProtocol {
     enum Action: Equatable {
         case tappedUpvote
         case onAppear
+        case upvoteComment(CommentModel)
+        case removeUpvoteFromComment(CommentModel)
+        case downvoteComment(CommentModel)
         
+        case appendNewComment(CommentModel)
         case buildCommentGraph([CommentModel])
         case updateComments([CommentModel])
     }
@@ -45,9 +49,43 @@ struct PostDetailFeature: ReducerProtocol {
                     }
                 case .tappedUpvote:
                     return .none
+                case .upvoteComment(let comment):
+                    guard let account = accountService.getCurrentAccount() else {
+                        return .none
+                    }
+                    return .task {
+                        let newComment = try await commentService.upvote(comment: comment, account: account)
+                        
+                        return .appendNewComment(newComment)
+                    }
+                case .removeUpvoteFromComment(let comment):
+                    guard let account = accountService.getCurrentAccount() else {
+                        return .none
+                    }
+                    return .task {
+                        let newComment = try await commentService.removeUpvoteFrom(comment: comment, account: account)
+                        return .appendNewComment(newComment)
+                    }
+                case .downvoteComment(let comment):
+                    guard let account = accountService.getCurrentAccount() else {
+                        return .none
+                    }
+                    return .task {
+                        let newComment = try  await commentService.downvote(comment: comment, account: account)
+                        return .appendNewComment(newComment)
+                    }
+                case .appendNewComment(let newComment):
+                    var comments = state.comments
+                    if let index = comments.firstIndex(where: { $0.id == newComment.id }) {
+                        print("Removing comment at index \(index)")
+                        comments.remove(at: index)
+                    }
+                    comments.append(newComment)
+                    print("Appending new comment \(newComment)")
+                    return .send(.buildCommentGraph(comments))
                 case .buildCommentGraph(let newComments):
-                    let ids = state.comments.map { $0.id }
-                    let combined = state.comments + newComments.filter({ !ids.contains($0.id) })
+                    let ids = newComments.map { $0.id }
+                    let combined = state.comments.filter({ !ids.contains($0.id) }) + newComments
 
                     return .task {
                         let updatedComments = await buildCommentGraph(combined)

@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct CommentDetailView: View {
     
     @State var isExpanded = true
-        
+    
     let comment: CommentModel
+    let store: StoreOf<PostDetailFeature>
     
     var body: some View {
 //        Collapsible(header: {
@@ -55,10 +57,20 @@ struct CommentDetailView: View {
                 Text(comment.content)
                     .multilineTextAlignment(.leading)
                     .frame(minHeight: 40)
+                #if os(iOS)
                     .addButtonActions(leadingButtons: [.upvote, .downvote],
                                       trailingButton:  [.reply], onClick: { button in
+                        switch button {
+                            case .upvote:
+                                ViewStore(store).send(.upvoteComment(comment))
+                            case .downvote:
+                                ViewStore(store).send(.downvoteComment(comment))
+                            default:
+                                break
+                        }
                                         print("clicked: \(button)")
                                       })
+                #endif
                 LazyVStack {
                     ForEach(comment.children) { childComment in
                         HStack {
@@ -66,7 +78,7 @@ struct CommentDetailView: View {
                                 .fill(Color("primary"))
                                 .frame(width: 2, alignment: .center)
                                 .opacity(childComment.child_count > 0 ? 1 : 0)
-                            CommentDetailView(comment: childComment)
+                            CommentDetailView(comment: childComment, store: store)
                         }
                         .padding(.top)
                         
@@ -121,6 +133,6 @@ struct CommentDetailView_Previews: PreviewProvider {
                                                                                             my_vote: nil,
                                                                                             children: [])
                                                 
-                                                ]))
+                                                ]), store: Store(initialState: .init(post: PostModel.mockPosts.first!, comments: [], isLoading: false), reducer: PostDetailFeature()))
     }
 }
