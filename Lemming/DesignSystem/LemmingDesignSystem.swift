@@ -58,5 +58,30 @@ extension Color {
         public static var destructionButtonBackground: Color {
             return Color("destructionButtonBackground")
         }
+        
+        
+        /// User actions
+        
+        public static var comments: Color {
+            return Color("lemmingBlue")
+        }
+        
+        public static var upvote: Color {
+            return Color("lemmingGreen")
+        }
+        
+        public static var removeUpvote: Color {
+            return Color("lemmingOrange")
+        }
+        
+        public static var downvote: Color {
+            return Color("lemmingPink")
+        }
+        
+        // UI
+        public static var accent: Color {
+            return Color("lemmingOrange")
+        }
+        
     }
 }

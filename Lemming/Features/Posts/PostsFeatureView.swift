@@ -97,14 +97,14 @@ struct PostsListView: View {
                             } label: {
                                 Label("Remove upvote", systemImage: IconConstants.neutralVote)
                             }
-                            .tint(Color("lemmingOrange"))
+                            .tint(Color.LemmingColors.removeUpvote)
                         } else {
                             Button {
                                 viewStore.send(.upvotePost(post))
                             } label: {
                                 Label("Upvote", systemImage: IconConstants.upvote)
                             }
-                            .tint(Color("lemmingGreen"))
+                            .tint(Color.LemmingColors.upvote)
                         }
                     }
                     .swipeActions(edge: .trailing) {
@@ -113,7 +113,7 @@ struct PostsListView: View {
                         } label: {
                             Label("Comment", systemImage: IconConstants.comment)
                         }
-                        .tint(Color.LemmingColors.primary)
+                        .tint(Color.LemmingColors.comments)
                     }
                 }
                 if viewStore.isLoading && viewStore.posts.count > 0 {

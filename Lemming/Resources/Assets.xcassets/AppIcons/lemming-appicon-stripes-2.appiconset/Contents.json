@@ -1,0 +1,14 @@
+{
+  "images" : [
+    {
+      "filename" : "codable_app_icon_showing_a_lemming_with_rainbow_stripes_in_the__dd0a0e06-6a6e-4b9f-a2fd-7c55c04ccf87.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

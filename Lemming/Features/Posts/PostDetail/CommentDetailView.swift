@@ -10,13 +10,54 @@ import SwiftUI
 struct CommentDetailView: View {
     
     @State var isExpanded = true
-    
+        
     let comment: CommentModel
     
     var body: some View {
+//        Collapsible(header: {
+//            HStack {
+//                Text(comment.user)
+//                    .foregroundColor(Color("lemmingGrayDark"))
+//                Spacer()
+//                Text("\(Image(systemName: IconConstants.score)) \(comment.score)")
+//                    .foregroundColor(Color("lemmingOrange"))
+//                Text("\(Image(systemName: IconConstants.upvote)) \(comment.upvotes)")
+//                    .foregroundColor(Color("lemmingOrange"))
+//                Text("\(Image(systemName: IconConstants.downvote)) \(comment.downvotes)")
+//                    .foregroundColor(Color.LemmingColors.error)
+//            }
+//            .font(.caption)
+//            .frame(height: 40)
+//        }, content: {
+//            VStack(alignment: .leading) {
+//                Text(LocalizedStringKey(comment.content))
+//                    .addButtonActions(leadingButtons: [.upvote, .downvote],
+//                                      trailingButton:  [.reply], onClick: { button in
+//                        print("clicked: \(button)")
+//                    })
+//                LazyVStack {
+//                    ForEach(comment.children) { childComment in
+//                        HStack {
+//                            Rectangle()
+//                                .fill(Color("primary"))
+//                                .frame(width: 2, alignment: .center)
+//                                .opacity(childComment.child_count > 0 ? 1 : 0)
+//                            CommentDetailView(comment: childComment)
+//                        }
+//                        .padding(.top)
+//                        
+//                    }
+//                }
+//            }
+//        })
         DisclosureGroup(isExpanded: $isExpanded) {
             VStack(alignment: .leading) {
                 Text(LocalizedStringKey(comment.content))
+                    .multilineTextAlignment(.leading)
+                    .addButtonActions(leadingButtons: [.upvote, .downvote],
+                                      trailingButton:  [.reply], onClick: { button in
+                                        print("clicked: \(button)")
+                                      })
                 LazyVStack {
                     ForEach(comment.children) { childComment in
                         HStack {
@@ -44,6 +85,12 @@ struct CommentDetailView: View {
                     .foregroundColor(Color.LemmingColors.error)
             }
             .font(.caption)
+            .frame(height: 40)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                print("tap")
+                isExpanded.toggle()
+            }
         }.accentColor(Color("lemmingOrange"))
     }
 }
