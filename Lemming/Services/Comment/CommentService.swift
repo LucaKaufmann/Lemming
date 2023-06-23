@@ -32,4 +32,8 @@ enum CommentServiceError: Error {
 protocol CommentService {
     func getComments(forPost postId: Int, sort: _CommentSortType, origin: CommentOriginType, account: LemmingAccountModel?, previewInstance: URL?) async throws -> [CommentModel]
     func postReplyTo(comment: CommentModel?, post: PostModel, replyText: String, account: LemmingAccountModel) async throws -> CommentModel
+    
+    func upvote(comment: CommentModel, post: PostModel, account: LemmingAccountModel) async throws -> PostModel
+    func removeUpvoteFrom(comment: CommentModel, post: PostModel, account: LemmingAccountModel) async throws -> PostModel
+    func downvote(comment: CommentModel, post: PostModel, account: LemmingAccountModel) async throws -> PostModel
 }

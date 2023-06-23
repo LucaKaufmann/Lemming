@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-let buttonWidth: CGFloat = 60
+let buttonWidth: CGFloat = 80
 
 enum CellButtons: Identifiable {
     case reply
@@ -28,6 +28,7 @@ struct CellButtonView: View {
         VStack {
             Image(systemName: image)
             Text(title)
+                .font(.caption)
         }.padding(5)
         .foregroundColor(.primary)
         .font(.subheadline)
@@ -101,7 +102,7 @@ struct SwipeContainerCell: ViewModifier  {
     init(leadingButtons: [CellButtons], trailingButton: [CellButtons], onClick: @escaping (CellButtons) -> Void) {
         self.leadingButtons = leadingButtons
         self.trailingButton = trailingButton
-        maxLeadingOffset = CGFloat(leadingButtons.count) * buttonWidth
+        maxLeadingOffset = CGFloat(leadingButtons.count) * buttonWidth + 10
         minTrailingOffset = CGFloat(trailingButton.count) * buttonWidth * -1
         self.onClick = onClick
     }

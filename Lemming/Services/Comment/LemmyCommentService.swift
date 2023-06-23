@@ -10,7 +10,7 @@ import Lemmy_Swift_Client
 import ComposableArchitecture
 
 struct LemmyCommentService: CommentService {
-    
+
     @Dependency(\.dateFormatterService) var dateFormatterService
     
     func getComments(forPost postId: Int, sort: _CommentSortType = .hot, origin: CommentOriginType = .all, account: LemmingAccountModel?, previewInstance: URL?) async throws -> [CommentModel] {
@@ -32,6 +32,27 @@ struct LemmyCommentService: CommentService {
         let response = try await api.request(request)
         
         return commentModelFrom(response.comment_view)
+    }
+    
+    func upvote(comment: CommentModel, post: PostModel, account: LemmingAccountModel) async throws -> CommentModel {
+        guard let instanceUrl = URL(string: account.instanceLink) else {
+            throw CommentServiceError.instanceUrlError
+        }
+        return try await likeComment(id: comment.id, auth: account.jwt, instanceUrl: instanceUrl, score: 1)
+    }
+    
+    func removeUpvoteFrom(comment: CommentModel, post: PostModel, account: LemmingAccountModel) async throws -> CommentModel {
+        guard let instanceUrl = URL(string: account.instanceLink) else {
+            throw CommentServiceError.instanceUrlError
+        }
+        return try await likeComment(id: comment.id, auth: account.jwt, instanceUrl: instanceUrl, score: 0)
+    }
+    
+    func downvote(comment: CommentModel, post: PostModel, account: LemmingAccountModel) async throws -> CommentModel {
+        guard let instanceUrl = URL(string: account.instanceLink) else {
+            throw CommentServiceError.instanceUrlError
+        }
+        return try await likeComment(id: comment.id, auth: account.jwt, instanceUrl: instanceUrl, score: -1)
     }
     
     private func getCommentsFromRequest(_ request: GetCommentsRequest, instanceUrl: URL) async -> [CommentModel] {
@@ -61,6 +82,17 @@ struct LemmyCommentService: CommentService {
                            upvotes: commentView.counts.upvotes,
                            my_vote: commentView.my_vote,
                            children: [])
+    }
+    
+    private func likeComment(id: Int, auth: String, instanceUrl: URL, score: Int) async throws -> CommentModel {
+        let api = LemmyAPI(baseUrl: instanceUrl.appending(path: "/api/v3"))
+
+        
+        let request = LikeCommentRequest(auth: auth, comment_id: id, score: score)
+        
+        let response = try await api.request(request)
+        
+        return commentModelFrom(response.comment_view)
     }
     
 }

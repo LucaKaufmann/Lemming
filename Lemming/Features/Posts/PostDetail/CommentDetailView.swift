@@ -52,8 +52,9 @@ struct CommentDetailView: View {
 //        })
         DisclosureGroup(isExpanded: $isExpanded) {
             VStack(alignment: .leading) {
-                Text(LocalizedStringKey(comment.content))
+                Text(comment.content)
                     .multilineTextAlignment(.leading)
+                    .frame(minHeight: 40)
                     .addButtonActions(leadingButtons: [.upvote, .downvote],
                                       trailingButton:  [.reply], onClick: { button in
                                         print("clicked: \(button)")
