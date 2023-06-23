@@ -62,7 +62,11 @@ struct AccountFeature: ReducerProtocol {
                             state.currentAccount = account
                             accountService.setCurrentAccount(account)
                             state.addAccountSheet = nil
-                            return .send(.updateAvailableAccounts(accountService.getAccounts()))
+                            let newAccounts = state.availableAccounts + [account]
+                            return .run { send in
+                                await send(.delegate(.updateCurrentAccount(account)))
+                                await send(.updateAvailableAccounts(newAccounts))
+                            }
                         default:
                             return .none
                     }

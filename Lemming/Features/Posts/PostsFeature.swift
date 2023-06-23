@@ -11,11 +11,11 @@ import ComposableArchitecture
 struct PostsFeature: ReducerProtocol {
     
     @Dependency(\.postService) var postService
+    @Dependency(\.accountService) var accountService
     
     struct State: Equatable {
         var posts: IdentifiedArrayOf<PostModel>
         var currentPage: Int
-        var currentAccount: LemmingAccountModel?
         var isLoading: Bool
         
         @BindingState var sort: PostSortType
@@ -67,7 +67,7 @@ struct PostsFeature: ReducerProtocol {
                     let sortingType = state.sort
                     let originType = state.origin
                     
-                    if let account = state.currentAccount {
+                    if let account = accountService.getCurrentAccount() {
                         return .task {
                             let posts = try await postService.getPosts(page: 1,
                                                                    sort: sortingType,
@@ -85,7 +85,7 @@ struct PostsFeature: ReducerProtocol {
                     let sortingType = state.sort
                     let originType = state.origin
                     
-                    if let account = state.currentAccount {
+                    if let account = accountService.getCurrentAccount() {
                         return .task {
                             let posts = try await postService.getPosts(page: page,
                                                                        sort: sortingType,
@@ -119,7 +119,7 @@ struct PostsFeature: ReducerProtocol {
                 case .tappedOnPost(let post):
                     return .send(.delegate(.goToPost(post)))
                 case .upvotePost(let post):
-                    guard let account = state.currentAccount else {
+                    guard let account = accountService.getCurrentAccount() else {
                         return .none
                     }
                     if post.my_vote == 1 {

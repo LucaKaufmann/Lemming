@@ -40,9 +40,6 @@ struct LemmyCommentService: CommentService {
             let response = try await api.request(request)
             
             return response.comments.map { commentModelFrom($0) }
-//            return response.comments.map { commentView in
-//                commentModelFrom(commentView)
-//            }
         } catch {
             print("Lemmy error \(error)")
             return []

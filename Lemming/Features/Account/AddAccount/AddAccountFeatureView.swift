@@ -19,17 +19,23 @@ struct AddAccountFeatureView: View {
                     Section("Instance") {
                         LabeledContent("Instance") {
                             TextField("lemmy.ml", text: viewStore.binding(\.$instance))
-                                .autocapitalization(.none)
+                                #if !os(macOS)
+                                .textInputCapitalization(.none)
+                                #endif
                                 .disableAutocorrection(true)
                         }
                         LabeledContent("Username") {
                             TextField("Username", text: viewStore.binding(\.$username))
-                                .autocapitalization(.none)
+                                #if !os(macOS)
+                                .textInputCapitalization(.none)
+                                #endif
                                 .disableAutocorrection(true)
                         }
                         LabeledContent("Password") {
                             SecureField("Password", text: viewStore.binding(\.$password))
-                                .autocapitalization(.none)
+                                #if !os(macOS)
+                                .textInputCapitalization(.none)
+                                #endif
                                 .disableAutocorrection(true)
                         }
                     }

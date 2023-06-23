@@ -10,7 +10,7 @@ import ComposableArchitecture
 import CachedAsyncImage
 
 struct PostDetailFeatureView: View {
-    
+        
     let store: StoreOf<PostDetailFeature>
     
     struct ViewState: Equatable {
@@ -48,7 +48,8 @@ struct PostDetailFeatureView: View {
                         } else {
                             PostDetailLinkView(thumbnailUrl: viewStore.post.thumbnail_url, postUrl: postUrl)
                                 .onTapGesture {
-                                    viewStore.send(.openUrl(postUrl))
+//                                    viewStore.send(.openUrl(postUrl))
+//                                    openURL(postUrl)
                                 }
                                 .padding()
                         }

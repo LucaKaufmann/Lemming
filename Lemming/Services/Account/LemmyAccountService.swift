@@ -22,13 +22,8 @@ struct LemmyAccountService: AccountService {
         }
         let instanceString = instance.absoluteString
         let account = LemmingAccountModel(instanceLink: instanceString, username: username, jwt: jwt)
-        let keychain = KeychainSwift()
+        try saveAccount(account)
         
-        let encoder = JSONEncoder()
-        let encoded = try encoder.encode(account)
-
-        keychain.set(encoded, forKey: account.id)
-
         return account
     }
 }

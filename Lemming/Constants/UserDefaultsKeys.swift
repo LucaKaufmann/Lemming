@@ -9,4 +9,5 @@ import Foundation
 
 enum UserDefaultsKeys {
     static var accountKey = "com.codable.Lemming.currentAccount"
+    static var credentialsSuiteKey = "com.codable.Lemming.credentials"
 }

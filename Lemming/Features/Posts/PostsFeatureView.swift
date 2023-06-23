@@ -33,7 +33,7 @@ struct PostsFeatureView: View {
                 ToolbarItem(placement: .primaryAction) {
                     Menu("Settings") {
                         Menu("Sorting") {
-                            Picker("Accounts", selection: viewStore.binding(\.$sort)) {
+                            Picker("Sorting", selection: viewStore.binding(\.$sort)) {
                                 ForEach(PostSortType.allCases, id: \.self) { sortType in
                                     Text(sortType.rawValue)
                                         .tag(sortType)
@@ -121,10 +121,18 @@ struct PostsListView: View {
                 }
             }
             .background {
+                #if os(xrOS)
+                Color
+                    .LemmingColors
+                    .background
+                    .opacity(0.5)
+                    .ignoresSafeArea()
+                #else
                 Color
                     .LemmingColors
                     .background
                     .ignoresSafeArea()
+                #endif
             }
             .scrollContentBackground(.hidden)
             .listStyle(.plain)

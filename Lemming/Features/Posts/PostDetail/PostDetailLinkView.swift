@@ -13,18 +13,21 @@ struct PostDetailLinkView: View {
     let postUrl: URL
     
     var body: some View {
-        HStack {
-            if let thumbnailUrl {
-                ThumbnailView(thumbnailUrl: thumbnailUrl)
-                    .frame(width: 60, height: 60, alignment: .center)
-                    .padding(5)
+        Link(destination: postUrl) {
+            HStack {
+                if let thumbnailUrl {
+                    ThumbnailView(thumbnailUrl: thumbnailUrl)
+                        .frame(width: 60, height: 60, alignment: .center)
+                        .padding(5)
+                }
+                Text(postUrl.absoluteString.replacingOccurrences(of: "https://", with: ""))
+                    .lineLimit(1)
+                    .padding()
+                    .foregroundColor(Color.LemmingColors.text)
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .padding(.trailing)
             }
-            Text(postUrl.absoluteString.replacingOccurrences(of: "https://", with: ""))
-                .lineLimit(1)
-                .padding()
-            Spacer()
-            Image(systemName: "chevron.right")
-                .padding(.trailing)
         }
         .background {
             RoundedRectangle(cornerRadius: 12)
