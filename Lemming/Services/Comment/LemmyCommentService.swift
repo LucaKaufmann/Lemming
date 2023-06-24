@@ -34,25 +34,25 @@ struct LemmyCommentService: CommentService {
         return commentModelFrom(response.comment_view)
     }
     
-    func upvote(comment: CommentModel, account: LemmingAccountModel) async throws -> CommentModel {
+    func upvote(commentId: Int, account: LemmingAccountModel) async throws -> CommentModel {
         guard let instanceUrl = URL(string: account.instanceLink) else {
             throw CommentServiceError.instanceUrlError
         }
-        return try await likeComment(id: comment.id, auth: account.jwt, instanceUrl: instanceUrl, score: 1)
+        return try await likeComment(id: commentId, auth: account.jwt, instanceUrl: instanceUrl, score: 1)
     }
     
-    func removeUpvoteFrom(comment: CommentModel, account: LemmingAccountModel) async throws -> CommentModel {
+    func removeUpvoteFrom(commentId: Int, account: LemmingAccountModel) async throws -> CommentModel {
         guard let instanceUrl = URL(string: account.instanceLink) else {
             throw CommentServiceError.instanceUrlError
         }
-        return try await likeComment(id: comment.id, auth: account.jwt, instanceUrl: instanceUrl, score: 0)
+        return try await likeComment(id: commentId, auth: account.jwt, instanceUrl: instanceUrl, score: 0)
     }
     
-    func downvote(comment: CommentModel, account: LemmingAccountModel) async throws -> CommentModel {
+    func downvote(commentId: Int, account: LemmingAccountModel) async throws -> CommentModel {
         guard let instanceUrl = URL(string: account.instanceLink) else {
             throw CommentServiceError.instanceUrlError
         }
-        return try await likeComment(id: comment.id, auth: account.jwt, instanceUrl: instanceUrl, score: -1)
+        return try await likeComment(id: commentId, auth: account.jwt, instanceUrl: instanceUrl, score: -1)
     }
     
     private func getCommentsFromRequest(_ request: GetCommentsRequest, instanceUrl: URL) async -> [CommentModel] {

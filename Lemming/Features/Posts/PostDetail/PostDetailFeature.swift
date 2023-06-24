@@ -20,7 +20,7 @@ struct PostDetailFeature: ReducerProtocol {
     
     struct State: Equatable {
         var post: PostModel
-        var comments: [CommentModel]
+        var comments: IdentifiedArrayOf<CommentDetailFeature.State>
         
         var isLoading: Bool
     }
@@ -28,13 +28,10 @@ struct PostDetailFeature: ReducerProtocol {
     enum Action: Equatable {
         case tappedUpvote
         case onAppear
-        case upvoteComment(CommentModel)
-        case removeUpvoteFromComment(CommentModel)
-        case downvoteComment(CommentModel)
         
-        case appendNewComment(CommentModel)
         case buildCommentGraph([CommentModel])
-        case updateComments([CommentModel])
+        case updateComments(IdentifiedArrayOf<CommentDetailFeature.State>)
+        case comment(id: CommentDetailFeature.State.ID, action: CommentDetailFeature.Action)
     }
     
     var body: some ReducerProtocolOf<PostDetailFeature> {
@@ -49,46 +46,10 @@ struct PostDetailFeature: ReducerProtocol {
                     }
                 case .tappedUpvote:
                     return .none
-                case .upvoteComment(let comment):
-                    guard let account = accountService.getCurrentAccount() else {
-                        return .none
-                    }
-                    return .task {
-                        let newComment = try await commentService.upvote(comment: comment, account: account)
-                        
-                        return .appendNewComment(newComment)
-                    }
-                case .removeUpvoteFromComment(let comment):
-                    guard let account = accountService.getCurrentAccount() else {
-                        return .none
-                    }
-                    return .task {
-                        let newComment = try await commentService.removeUpvoteFrom(comment: comment, account: account)
-                        return .appendNewComment(newComment)
-                    }
-                case .downvoteComment(let comment):
-                    guard let account = accountService.getCurrentAccount() else {
-                        return .none
-                    }
-                    return .task {
-                        let newComment = try  await commentService.downvote(comment: comment, account: account)
-                        return .appendNewComment(newComment)
-                    }
-                case .appendNewComment(let newComment):
-                    var comments = state.comments
-                    if let index = comments.firstIndex(where: { $0.id == newComment.id }) {
-                        print("Removing comment at index \(index)")
-                        comments.remove(at: index)
-                    }
-                    comments.append(newComment)
-                    print("Appending new comment \(newComment)")
-                    return .send(.buildCommentGraph(comments))
                 case .buildCommentGraph(let newComments):
-                    let ids = newComments.map { $0.id }
-                    let combined = state.comments.filter({ !ids.contains($0.id) }) + newComments
 
                     return .task {
-                        let updatedComments = await buildCommentGraph(combined)
+                        let updatedComments = await buildCommentGraph(newComments)
                         
                         return .updateComments(updatedComments)
                     }
@@ -96,30 +57,34 @@ struct PostDetailFeature: ReducerProtocol {
                     state.isLoading = false
                     state.comments = comments
                     return .none
+                case .comment(_, _):
+                    return .none
             }
+        }.forEach(\.comments, action: /Action.comment) {
+            CommentDetailFeature()
         }
     }
     
-    func buildCommentGraph(_ comments: [CommentModel]) async -> [CommentModel] {
+    func buildCommentGraph(_ comments: [CommentModel]) async -> IdentifiedArrayOf<CommentDetailFeature.State> {
         let rootComments = comments.filter({ $0.parents.isEmpty })
         
-        var result = [CommentModel]()
+        var result = IdentifiedArrayOf<CommentDetailFeature.State>()
         
         for rootComment in rootComments {
-            var newComment = rootComment
-            newComment.children = await getChildComments(newComment, from: comments)
+            let childComments = await getChildComments(rootComment, from: comments)
+            let newComment = CommentDetailFeature.State(comment: rootComment, childComments: childComments)
             result.append(newComment)
         }
         
         return result
     }
     
-    func getChildComments(_ parentComment: CommentModel, from allComments: [CommentModel]) async -> [CommentModel] {
-        var children = [CommentModel]()
+    func getChildComments(_ parentComment: CommentModel, from allComments: [CommentModel]) async -> IdentifiedArrayOf<CommentDetailFeature.State> {
+        var children = IdentifiedArrayOf<CommentDetailFeature.State>()
         for comment in allComments.filter({ $0.parents.last == parentComment.id }) {
-            var newChildComment = comment
-            let childComments = await getChildComments(newChildComment, from: allComments)
-            newChildComment.children = childComments
+            let childComments = await getChildComments(comment, from: allComments)
+            let newChildComment = CommentDetailFeature.State(comment: comment, childComments: childComments)
+            
             children.append(newChildComment)
         }
         return children

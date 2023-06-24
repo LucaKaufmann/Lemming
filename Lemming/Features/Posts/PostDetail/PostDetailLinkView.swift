@@ -23,7 +23,7 @@ struct PostDetailLinkView: View {
                 Text(postUrl.absoluteString.replacingOccurrences(of: "https://", with: ""))
                     .lineLimit(1)
                     .padding()
-                    .foregroundColor(Color.LemmingColors.text)
+                    .foregroundColor(Color.LemmingColors.accent)
                 Spacer()
                 Image(systemName: "chevron.right")
                     .padding(.trailing)
@@ -31,7 +31,7 @@ struct PostDetailLinkView: View {
         }
         .background {
             RoundedRectangle(cornerRadius: 12)
-                .foregroundColor(Color("lemmingGray"))
+                .foregroundColor(Color("lemmingGray").opacity(0.3))
         }
     }
 }

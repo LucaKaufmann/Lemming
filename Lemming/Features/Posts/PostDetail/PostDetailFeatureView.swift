@@ -15,7 +15,7 @@ struct PostDetailFeatureView: View {
     
     struct ViewState: Equatable {
         let post: PostModel
-        let comments: [CommentModel]
+        let comments: IdentifiedArrayOf<CommentDetailFeature.State>
         let isLoading: Bool
         
         init(state: PostDetailFeature.State) {
@@ -63,22 +63,32 @@ struct PostDetailFeatureView: View {
                     if viewStore.isLoading {
                         ProgressView()
                     }
-                    ForEach(Array(viewStore.comments.enumerated()), id: \.element) { index, comment in
+                    ForEachStore(store.scope(state: \.comments, action: PostDetailFeature.Action.comment)) { store in
                         HStack {
                             Rectangle()
-                                    .fill(Color("primary"))
-                                    .frame(width: 2, alignment: .center)
-                                    .opacity(comment.child_count > 0 ? 1 : 0)
-                            CommentDetailView(comment: comment, store: store)
-                        }.padding()
-                        .swipeActions {
-                                    Button("Order") {
-                                        print("Awesome!")
-                                    }
-                                    .tint(.green)
-                                }
-                        Divider()
+                                .fill(Color("primary"))
+                                .frame(width: 2,alignment: .center)
+//                                .opacity(comment.child_count > 0 ? 1 : 0)
+                            CommentDetailView(store: store)
+                        }
+                        .padding()
                     }
+//                    ForEach(Array(viewStore.comments.enumerated()), id: \.element) { index, comment in
+//                        HStack {
+//                            Rectangle()
+//                                    .fill(Color("primary"))
+//                                    .frame(width: 2, alignment: .center)
+//                                    .opacity(comment.child_count > 0 ? 1 : 0)
+//                            CommentDetailView(comment: comment, store: store)
+//                        }.padding()
+//                        .swipeActions {
+//                                    Button("Order") {
+//                                        print("Awesome!")
+//                                    }
+//                                    .tint(.green)
+//                                }
+//                        Divider()
+//                    }
                 }
             }
             .background {

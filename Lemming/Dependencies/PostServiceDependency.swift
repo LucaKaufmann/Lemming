@@ -9,6 +9,7 @@ import ComposableArchitecture
 
 private enum PostServiceKey: DependencyKey {
     static let liveValue: PostService = LemmyPostService()
+    static let testValue: PostService = LemmyPostService()
 }
 
 extension DependencyValues {
