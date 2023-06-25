@@ -29,7 +29,7 @@ struct PostDetailFeatureView: View {
         WithViewStore(store, observe: ViewState.init) { viewStore in
             ScrollView {
                 VStack {
-                    PostsRowView(post: viewStore.post, showThumbnail: false)
+                    PostDetailHeaderView(post: viewStore.post)
                         .padding(.horizontal)
                     Divider()
                     if let postUrl = viewStore.post.url {
@@ -98,6 +98,38 @@ struct PostDetailFeatureView: View {
                 viewStore.send(.onAppear)
             }
         }
+    }
+}
+
+struct PostDetailHeaderView: View {
+    let post: PostModel
+
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(alignment: .bottom) {
+                    Text(LocalizedStringKey(post.title))
+                }
+//                Spacer()
+
+                HStack {
+                    Text(post.community)
+                    Text(post.timestampDescription)
+                        .font(.caption)
+                        .foregroundColor(Color("lemmingGrayDark"))
+                    Spacer()
+//                        .frame(width: 25)
+                    Text("\(post.numberOfUpvotes) \(Image(systemName: IconConstants.upvote(post.my_vote == 1)))")
+                    Text("\(post.numberOfComments) \(Image(systemName: IconConstants.comment))")
+                        .foregroundColor(Color.LemmingColors.primaryOnBackground)
+                }
+                .font(.footnote)
+                .foregroundColor(Color("lemmingOrange"))
+                Text("by \(post.user)")
+                    .font(.caption)
+                    .foregroundColor(Color("lemmingBrown"))
+            }
+        }.padding(.bottom)
     }
 }
 
