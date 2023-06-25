@@ -27,9 +27,7 @@ struct PostsRowView: View {
                         .foregroundColor(Color("lemmingGrayDark"))
                     Spacer()
                         .frame(width: 25)
-//                    Spacer()
-//                        .frame(minWidth: 50)
-                    Text("\(post.numberOfUpvotes) \(Image(systemName: IconConstants.upvote))")
+                    Text("\(post.numberOfUpvotes) \(Image(systemName: IconConstants.upvote(post.my_vote == 1)))")
                     Text("\(post.numberOfComments) \(Image(systemName: IconConstants.comment))")
                         .foregroundColor(Color.LemmingColors.primaryOnBackground)
                 }

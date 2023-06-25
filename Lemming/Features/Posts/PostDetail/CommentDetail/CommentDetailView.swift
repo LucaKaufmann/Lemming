@@ -49,17 +49,6 @@ struct CommentDetailView: View {
                             }
                             .padding(.top)
                         }
-//                        ForEach(comment.children) { childComment in
-//                            HStack {
-//                                Rectangle()
-//                                    .fill(Color("primary"))
-//                                    .frame(width: 2, alignment: .center)
-//                                    .opacity(childComment.child_count > 0 ? 1 : 0)
-//                                CommentDetailView(comment: childComment, store: store)
-//                            }
-//                            .padding(.top)
-//                            
-//                        }
                     }
                 }
             } label: {
@@ -69,9 +58,9 @@ struct CommentDetailView: View {
                     Spacer()
                     Text("\(Image(systemName: IconConstants.score)) \(viewStore.score)")
                         .foregroundColor(Color("lemmingOrange"))
-                    Text("\(Image(systemName: IconConstants.upvote)) \(viewStore.upvotes)")
+                    Text("\(Image(systemName: IconConstants.upvote(viewStore.my_vote == 1))) \(viewStore.upvotes)")
                         .foregroundColor(Color("lemmingOrange"))
-                    Text("\(Image(systemName: IconConstants.downvote)) \(viewStore.downvotes)")
+                    Text("\(Image(systemName: IconConstants.downvote(viewStore.my_vote == -1))) \(viewStore.downvotes)")
                         .foregroundColor(Color.LemmingColors.error)
                 }
                 .font(.caption)

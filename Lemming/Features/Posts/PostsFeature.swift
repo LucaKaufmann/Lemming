@@ -125,7 +125,7 @@ struct PostsFeature: ReducerProtocol {
                     if post.my_vote == 1 {
                         return .task {
                             do {
-                                let updatedPost = try await postService.removeUpvoteFrom(post: post, account: account)
+                                let updatedPost = try await postService.removeUpvoteFrom(postId: post.id, account: account)
                                 return .updatePost(updatedPost)
                             } catch {
                                 print("Error updating post \(error)")
@@ -135,7 +135,7 @@ struct PostsFeature: ReducerProtocol {
                     } else {
                         return .task {
                             do {
-                                let updatedPost = try await postService.upvotePost(post: post, account: account)
+                                let updatedPost = try await postService.upvotePost(postId: post.id, account: account)
                                 return .updatePost(updatedPost)
                             } catch {
                                 print("Error updating post \(error)")

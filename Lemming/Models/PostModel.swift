@@ -18,9 +18,9 @@ struct PostModel: Equatable, Identifiable, Hashable {
     let thumbnail_url: URL?
     let url: URL?
     let community: String
-    let numberOfUpvotes: Int
-    let numberOfComments: Int
-    let my_vote: Int?
+    var numberOfUpvotes: Int
+    var numberOfComments: Int
+    var my_vote: Int?
     let timestamp: Date?
     let timestampDescription: String
     let user: String

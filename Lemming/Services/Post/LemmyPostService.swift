@@ -49,25 +49,25 @@ struct LemmyPostService: PostService {
 
     }
     
-    func upvotePost(post: PostModel, account: LemmingAccountModel) async throws -> PostModel {
+    func upvotePost(postId: Int, account: LemmingAccountModel) async throws -> PostModel {
         guard let instanceUrl = URL(string: account.instanceLink) else {
             throw PostServiceError.instanceUrlError
         }
-        return try await likePost(id: post.id, auth: account.jwt, instanceUrl: instanceUrl, score: 1)
+        return try await likePost(id: postId, auth: account.jwt, instanceUrl: instanceUrl, score: 1)
     }
     
-    func removeUpvoteFrom(post: PostModel, account: LemmingAccountModel) async throws -> PostModel {
+    func removeUpvoteFrom(postId: Int, account: LemmingAccountModel) async throws -> PostModel {
         guard let instanceUrl = URL(string: account.instanceLink) else {
             throw PostServiceError.instanceUrlError
         }
-        return try await likePost(id: post.id, auth: account.jwt, instanceUrl: instanceUrl, score: 0)
+        return try await likePost(id: postId, auth: account.jwt, instanceUrl: instanceUrl, score: 0)
     }
     
-    func downvotePost(post: PostModel, account: LemmingAccountModel) async throws -> PostModel {
+    func downvotePost(postId: Int, account: LemmingAccountModel) async throws -> PostModel {
         guard let instanceUrl = URL(string: account.instanceLink) else {
             throw PostServiceError.instanceUrlError
         }
-        return try await likePost(id: post.id, auth: account.jwt, instanceUrl: instanceUrl, score: -1)
+        return try await likePost(id: postId, auth: account.jwt, instanceUrl: instanceUrl, score: -1)
     }
     
     private func likePost(id: Int, auth: String, instanceUrl: URL, score: Int) async throws -> PostModel {

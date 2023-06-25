@@ -22,12 +22,12 @@ struct LemmyCommentService: CommentService {
     }
     
     
-    func postReplyTo(comment: CommentModel? = nil, post: PostModel, replyText: String, account: LemmingAccountModel) async throws -> CommentModel {
+    func postReplyTo(commentId: Int? = nil, postId: Int, replyText: String, account: LemmingAccountModel) async throws -> CommentModel {
         guard let instanceUrl = URL(string: account.instanceLink) else {
             throw CommentServiceError.instanceUrlError
         }
         
-        let request = CreateCommentRequest(auth: account.jwt, content: replyText, parent_id: comment?.id, post_id: post.id)
+        let request = CreateCommentRequest(auth: account.jwt, content: replyText, parent_id: commentId, post_id: postId)
         let api = LemmyAPI(baseUrl: instanceUrl.appending(path: "/api/v3"))
         let response = try await api.request(request)
         

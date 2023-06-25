@@ -43,7 +43,7 @@ struct CommentSheetFeature: ReducerProtocol {
                     let replyText = state.commentText
                     let post = state.post
                     return .task {
-                        let _ = try await commentService.postReplyTo(comment: nil, post: post, replyText: replyText, account: account)
+                        let _ = try await commentService.postReplyTo(commentId: nil, postId: post.id, replyText: replyText, account: account)
                         return .commentSuccessful
                     }
                 case .commentSuccessful:

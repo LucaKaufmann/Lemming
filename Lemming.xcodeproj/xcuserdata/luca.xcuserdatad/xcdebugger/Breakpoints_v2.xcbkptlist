@@ -199,17 +199,97 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "216C7FFD-B360-4492-8E10-ECB1392BB4BC"
+            uuid = "D975241D-3C2B-4062-9073-09959F66A402"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lemming/Services/Comment/LemmyCommentService.swift"
+            filePath = "Lemming/Features/Posts/PostDetail/CommentDetail/CommentDetailFeature.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "likeComment(id:auth:instanceUrl:score:)"
-            landmarkType = "7">
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "D975241D-3C2B-4062-9073-09959F66A402 - 9d766ebf2e4d8804"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Lemming.CommentDetailFeature.State, Lemming.CommentDetailFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommentDetailFeature.Action, Swift.Never&gt; in Lemming.CommentDetailFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/PostDetail/CommentDetail/CommentDetailFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "1600">
+               </Location>
+               <Location
+                  uuid = "D975241D-3C2B-4062-9073-09959F66A402 - 9d766ebf2e4d8804"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Lemming.CommentDetailFeature.State, Lemming.CommentDetailFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommentDetailFeature.Action, Swift.Never&gt; in Lemming.CommentDetailFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/PostDetail/CommentDetail/CommentDetailFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "1680">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "81BC2454-33D8-4B6C-B6E0-18B38312F342"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lemming/Features/Posts/PostDetail/CommentDetail/CommentDetailFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "81BC2454-33D8-4B6C-B6E0-18B38312F342 - 9d766ebf2e4d893c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Lemming.CommentDetailFeature.State, Lemming.CommentDetailFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommentDetailFeature.Action, Swift.Never&gt; in Lemming.CommentDetailFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/PostDetail/CommentDetail/CommentDetailFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "2060">
+               </Location>
+               <Location
+                  uuid = "81BC2454-33D8-4B6C-B6E0-18B38312F342 - 9d766ebf2e4d893c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Lemming.CommentDetailFeature.State, Lemming.CommentDetailFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommentDetailFeature.Action, Swift.Never&gt; in Lemming.CommentDetailFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/PostDetail/CommentDetail/CommentDetailFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "2140">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

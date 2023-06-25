@@ -62,20 +62,40 @@ struct CommentDetailFeature: ReducerProtocol {
                         return .none
                     }
                     let id = state.id
-                    return .task {
-                        let newComment = try await commentService.upvote(commentId: id, account: account)
-                        
-                        return .updateComment(newComment)
+                    if state.my_vote == 1 {
+                        state.my_vote = 0
+                        return .task {
+                            let newComment = try await commentService.removeUpvoteFrom(commentId: id, account: account)
+                            
+                            return .updateComment(newComment)
+                        }
+                    } else {
+                        state.my_vote = 1
+                        return .task {
+                            let newComment = try await commentService.upvote(commentId: id, account: account)
+                            
+                            return .updateComment(newComment)
+                        }
                     }
                 case .tappedDownvote:
                     guard let account = accountService.getCurrentAccount() else {
                         return .none
                     }
                     let id = state.id
-                    return .task {
-                        let newComment = try await commentService.downvote(commentId: id, account: account)
-                        
-                        return .updateComment(newComment)
+                    if state.my_vote == -1 {
+                        state.my_vote = 0
+                        return .task {
+                            let newComment = try await commentService.removeUpvoteFrom(commentId: id, account: account)
+                            
+                            return .updateComment(newComment)
+                        }
+                    } else {
+                        state.my_vote = -1
+                        return .task {
+                            let newComment = try await commentService.downvote(commentId: id, account: account)
+                            
+                            return .updateComment(newComment)
+                        }
                     }
                 case .replyToComment:
                     return .none

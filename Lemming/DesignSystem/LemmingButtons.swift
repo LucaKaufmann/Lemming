@@ -18,6 +18,11 @@ public struct LemmingButton: ButtonStyle {
     
     public enum Style {
         case primary, secondary, destruction
+        case action(Action)
+    }
+    
+    public enum Action {
+        case upvote, downvote, comment
     }
 
     let style: Style
@@ -81,6 +86,61 @@ public struct LemmingButton: ButtonStyle {
                 .background(Color.LemmingColors.destructionButtonBackground)
                 .cornerRadius(cornerRadius)
                 .opacity(isEnabled ? 1 : 0.5)
+            
+            case .action(let action):
+                switch action {
+                    case .upvote:
+                        HStack {
+                            if let iconName {
+                                Image(systemName: iconName)
+                            }
+                            configuration.label
+                                .font(.caption)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                            
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .foregroundColor(Color.white)
+                        .background(Color.LemmingColors.upvote)
+                        .cornerRadius(cornerRadius)
+                        .opacity(isEnabled ? 1 : 0.5)
+                    case .downvote:
+                        HStack {
+                            if let iconName {
+                                Image(systemName: iconName)
+                            }
+                            configuration.label
+                                .font(.caption)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                            
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .foregroundColor(Color.white)
+                        .background(Color.LemmingColors.downvote)
+                        .cornerRadius(cornerRadius)
+                        .opacity(isEnabled ? 1 : 0.5)
+                    case .comment:
+                        HStack {
+                            if let iconName {
+                                Image(systemName: iconName)
+                            }
+                            configuration.label
+                                .font(.caption)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                            
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .foregroundColor(Color.white)
+                        .background(Color.LemmingColors.comments)
+                        .cornerRadius(cornerRadius)
+                        .opacity(isEnabled ? 1 : 0.5)
+                }
                 
         }
     }

@@ -17,21 +17,32 @@ struct PostDetailFeature: ReducerProtocol {
     
     @Dependency(\.commentService) var commentService
     @Dependency(\.accountService) var accountService
+    @Dependency(\.postService) var postService
     
     struct State: Equatable {
         var post: PostModel
         var comments: IdentifiedArrayOf<CommentDetailFeature.State>
         
         var isLoading: Bool
+        
+        @PresentationState var commentSheet: CommentSheetFeature.State?
     }
     
     enum Action: Equatable {
         case tappedUpvote
+        case tappedDownvote
+        case tappedComment
+
         case onAppear
+        case updatePost(PostModel)
+        case updatePostFailed
         
         case buildCommentGraph([CommentModel])
         case updateComments(IdentifiedArrayOf<CommentDetailFeature.State>)
         case comment(id: CommentDetailFeature.State.ID, action: CommentDetailFeature.Action)
+        
+        /// Presentation
+        case commentSheet(PresentationAction<CommentSheetFeature.Action>)
     }
     
     var body: some ReducerProtocolOf<PostDetailFeature> {
@@ -44,8 +55,78 @@ struct PostDetailFeature: ReducerProtocol {
                         let comments = try await commentService.getComments(forPost: postId, sort: .hot, origin: .all, account: accountService.getCurrentAccount(), previewInstance: nil)
                         return .buildCommentGraph(comments)
                     }
+                
+                // User action
                 case .tappedUpvote:
+                    guard let account = accountService.getCurrentAccount() else {
+                        return .none
+                    }
+                    let post = state.post
+                    if post.my_vote == 1 {
+                        state.post.my_vote = 0
+                        state.post.numberOfUpvotes -= 1
+                        return .task {
+                            do {
+                                let updatedPost = try await postService.removeUpvoteFrom(postId: post.id, account: account)
+                                return .updatePost(updatedPost)
+                            } catch {
+                                print("Error updating post \(error)")
+                                return .updatePostFailed
+                            }
+                        }
+                    } else {
+                        state.post.my_vote = 1
+                        state.post.numberOfUpvotes += 1
+                        return .task {
+                            do {
+                                let updatedPost = try await postService.upvotePost(postId: post.id, account: account)
+                                return .updatePost(updatedPost)
+                            } catch {
+                                print("Error updating post \(error)")
+                                return .updatePostFailed
+                            }
+                        }
+                    }
+                case .tappedDownvote:
+                    guard let account = accountService.getCurrentAccount() else {
+                        return .none
+                    }
+                    let post = state.post
+                    if post.my_vote == -1 {
+                        state.post.my_vote = 0
+                        state.post.numberOfUpvotes += 1
+                        return .task {
+                            do {
+                                let updatedPost = try await postService.removeUpvoteFrom(postId: post.id, account: account)
+                                return .updatePost(updatedPost)
+                            } catch {
+                                print("Error updating post \(error)")
+                                return .updatePostFailed
+                            }
+                        }
+                    } else {
+                        state.post.my_vote = -1
+                        state.post.numberOfUpvotes -= 1
+                        return .task {
+                            do {
+                                let updatedPost = try await postService.downvotePost(postId: post.id, account: account)
+                                return .updatePost(updatedPost)
+                            } catch {
+                                print("Error updating post \(error)")
+                                return .updatePostFailed
+                            }
+                        }
+                    }
+                case .tappedComment:
+                    state.commentSheet = .init(post: state.post, commentText: "")
                     return .none
+                    
+                case .updatePost(let post):
+                    state.post = post
+                    return .none
+                case .updatePostFailed:
+                    return .none
+                    
                 case .buildCommentGraph(let newComments):
 
                     return .task {
@@ -57,11 +138,18 @@ struct PostDetailFeature: ReducerProtocol {
                     state.isLoading = false
                     state.comments = comments
                     return .none
+                    
+                /// Presentation
+                case .commentSheet(_):
+                    return .none
                 case .comment(_, _):
                     return .none
             }
         }.forEach(\.comments, action: /Action.comment) {
             CommentDetailFeature()
+        }
+        .ifLet(\.$commentSheet, action: /Action.commentSheet) {
+            CommentSheetFeature()
         }
     }
     

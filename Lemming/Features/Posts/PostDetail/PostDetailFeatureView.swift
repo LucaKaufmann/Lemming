@@ -47,10 +47,6 @@ struct PostDetailFeatureView: View {
                             }
                         } else {
                             PostDetailLinkView(thumbnailUrl: viewStore.post.thumbnail_url, postUrl: postUrl)
-                                .onTapGesture {
-//                                    viewStore.send(.openUrl(postUrl))
-//                                    openURL(postUrl)
-                                }
                                 .padding()
                         }
                     }
@@ -58,6 +54,24 @@ struct PostDetailFeatureView: View {
                         Text(LocalizedStringKey(body)).padding()
                     }
                 }
+                Divider()
+                HStack {
+                    Button {
+                        viewStore.send(.tappedUpvote)
+                    } label: {
+                        Text("Upvote")
+                    }.buttonStyle(LemmingButton(style: .action(.upvote), iconName: IconConstants.upvote(viewStore.post.my_vote == 1)))
+                    Button {
+                        viewStore.send(.tappedDownvote)
+                    } label: {
+                        Text("Downvote")
+                    }.buttonStyle(LemmingButton(style: .action(.downvote), iconName: IconConstants.downvote(viewStore.post.my_vote == -1)))
+                    Button {
+                        viewStore.send(.tappedComment)
+                    } label: {
+                        Text("Comment")
+                    }.buttonStyle(LemmingButton(style: .action(.comment), iconName: IconConstants.comment))
+                }.padding()
                 Divider()
                 LazyVStack {
                     if viewStore.isLoading {
@@ -68,27 +82,10 @@ struct PostDetailFeatureView: View {
                             Rectangle()
                                 .fill(Color("primary"))
                                 .frame(width: 2,alignment: .center)
-//                                .opacity(comment.child_count > 0 ? 1 : 0)
                             CommentDetailView(store: store)
                         }
                         .padding()
                     }
-//                    ForEach(Array(viewStore.comments.enumerated()), id: \.element) { index, comment in
-//                        HStack {
-//                            Rectangle()
-//                                    .fill(Color("primary"))
-//                                    .frame(width: 2, alignment: .center)
-//                                    .opacity(comment.child_count > 0 ? 1 : 0)
-//                            CommentDetailView(comment: comment, store: store)
-//                        }.padding()
-//                        .swipeActions {
-//                                    Button("Order") {
-//                                        print("Awesome!")
-//                                    }
-//                                    .tint(.green)
-//                                }
-//                        Divider()
-//                    }
                 }
             }
             .background {
@@ -152,7 +149,7 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               community: "lemmings",
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
-                                  my_vote: 0,
+                                  my_vote: -1,
                                   timestamp: Date(),
                                   timestampDescription: "1hr ago",
                               user: "LemmingFan123")

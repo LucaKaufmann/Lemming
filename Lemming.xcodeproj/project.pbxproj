@@ -156,7 +156,6 @@
 				8126FEF42A46184300633121 /* CommentDetail */,
 				810E07912A39AA0300CCBDBE /* PostDetailFeature.swift */,
 				810E07932A39AB2600CCBDBE /* PostDetailFeatureView.swift */,
-				81B982E02A39DA5D00D2A3F7 /* CommentDetailView.swift */,
 				81727D752A40EA8C0035FF22 /* PostDetailLinkView.swift */,
 			);
 			path = PostDetail;
@@ -165,6 +164,7 @@
 		8126FEF42A46184300633121 /* CommentDetail */ = {
 			isa = PBXGroup;
 			children = (
+				81B982E02A39DA5D00D2A3F7 /* CommentDetailView.swift */,
 				8126FEF52A46185600633121 /* CommentDetailFeature.swift */,
 			);
 			path = CommentDetail;
