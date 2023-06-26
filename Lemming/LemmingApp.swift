@@ -15,11 +15,11 @@ struct LemmingApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootView(store: Store(initialState: RootFeature.State(postsRoot: .init(postsFeature: .init(posts: [],
-                                                                                                       currentPage: 0,
-                                                                                                       isLoading: false,
-                                                                                                       sort: .hot,
-                                                                                                       origin: .all)),
+            RootView(store: Store(initialState: RootFeature.State(postsRoot: .init(postsFeature: .init(postsList: .init(posts: [],
+                                                                                                                        currentPage: 0,
+                                                                                                                        isLoading: false,
+                                                                                                                        sort: .hot,
+                                                                                                                        origin: .all), sort: .hot, origin: .all)),
                                                                   account: .init(currentAccount: accountService.getCurrentAccount(), availableAccounts: accountService.getAccounts()),
                                                                   search: "search",
                                                                   settings: "settings",

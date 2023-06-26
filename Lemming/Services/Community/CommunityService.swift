@@ -15,7 +15,7 @@ enum CommunityServiceError: Error {
 
 protocol CommunityService {
     func getCommunity(id: Int?, name: String?, account: LemmingAccountModel?, previewInstance: String?) async throws -> CommunityModel
-    func subscribeToCommunity(id: Int?, follow: Bool, account: LemmingAccountModel) async throws -> CommunityModel
+    func subscribeToCommunity(id: Int, follow: Bool, account: LemmingAccountModel) async throws -> CommunityModel
 }
 
 

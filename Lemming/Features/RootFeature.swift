@@ -38,8 +38,8 @@ struct RootFeature: ReducerProtocol {
                     return .none
                 case .account(.delegate(let action)):
                     switch action {
-                        case .updateCurrentAccount(let account):
-                            state.postsRoot.postsFeature.posts = []
+                        case .updateCurrentAccount(_):
+                            state.postsRoot.postsFeature.postsList.posts = []
                             return .none
                         default:
                             return .none

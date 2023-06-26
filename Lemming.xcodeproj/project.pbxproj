@@ -19,6 +19,8 @@
 		810FA8112A48AD1E00EF2CBA /* LemmyCommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FA8102A48AD1E00EF2CBA /* LemmyCommunityService.swift */; };
 		810FA8132A48B1ED00EF2CBA /* CommunityServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FA8122A48B1ED00EF2CBA /* CommunityServiceDependency.swift */; };
 		810FA8152A48B5B900EF2CBA /* CommunityFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FA8142A48B5B900EF2CBA /* CommunityFeatureView.swift */; };
+		810FA8182A4973E700EF2CBA /* PostsListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FA8172A4973E700EF2CBA /* PostsListFeature.swift */; };
+		810FA81A2A49762900EF2CBA /* PostsListFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FA8192A49762900EF2CBA /* PostsListFeatureView.swift */; };
 		8126FEF62A46185600633121 /* CommentDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126FEF52A46185600633121 /* CommentDetailFeature.swift */; };
 		8126FEF82A470B8400633121 /* CommentDetailFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126FEF72A470B8400633121 /* CommentDetailFeatureTests.swift */; };
 		8126FEFA2A470D4100633121 /* PostDetailFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126FEF92A470D4100633121 /* PostDetailFeatureTests.swift */; };
@@ -91,6 +93,8 @@
 		810FA8102A48AD1E00EF2CBA /* LemmyCommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyCommunityService.swift; sourceTree = "<group>"; };
 		810FA8122A48B1ED00EF2CBA /* CommunityServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityServiceDependency.swift; sourceTree = "<group>"; };
 		810FA8142A48B5B900EF2CBA /* CommunityFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityFeatureView.swift; sourceTree = "<group>"; };
+		810FA8172A4973E700EF2CBA /* PostsListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListFeature.swift; sourceTree = "<group>"; };
+		810FA8192A49762900EF2CBA /* PostsListFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListFeatureView.swift; sourceTree = "<group>"; };
 		8126FEF52A46185600633121 /* CommentDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetailFeature.swift; sourceTree = "<group>"; };
 		8126FEF72A470B8400633121 /* CommentDetailFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetailFeatureTests.swift; sourceTree = "<group>"; };
 		8126FEF92A470D4100633121 /* PostDetailFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailFeatureTests.swift; sourceTree = "<group>"; };
@@ -189,6 +193,15 @@
 				810FA8102A48AD1E00EF2CBA /* LemmyCommunityService.swift */,
 			);
 			path = Community;
+			sourceTree = "<group>";
+		};
+		810FA8162A4973D700EF2CBA /* PostsList */ = {
+			isa = PBXGroup;
+			children = (
+				810FA8172A4973E700EF2CBA /* PostsListFeature.swift */,
+				810FA8192A49762900EF2CBA /* PostsListFeatureView.swift */,
+			);
+			path = PostsList;
 			sourceTree = "<group>";
 		};
 		8126FEF42A46184300633121 /* CommentDetail */ = {
@@ -343,6 +356,7 @@
 		819217272A3732D00015BEF3 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				810FA8162A4973D700EF2CBA /* PostsList */,
 				810FA8082A48AB0400EF2CBA /* Community */,
 				816F99042A431C93004F0AE9 /* CommentSheet */,
 				810E07902A39A9F600CCBDBE /* PostDetail */,
@@ -551,6 +565,7 @@
 				819217292A3732E10015BEF3 /* PostsFeature.swift in Sources */,
 				810FA80D2A48AB3700EF2CBA /* CommunityService.swift in Sources */,
 				8126FEF62A46185600633121 /* CommentDetailFeature.swift in Sources */,
+				810FA81A2A49762900EF2CBA /* PostsListFeatureView.swift in Sources */,
 				810FA8152A48B5B900EF2CBA /* CommunityFeatureView.swift in Sources */,
 				81727D742A40E9FA0035FF22 /* URL+URLType.swift in Sources */,
 				81B982E82A39E10800D2A3F7 /* DateFormatterService.swift in Sources */,
@@ -579,6 +594,7 @@
 				818E8A1C2A3F990200013875 /* AccountServiceKey.swift in Sources */,
 				810FA80F2A48ABAC00EF2CBA /* CommunityModel.swift in Sources */,
 				8192171F2A364B790015BEF3 /* RootFeature.swift in Sources */,
+				810FA8182A4973E700EF2CBA /* PostsListFeature.swift in Sources */,
 				8192170C2A364A950015BEF3 /* LemmingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

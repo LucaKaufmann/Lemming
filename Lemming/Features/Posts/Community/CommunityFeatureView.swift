@@ -14,59 +14,41 @@ struct CommunityFeatureView: View {
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            List {
-                if let community = viewStore.community {
-                    CommunityFeatureHeaderView(community: community)
+            PostsListFeatureView(store: self.store.scope(state: \.postsList, action: CommunityFeature.Action.postsList))
+                .background {
+                    Color.LemmingColors.background.ignoresSafeArea()
                 }
-                ForEach(viewStore.posts) { post in
-                    PostsRowView(post: post, showThumbnail: true)
-                        .listRowBackground(Color.clear)
+                .onAppear {
+                    viewStore.send(.onAppear)
                 }
-            }
-            .background {
-                #if os(xrOS)
-                Color
-                    .LemmingColors
-                    .background
-                    .opacity(0.5)
-                    .ignoresSafeArea()
-                #else
-                Color
-                    .LemmingColors
-                    .background
-                    .ignoresSafeArea()
-                #endif
-            }
-            .scrollContentBackground(.hidden)
-            .listStyle(.plain)
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Menu("Settings") {
-                        Menu("Sorting") {
-                            Picker("Sorting", selection: viewStore.binding(\.$sort)) {
-                                ForEach(PostSortType.allCases, id: \.self) { sortType in
-                                    Text(sortType.rawValue)
-                                        .tag(sortType)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        if let community = viewStore.community {
+                            Text(community.title)
+                        } else {
+                            ProgressView()
+                        }
+                        
+                    }
+                    ToolbarItem(placement: .primaryAction) {
+                        Menu("Community") {
+                            Menu("Sorting") {
+                                Picker("Sorting", selection: viewStore.binding(\.$sort)) {
+                                    ForEach(PostSortType.allCases, id: \.self) { sortType in
+                                        Text(sortType.rawValue)
+                                            .tag(sortType)
+                                    }
+                                }
+                            }
+                            
+                            Menu("Actions") {
+                                Button(viewStore.community?.subscribed == true ? "Unfollow" : "Follow") {
+                                    viewStore.send(.followCommunity)
                                 }
                             }
                         }
                     }
                 }
-            }
-            .refreshable {
-                viewStore.send(.refreshPosts)
-            }
-            .onAppear {
-                viewStore.send(.onAppear)
-            }
-            .overlay {
-                if viewStore.isLoading && viewStore.posts.count == 0 {
-                    ProgressView()
-                }
-            }
-            .sheet(store: store.scope(state: \.$commentSheet, action: CommunityFeature.Action.commentSheet)) { store in
-                CommentSheetFeatureView(store: store)
-            }
         }
     }
 }
@@ -97,9 +79,11 @@ struct CommunityFeatureView_Previews: PreviewProvider {
     static var previews: some View {
         CommunityFeatureView(store: Store(initialState: CommunityFeature.State(communityId: 1,
                                                                                community: CommunityModel.mockModels.first!,
-                                                                               posts: IdentifiedArray(uniqueElements: PostModel.mockPosts),
-                                                                               currentPage: 0,
-                                                                               isLoading: false,
+                                                                               postsList: .init(posts: IdentifiedArray(uniqueElements: PostModel.mockPosts),
+                                                                                                currentPage: 1,
+                                                                                                isLoading: false,
+                                                                                                sort: .hot,
+                                                                                                origin: .all),
                                                                                sort: .hot),
                                           reducer: CommunityFeature()))
     }

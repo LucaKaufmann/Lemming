@@ -292,5 +292,207 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE950B35-33B4-40A1-A6F0-6E264FF27E1A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lemming/Features/Posts/Community/CommunityFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "CE950B35-33B4-40A1-A6F0-6E264FF27E1A - 99edc67df9b671c9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; Lemming.CommunityFeature.Action in closure #1 (inout Lemming.CommunityFeature.State, Lemming.CommunityFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommunityFeature.Action, Swift.Never&gt; in Lemming.CommunityFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/Community/CommunityFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "CE950B35-33B4-40A1-A6F0-6E264FF27E1A - 42fcea1ab012b2fe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async throws -&gt; Lemming.CommunityFeature.Action in closure #1 (inout Lemming.CommunityFeature.State, Lemming.CommunityFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommunityFeature.Action, Swift.Never&gt; in Lemming.CommunityFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/Community/CommunityFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "CE950B35-33B4-40A1-A6F0-6E264FF27E1A - d1f6143827af5dc7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; Lemming.CommunityFeature.Action in closure #1 (inout Lemming.CommunityFeature.State, Lemming.CommunityFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommunityFeature.Action, Swift.Never&gt; in Lemming.CommunityFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/Community/CommunityFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "CE950B35-33B4-40A1-A6F0-6E264FF27E1A - 8dfcb3154253cfc6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async throws -&gt; Lemming.CommunityFeature.Action in closure #1 (inout Lemming.CommunityFeature.State, Lemming.CommunityFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommunityFeature.Action, Swift.Never&gt; in Lemming.CommunityFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/Community/CommunityFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "CE950B35-33B4-40A1-A6F0-6E264FF27E1A - 8dfcb3154253cfc6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async throws -&gt; Lemming.CommunityFeature.Action in closure #1 (inout Lemming.CommunityFeature.State, Lemming.CommunityFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommunityFeature.Action, Swift.Never&gt; in Lemming.CommunityFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/Community/CommunityFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "707D5CBE-9307-40D2-95C1-44AB306C8A70"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lemming/Features/Posts/Community/CommunityFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "707D5CBE-9307-40D2-95C1-44AB306C8A70 - 99edc67df9b67112"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #2 @Sendable () async throws -&gt; Lemming.CommunityFeature.Action in closure #1 (inout Lemming.CommunityFeature.State, Lemming.CommunityFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommunityFeature.Action, Swift.Never&gt; in Lemming.CommunityFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/Community/CommunityFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "707D5CBE-9307-40D2-95C1-44AB306C8A70 - 42fcea1ab012b225"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #2 @Sendable () async throws -&gt; Lemming.CommunityFeature.Action in closure #1 (inout Lemming.CommunityFeature.State, Lemming.CommunityFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommunityFeature.Action, Swift.Never&gt; in Lemming.CommunityFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/Community/CommunityFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "707D5CBE-9307-40D2-95C1-44AB306C8A70 - d1f6143827af5d1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #2 @Sendable () async throws -&gt; Lemming.CommunityFeature.Action in closure #1 (inout Lemming.CommunityFeature.State, Lemming.CommunityFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommunityFeature.Action, Swift.Never&gt; in Lemming.CommunityFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/Community/CommunityFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "707D5CBE-9307-40D2-95C1-44AB306C8A70 - 8dfcb3154253cf1d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #2 @Sendable () async throws -&gt; Lemming.CommunityFeature.Action in closure #1 (inout Lemming.CommunityFeature.State, Lemming.CommunityFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommunityFeature.Action, Swift.Never&gt; in Lemming.CommunityFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/Community/CommunityFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "707D5CBE-9307-40D2-95C1-44AB306C8A70 - 8dfcb3154253cf1d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #2 @Sendable () async throws -&gt; Lemming.CommunityFeature.Action in closure #1 (inout Lemming.CommunityFeature.State, Lemming.CommunityFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommunityFeature.Action, Swift.Never&gt; in Lemming.CommunityFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/Community/CommunityFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CB137E14-A437-4E19-9E15-9693E4F3053A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lemming/Features/Posts/Community/CommunityFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

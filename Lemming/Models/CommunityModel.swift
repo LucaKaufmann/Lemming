@@ -33,9 +33,12 @@ struct CommunityModel: Equatable, Identifiable, Hashable {
     let users_active_month: Int
     let users_active_week: Int
     
+    // user specific
+    var subscribed: Bool
+    
     static var mockModels: [CommunityModel] {
         return [
-            .init(banner: nil, deleted: false, description: "Mock community", hidden: false, icon: nil, id: 1, instance_id: 1, local: false, name: "Mock community 1", nsfw: false, posting_restricted_to_mods: false, published: "", removed: false, title: "Mock community title", updated: nil, comments: 100, posts: 100, subscribers: 100, users_active_day: 1, users_active_half_year: 5, users_active_month: 10, users_active_week: 10)
+            .init(banner: nil, deleted: false, description: "Mock community", hidden: false, icon: nil, id: 1, instance_id: 1, local: false, name: "Mock community 1", nsfw: false, posting_restricted_to_mods: false, published: "", removed: false, title: "Mock community title", updated: nil, comments: 100, posts: 100, subscribers: 100, users_active_day: 1, users_active_half_year: 5, users_active_month: 10, users_active_week: 10, subscribed: true)
         ]
     }
 }

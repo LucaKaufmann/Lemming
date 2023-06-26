@@ -26,7 +26,7 @@ struct PostsRootFeature: ReducerProtocol {
             switch action {
                 case .postsFeature(let action):
                     switch action {
-                        case .delegate(.goToPost(let post)):
+                        case .postsList(.delegate(.goToPost(let post))):
                             state.path.append(.detailPost(.init(post: post, comments: [], isLoading: false)))
                             return .none
                         default:
@@ -36,8 +36,24 @@ struct PostsRootFeature: ReducerProtocol {
                 case let .path(.element(id: _, action: .detailPost(.delegate(action)))):
                   switch action {
                   case let .goToCommunity(communityId):
-                          state.path.append(.community(.init(communityId: communityId, posts: [], currentPage: 1, isLoading: false, sort: .hot)))
+                          print("Going to community \(communityId)")
+                          state.path.append(.community(.init(communityId: communityId,
+                                                             postsList: .init(communityId: communityId,
+                                                                              posts: [],
+                                                                              currentPage: 1,
+                                                                              isLoading: false,
+                                                                              sort: .hot,
+                                                                              origin: .all),
+                                                             sort: .hot)))
                     return .none
+                  }
+                case let .path(.element(id: _, action: .community(action))):
+                  switch action {
+                      case let .postsList(.delegate(.goToPost(post))):
+                          state.path.append(.detailPost(.init(post: post, comments: [], isLoading: false)))
+                          return .none
+                      default:
+                          return .none
                   }
                 case .path(_):
                     return .none

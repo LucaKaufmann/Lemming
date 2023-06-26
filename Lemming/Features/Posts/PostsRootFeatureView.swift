@@ -38,10 +38,10 @@ struct PostsRootFeatureView: View {
 
 struct PostsRootFeatureView_Previews: PreviewProvider {
     static var previews: some View {
-        PostsRootFeatureView(store: Store(initialState: .init(postsFeature: PostsFeature.State(posts: IdentifiedArray(uniqueElements: PostModel.mockPosts),
-                                                                                               currentPage: 0,
-                                                                                               isLoading: false,
-                                                                                               sort: .hot,
-                                                                                               origin: .all)), reducer: PostsRootFeature()))
+        PostsRootFeatureView(store: Store(initialState: .init(postsFeature: PostsFeature.State(postsList: .init(posts: IdentifiedArray(uniqueElements: PostModel.mockPosts),
+                                                                                                                currentPage: 0,
+                                                                                                                isLoading: false,
+                                                                                                                sort: .hot,
+                                                                                                                origin: .all), sort: .hot, origin: .all)), reducer: PostsRootFeature()))
     }
 }

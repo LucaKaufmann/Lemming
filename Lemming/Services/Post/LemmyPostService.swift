@@ -20,7 +20,7 @@ struct LemmyPostService: PostService {
         let api = LemmyAPI(baseUrl: instanceUrl.appending(path: "/api/v3"))
 
         let request = GetPostsRequest(auth: account?.jwt, community_id: community_id, community_name: community_name, page: page, sort: SortType(rawValue: sort.rawValue), type_: ListingType(rawValue: origin.rawValue))
-        print(request)
+        
         // Send the request to the Lemmy API
         do {
             let response = try await api.request(request)

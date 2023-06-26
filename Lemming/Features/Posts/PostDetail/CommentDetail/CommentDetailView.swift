@@ -18,9 +18,12 @@ struct CommentDetailView: View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             DisclosureGroup(isExpanded: $isExpanded) {
                 VStack(alignment: .leading) {
-                    Text(LocalizedStringKey(viewStore.content))
-                        .multilineTextAlignment(.leading)
-                        .frame(minHeight: 40)
+                    HStack {
+                        Text(LocalizedStringKey(viewStore.content))
+                            .multilineTextAlignment(.leading)
+                            .frame(minHeight: 40)
+                        Spacer()
+                    }
                 #if os(iOS)
                     .addButtonActions(leadingButtons: [.upvote, .downvote],
                                       trailingButton:  [.reply], onClick: { button in
@@ -78,5 +81,6 @@ struct CommentDetailView: View {
 struct CommentDetailView_Previews: PreviewProvider {
     static var previews: some View {
         CommentDetailView(store: Store(initialState: .init(comment: CommentModel.mockComments.first!), reducer: CommentDetailFeature()))
+        CommentDetailView(store: Store(initialState: .init(comment: CommentModel(id: 2, content: "This is a short comment", timestamp: Date(), timestampDescription: "", user: "Testuser", path: "0", child_count: 0, downvotes: 50, score: 50, upvotes: 100, my_vote: 1, children: [])), reducer: CommentDetailFeature()))
     }
 }
