@@ -35,6 +35,7 @@ struct AccountFeatureView: View {
                 .scrollContentBackground(.hidden)
                 .background {
                     Color.LemmingColors.background
+                        .ignoresSafeArea()
                 }.sheet(store: store.scope(state: \.$addAccountSheet, action: AccountFeature.Action.addAccountSheet)) { store in
                     AddAccountFeatureView(store: store)
                 }

@@ -33,6 +33,12 @@ struct PostsRootFeature: ReducerProtocol {
                             break
                     }
                     return .none
+                case let .path(.element(id: _, action: .detailPost(.delegate(action)))):
+                  switch action {
+                  case let .goToCommunity(communityId):
+                          state.path.append(.community(.init(communityId: communityId, posts: [], currentPage: 1, isLoading: false, sort: .hot)))
+                    return .none
+                  }
                 case .path(_):
                     return .none
             }
@@ -47,13 +53,18 @@ struct PostsRootFeature: ReducerProtocol {
     struct Path: ReducerProtocol {
         enum State: Equatable {
             case detailPost(PostDetailFeature.State)
+            case community(CommunityFeature.State)
         }
         enum Action: Equatable {
             case detailPost(PostDetailFeature.Action)
+            case community(CommunityFeature.Action)
         }
         var body: some ReducerProtocolOf<Self> {
             Scope(state: /State.detailPost, action: /Action.detailPost) {
                 PostDetailFeature()
+            }
+            Scope(state: /State.community, action: /Action.community) {
+                CommunityFeature()
             }
         }
     }

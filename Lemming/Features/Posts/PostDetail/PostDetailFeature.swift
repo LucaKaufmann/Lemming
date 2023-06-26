@@ -43,6 +43,13 @@ struct PostDetailFeature: ReducerProtocol {
         
         /// Presentation
         case commentSheet(PresentationAction<CommentSheetFeature.Action>)
+        
+        // Delegate
+        case delegate(Delegate)
+        
+        enum Delegate: Equatable {
+          case goToCommunity(Int)
+        }
     }
     
     var body: some ReducerProtocolOf<PostDetailFeature> {
@@ -143,6 +150,8 @@ struct PostDetailFeature: ReducerProtocol {
                 case .commentSheet(_):
                     return .none
                 case .comment(_, _):
+                    return .none
+                case .delegate:
                     return .none
             }
         }.forEach(\.comments, action: /Action.comment) {

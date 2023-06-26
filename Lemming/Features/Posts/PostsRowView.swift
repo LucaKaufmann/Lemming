@@ -21,7 +21,7 @@ struct PostsRowView: View {
                 }
                 Spacer()
                 HStack {
-                    Text(post.community)
+                    Text(post.communityName)
                     Text(post.timestampDescription)
                         .font(.caption)
                         .foregroundColor(Color("lemmingGrayDark"))

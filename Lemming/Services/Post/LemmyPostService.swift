@@ -13,13 +13,14 @@ struct LemmyPostService: PostService {
     
     @Dependency(\.dateFormatterService) var dateFormatterService
     
-    func getPosts(page: Int = 0, sort: PostSortType = .hot, origin: PostOriginType = .all, account: LemmingAccountModel?, previewInstance: URL?) async throws -> [PostModel] {
+    func getPosts(community_id: Int?, community_name: String?, page: Int = 0, sort: PostSortType = .hot, origin: PostOriginType = .all, account: LemmingAccountModel?, previewInstance: URL?) async throws -> [PostModel] {
         guard let instanceUrl = URL(string: account?.instanceLink ?? "") ?? previewInstance else {
             throw PostServiceError.instanceUrlError
         }
         let api = LemmyAPI(baseUrl: instanceUrl.appending(path: "/api/v3"))
 
-        let request = GetPostsRequest(auth: account?.jwt, page: page, sort: SortType(rawValue: sort.rawValue), type_: ListingType(rawValue: origin.rawValue))
+        let request = GetPostsRequest(auth: account?.jwt, community_id: community_id, community_name: community_name, page: page, sort: SortType(rawValue: sort.rawValue), type_: ListingType(rawValue: origin.rawValue))
+        print(request)
         // Send the request to the Lemmy API
         do {
             let response = try await api.request(request)
@@ -34,7 +35,8 @@ struct LemmyPostService: PostService {
                                  embed_video_url: URL(string: post.embed_video_url ?? ""),
                                  thumbnail_url: URL(string: post.thumbnail_url ?? ""),
                                  url: URL(string: post.url ?? ""),
-                                 community: postView.community.name,
+                                 communityId: postView.community.id,
+                                 communityName: postView.community.name,
                                  numberOfUpvotes: postView.counts.upvotes,
                                  numberOfComments: postView.counts.comments,
                                  my_vote: postView.my_vote,
@@ -79,7 +81,6 @@ struct LemmyPostService: PostService {
         let response = try await api.request(request)
         
         let postView = response.post_view
-        print("Post response my vote \(postView.my_vote)")
         let post = postView.post
         let timestamp = dateFormatterService.date(from: post.published)
         return PostModel(id: post.id,
@@ -90,7 +91,8 @@ struct LemmyPostService: PostService {
                          embed_video_url: URL(string: post.embed_video_url ?? ""),
                          thumbnail_url: URL(string: post.thumbnail_url ?? ""),
                          url: URL(string: post.url ?? ""),
-                         community: postView.community.name,
+                         communityId: postView.community.id,
+                         communityName: postView.community.name,
                          numberOfUpvotes: postView.counts.upvotes,
                          numberOfComments: postView.counts.comments,
                          my_vote: postView.my_vote,

@@ -69,11 +69,13 @@ struct PostsFeature: ReducerProtocol {
                     
                     if let account = accountService.getCurrentAccount() {
                         return .task {
-                            let posts = try await postService.getPosts(page: 1,
-                                                                   sort: sortingType,
-                                                                   origin: originType,
-                                                                   account: account,
-                                                                   previewInstance: nil)
+                            let posts = try await postService.getPosts(community_id: nil,
+                                                                       community_name: nil,
+                                                                       page: 1,
+                                                                       sort: sortingType,
+                                                                       origin: originType,
+                                                                       account: account,
+                                                                       previewInstance: nil)
                             return .updateWithPosts(posts)
                         }
                     }
@@ -87,7 +89,9 @@ struct PostsFeature: ReducerProtocol {
                     
                     if let account = accountService.getCurrentAccount() {
                         return .task {
-                            let posts = try await postService.getPosts(page: page,
+                            let posts = try await postService.getPosts(community_id: nil,
+                                                                       community_name: nil,
+                                                                       page: page,
                                                                        sort: sortingType,
                                                                        origin: originType,
                                                                        account: account,

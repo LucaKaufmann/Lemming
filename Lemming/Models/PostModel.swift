@@ -17,7 +17,8 @@ struct PostModel: Equatable, Identifiable, Hashable {
     let embed_video_url: URL?
     let thumbnail_url: URL?
     let url: URL?
-    let community: String
+    let communityId: Int
+    let communityName: String
     var numberOfUpvotes: Int
     var numberOfComments: Int
     var my_vote: Int?
@@ -34,7 +35,8 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               embed_video_url: nil,
                               thumbnail_url: nil,
                               url: nil,
-                              community: "lemmy",
+                              communityId: 1,
+                              communityName: "lemmy",
                               numberOfUpvotes: 420420,
                               numberOfComments: 1337,
                               my_vote: 1,
@@ -69,7 +71,8 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               embed_video_url: nil,
                               thumbnail_url: nil,
                               url: nil,
-                              community: "swift",
+                              communityId: 2,
+                              communityName: "swift",
                               numberOfUpvotes: 123,
                               numberOfComments: 1,
                               my_vote: 0,
@@ -84,7 +87,8 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               embed_video_url: nil,
                               thumbnail_url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
                               url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
-                              community: "lemmings",
+                              communityId: 3,
+                              communityName: "lemmings",
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
                               my_vote: -1,

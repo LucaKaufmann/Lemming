@@ -23,6 +23,12 @@ struct PostsRootFeatureView: View {
                             action: PostsRootFeature.Path.Action.detailPost,
                             then: PostDetailFeatureView.init(store:)
                         )
+                    case .community:
+                        CaseLet(
+                            state: /PostsRootFeature.Path.State.community,
+                            action: PostsRootFeature.Path.Action.community,
+                            then: CommunityFeatureView.init(store:)
+                        )
                 }
             }
 

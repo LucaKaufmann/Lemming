@@ -29,7 +29,7 @@ struct PostDetailFeatureView: View {
         WithViewStore(store, observe: ViewState.init) { viewStore in
             ScrollView {
                 VStack {
-                    PostDetailHeaderView(post: viewStore.post)
+                    PostDetailHeaderView(store: store)
                         .padding(.horizontal)
                     Divider()
                     if let postUrl = viewStore.post.url {
@@ -102,34 +102,46 @@ struct PostDetailFeatureView: View {
 }
 
 struct PostDetailHeaderView: View {
-    let post: PostModel
+    
+    let store: StoreOf<PostDetailFeature>
+    
+    struct ViewState: Equatable {
+        let post: PostModel
+        
+        init(state: PostDetailFeature.State) {
+            self.post = state.post
+        }
+    }
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack(alignment: .bottom) {
-                    Text(LocalizedStringKey(post.title))
-                }
-//                Spacer()
-
-                HStack {
-                    Text(post.community)
-                    Text(post.timestampDescription)
+        WithViewStore(store, observe: ViewState.init) { viewStore in
+            HStack {
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack(alignment: .bottom) {
+                        Text(LocalizedStringKey(viewStore.post.title))
+                    }
+                    
+                    HStack {
+                        Text(viewStore.post.communityName)
+                            .onTapGesture {
+                                viewStore.send(.delegate(.goToCommunity(viewStore.post.communityId)))
+                            }
+                        Text(viewStore.post.timestampDescription)
+                            .font(.caption)
+                            .foregroundColor(Color("lemmingGrayDark"))
+                        Spacer()
+                        Text("\(viewStore.post.numberOfUpvotes) \(Image(systemName: IconConstants.upvote(viewStore.post.my_vote == 1)))")
+                        Text("\(viewStore.post.numberOfComments) \(Image(systemName: IconConstants.comment))")
+                            .foregroundColor(Color.LemmingColors.primaryOnBackground)
+                    }
+                    .font(.footnote)
+                    .foregroundColor(Color("lemmingOrange"))
+                    Text("by \(viewStore.post.user)")
                         .font(.caption)
-                        .foregroundColor(Color("lemmingGrayDark"))
-                    Spacer()
-//                        .frame(width: 25)
-                    Text("\(post.numberOfUpvotes) \(Image(systemName: IconConstants.upvote(post.my_vote == 1)))")
-                    Text("\(post.numberOfComments) \(Image(systemName: IconConstants.comment))")
-                        .foregroundColor(Color.LemmingColors.primaryOnBackground)
+                        .foregroundColor(Color("lemmingBrown"))
                 }
-                .font(.footnote)
-                .foregroundColor(Color("lemmingOrange"))
-                Text("by \(post.user)")
-                    .font(.caption)
-                    .foregroundColor(Color("lemmingBrown"))
-            }
-        }.padding(.bottom)
+            }.padding(.bottom)
+        }
     }
 }
 
@@ -163,7 +175,8 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               embed_video_url: nil,
                               thumbnail_url: nil,
                               url: nil,
-                              community: "swift",
+                                communityId: 1,
+                              communityName: "swift",
                               numberOfUpvotes: 123,
                               numberOfComments: 1,
                                  my_vote: 1,
@@ -178,7 +191,8 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               embed_video_url: nil,
                               thumbnail_url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
                               url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
-                              community: "lemmings",
+                            communityId: 2,
+                              communityName: "lemmings",
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
                                   my_vote: -1,
@@ -193,7 +207,8 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               embed_video_url: nil,
                               thumbnail_url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
                               url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg1"),
-                              community: "lemmings",
+                                       communityId: 3,
+                              communityName: "lemmings",
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
                                        my_vote: -1,
@@ -208,7 +223,8 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                               embed_video_url: nil,
                               thumbnail_url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
                               url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus"),
-                              community: "lemmings",
+                                 communityId: 4,
+                              communityName: "lemmings",
                               numberOfUpvotes: 1,
                               numberOfComments: 0,
                                  my_vote: 0,

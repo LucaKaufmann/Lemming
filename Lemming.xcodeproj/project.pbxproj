@@ -13,6 +13,12 @@
 		810E07982A39B83B00CCBDBE /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E07972A39B83B00CCBDBE /* CommentModel.swift */; };
 		810E079A2A39BC8400CCBDBE /* LemmyCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E07992A39BC8400CCBDBE /* LemmyCommentService.swift */; };
 		810E079C2A39C74900CCBDBE /* CommentServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E079B2A39C74900CCBDBE /* CommentServiceDependency.swift */; };
+		810FA80A2A48AB1800EF2CBA /* CommunityFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FA8092A48AB1800EF2CBA /* CommunityFeature.swift */; };
+		810FA80D2A48AB3700EF2CBA /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FA80C2A48AB3700EF2CBA /* CommunityService.swift */; };
+		810FA80F2A48ABAC00EF2CBA /* CommunityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FA80E2A48ABAC00EF2CBA /* CommunityModel.swift */; };
+		810FA8112A48AD1E00EF2CBA /* LemmyCommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FA8102A48AD1E00EF2CBA /* LemmyCommunityService.swift */; };
+		810FA8132A48B1ED00EF2CBA /* CommunityServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FA8122A48B1ED00EF2CBA /* CommunityServiceDependency.swift */; };
+		810FA8152A48B5B900EF2CBA /* CommunityFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FA8142A48B5B900EF2CBA /* CommunityFeatureView.swift */; };
 		8126FEF62A46185600633121 /* CommentDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126FEF52A46185600633121 /* CommentDetailFeature.swift */; };
 		8126FEF82A470B8400633121 /* CommentDetailFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126FEF72A470B8400633121 /* CommentDetailFeatureTests.swift */; };
 		8126FEFA2A470D4100633121 /* PostDetailFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126FEF92A470D4100633121 /* PostDetailFeatureTests.swift */; };
@@ -79,6 +85,12 @@
 		810E07972A39B83B00CCBDBE /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		810E07992A39BC8400CCBDBE /* LemmyCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyCommentService.swift; sourceTree = "<group>"; };
 		810E079B2A39C74900CCBDBE /* CommentServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentServiceDependency.swift; sourceTree = "<group>"; };
+		810FA8092A48AB1800EF2CBA /* CommunityFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityFeature.swift; sourceTree = "<group>"; };
+		810FA80C2A48AB3700EF2CBA /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
+		810FA80E2A48ABAC00EF2CBA /* CommunityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityModel.swift; sourceTree = "<group>"; };
+		810FA8102A48AD1E00EF2CBA /* LemmyCommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyCommunityService.swift; sourceTree = "<group>"; };
+		810FA8122A48B1ED00EF2CBA /* CommunityServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityServiceDependency.swift; sourceTree = "<group>"; };
+		810FA8142A48B5B900EF2CBA /* CommunityFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityFeatureView.swift; sourceTree = "<group>"; };
 		8126FEF52A46185600633121 /* CommentDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetailFeature.swift; sourceTree = "<group>"; };
 		8126FEF72A470B8400633121 /* CommentDetailFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetailFeatureTests.swift; sourceTree = "<group>"; };
 		8126FEF92A470D4100633121 /* PostDetailFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailFeatureTests.swift; sourceTree = "<group>"; };
@@ -159,6 +171,24 @@
 				81727D752A40EA8C0035FF22 /* PostDetailLinkView.swift */,
 			);
 			path = PostDetail;
+			sourceTree = "<group>";
+		};
+		810FA8082A48AB0400EF2CBA /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				810FA8092A48AB1800EF2CBA /* CommunityFeature.swift */,
+				810FA8142A48B5B900EF2CBA /* CommunityFeatureView.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		810FA80B2A48AB2900EF2CBA /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				810FA80C2A48AB3700EF2CBA /* CommunityService.swift */,
+				810FA8102A48AD1E00EF2CBA /* LemmyCommunityService.swift */,
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 		8126FEF42A46184300633121 /* CommentDetail */ = {
@@ -313,6 +343,7 @@
 		819217272A3732D00015BEF3 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				810FA8082A48AB0400EF2CBA /* Community */,
 				816F99042A431C93004F0AE9 /* CommentSheet */,
 				810E07902A39A9F600CCBDBE /* PostDetail */,
 				819217282A3732E10015BEF3 /* PostsFeature.swift */,
@@ -330,6 +361,7 @@
 				8192172D2A3735B80015BEF3 /* PostModel.swift */,
 				810E07972A39B83B00CCBDBE /* CommentModel.swift */,
 				818E8A042A3EC5A800013875 /* LemmingAccountModel.swift */,
+				810FA80E2A48ABAC00EF2CBA /* CommunityModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -366,6 +398,7 @@
 		81F702102A386F1B00484D6F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				810FA80B2A48AB2900EF2CBA /* Community */,
 				818E8A0D2A3F2DC400013875 /* Account */,
 				818E8A0C2A3F2DBF00013875 /* Comment */,
 				818E8A0B2A3F2DBA00013875 /* Post */,
@@ -381,6 +414,7 @@
 				810E079B2A39C74900CCBDBE /* CommentServiceDependency.swift */,
 				81B982E52A39E08300D2A3F7 /* RelativeDateTimeFormatterDependency.swift */,
 				818E8A1B2A3F990200013875 /* AccountServiceKey.swift */,
+				810FA8122A48B1ED00EF2CBA /* CommunityServiceDependency.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -497,12 +531,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				810FA8112A48AD1E00EF2CBA /* LemmyCommunityService.swift in Sources */,
 				810E079A2A39BC8400CCBDBE /* LemmyCommentService.swift in Sources */,
 				819217212A37059E0015BEF3 /* LemmingDesignSystem.swift in Sources */,
 				810E07922A39AA0300CCBDBE /* PostDetailFeature.swift in Sources */,
 				81B982E12A39DA5D00D2A3F7 /* CommentDetailView.swift in Sources */,
 				8192172E2A3735B80015BEF3 /* PostModel.swift in Sources */,
 				81B982F52A3A5E1600D2A3F7 /* PostsRootFeatureView.swift in Sources */,
+				810FA80A2A48AB1800EF2CBA /* CommunityFeature.swift in Sources */,
 				810E07962A39B7F300CCBDBE /* CommentService.swift in Sources */,
 				8192172C2A3734F20015BEF3 /* PostsFeatureView.swift in Sources */,
 				818E8A142A3F40A400013875 /* AccountFeature.swift in Sources */,
@@ -513,7 +549,9 @@
 				81727D762A40EA8C0035FF22 /* PostDetailLinkView.swift in Sources */,
 				818E8A052A3EC5A800013875 /* LemmingAccountModel.swift in Sources */,
 				819217292A3732E10015BEF3 /* PostsFeature.swift in Sources */,
+				810FA80D2A48AB3700EF2CBA /* CommunityService.swift in Sources */,
 				8126FEF62A46185600633121 /* CommentDetailFeature.swift in Sources */,
+				810FA8152A48B5B900EF2CBA /* CommunityFeatureView.swift in Sources */,
 				81727D742A40E9FA0035FF22 /* URL+URLType.swift in Sources */,
 				81B982E82A39E10800D2A3F7 /* DateFormatterService.swift in Sources */,
 				81F702122A386F3200484D6F /* PostService.swift in Sources */,
@@ -526,6 +564,7 @@
 				818E8A1F2A40326E00013875 /* AddAccountFeature.swift in Sources */,
 				81B982EE2A39E89900D2A3F7 /* URLCache+imageCache.swift in Sources */,
 				810E07942A39AB2600CCBDBE /* PostDetailFeatureView.swift in Sources */,
+				810FA8132A48B1ED00EF2CBA /* CommunityServiceDependency.swift in Sources */,
 				818E8A1A2A3F983300013875 /* UserDefaultsKeys.swift in Sources */,
 				810E07982A39B83B00CCBDBE /* CommentModel.swift in Sources */,
 				81368C0B2A4573A7005CF7A2 /* SwipeCell.swift in Sources */,
@@ -538,6 +577,7 @@
 				819217302A3737410015BEF3 /* PostsRowView.swift in Sources */,
 				818E8A182A3F473900013875 /* AccountRootFeature.swift in Sources */,
 				818E8A1C2A3F990200013875 /* AccountServiceKey.swift in Sources */,
+				810FA80F2A48ABAC00EF2CBA /* CommunityModel.swift in Sources */,
 				8192171F2A364B790015BEF3 /* RootFeature.swift in Sources */,
 				8192170C2A364A950015BEF3 /* LemmingApp.swift in Sources */,
 			);
