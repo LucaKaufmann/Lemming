@@ -26,6 +26,9 @@ struct PostModel: Equatable, Identifiable, Hashable {
     let timestampDescription: String
     let user: String
     
+    let pinnedLocal: Bool
+    let pinnedCommunity: Bool
+    
     static var mockPosts: [PostModel] {
         let post1 = PostModel(id: 1,
                               title: "[Megathread] Reddit going dark",
@@ -42,7 +45,7 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               my_vote: 1,
                               timestamp: Date(),
                               timestampDescription: "1min ago",
-                              user: "Admin")
+                              user: "Admin", pinnedLocal: true, pinnedCommunity: false)
         let post2 = PostModel(id: 2,
                               title: "Another mock post",
                               body: """
@@ -78,7 +81,7 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               my_vote: 0,
                               timestamp: Date(),
                               timestampDescription: "1hr ago",
-                              user: "Codable")
+                              user: "Codable", pinnedLocal: false, pinnedCommunity: false)
         let post3 = PostModel(id: 3,
                               title: "How are they so cute?",
                               body: nil,
@@ -94,7 +97,7 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               my_vote: -1,
                               timestamp: Date(),
                               timestampDescription: "1d ago",
-                              user: "LemmingFan123")
+                              user: "LemmingFan123", pinnedLocal: false, pinnedCommunity: true)
         
         return [post1, post2, post3]
     }

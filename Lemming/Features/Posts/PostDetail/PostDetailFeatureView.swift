@@ -119,6 +119,18 @@ struct PostDetailHeaderView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     HStack(alignment: .bottom) {
                         Text(LocalizedStringKey(viewStore.post.title))
+                        Spacer()
+                        Group {
+                            if viewStore.post.pinnedLocal {
+                                Image(systemName: "pin.circle.fill")
+                                    .resizable()
+                            } else if viewStore.post.pinnedCommunity {
+                                Image(systemName: "pin.circle")
+                                    .resizable()
+                            }
+                        }
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(Color.LemmingColors.accentOpt3)
                     }
                     
                     HStack {
@@ -136,9 +148,16 @@ struct PostDetailHeaderView: View {
                     }
                     .font(.footnote)
                     .foregroundColor(Color("lemmingOrange"))
-                    Text("by \(viewStore.post.user)")
-                        .font(.caption)
-                        .foregroundColor(Color("lemmingBrown"))
+                    HStack(spacing: 3) {
+                        Text("by")
+                            .font(.caption)
+                            .foregroundColor(Color("lemmingBrown"))
+                        Text("\(viewStore.post.user)")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color("lemmingBrown"))
+                        Spacer()
+                    }
                 }
             }.padding(.bottom)
         }
@@ -182,7 +201,7 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                                  my_vote: 1,
                                  timestamp: Date(),
                                  timestampDescription: "1d ago",
-                              user: "Codable")
+                              user: "Codable", pinnedLocal: true, pinnedCommunity: false)
         let imagePost = PostModel(id: 3,
                               title: "How are they so cute?",
                               body: nil,
@@ -198,7 +217,7 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                                   my_vote: -1,
                                   timestamp: Date(),
                                   timestampDescription: "1hr ago",
-                              user: "LemmingFan123")
+                              user: "LemmingFan123", pinnedLocal: true, pinnedCommunity: false)
         let imageErrorPost = PostModel(id: 3,
                               title: "How are they so cute?",
                               body: nil,
@@ -214,7 +233,7 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                                        my_vote: -1,
                                        timestamp: Date(),
                                        timestampDescription: "now",
-                              user: "LemmingFan123")
+                              user: "LemmingFan123", pinnedLocal: false, pinnedCommunity: false)
         let linkPost = PostModel(id: 3,
                               title: "How are they so cute?",
                               body: nil,
@@ -230,7 +249,7 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                                  my_vote: 0,
                                        timestamp: Date(),
                                        timestampDescription: "now",
-                              user: "LemmingFan123")
+                              user: "LemmingFan123", pinnedLocal: false, pinnedCommunity: true)
         PostDetailFeatureView(store: Store(initialState: .init(post: textPost, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Text post")
         PostDetailFeatureView(store: Store(initialState: .init(post: imagePost, comments: [], isLoading: false), reducer: PostDetailFeature()))

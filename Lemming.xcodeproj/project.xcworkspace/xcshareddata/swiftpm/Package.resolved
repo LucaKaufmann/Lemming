@@ -21,10 +21,10 @@
     {
       "identity" : "lemmy-swift-client",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/rrainn/Lemmy-Swift-Client.git",
+      "location" : "https://github.com/LucaKaufmann/Lemmy-Swift-Client",
       "state" : {
         "branch" : "main",
-        "revision" : "7ea8601cfc97eb43a44000a6e48bb224563aac1a"
+        "revision" : "ba7e4843a0ab1aab626d78f6479936968eb59b31"
       }
     },
     {

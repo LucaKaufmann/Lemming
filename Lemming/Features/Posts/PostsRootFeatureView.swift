@@ -15,6 +15,9 @@ struct PostsRootFeatureView: View {
     var body: some View {
         NavigationStackStore(self.store.scope(state: \.path, action: { .path($0) })) {
             PostsFeatureView(store: store.scope(state: \.postsFeature, action: PostsRootFeature.Action.postsFeature))
+                .background {
+                    Color.LemmingColors.background.ignoresSafeArea()
+                }
             } destination: { state in
                 switch state {
                     case .detailPost:

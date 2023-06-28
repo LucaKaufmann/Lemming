@@ -42,7 +42,7 @@ struct LemmyPostService: PostService {
                                  my_vote: postView.my_vote,
                                  timestamp: timestamp,
                                  timestampDescription: dateFormatterService.relativeDateTimeDescription(for: timestamp),
-                                 user: postView.creator.name)
+                                 user: postView.creator.name, pinnedLocal: postView.post.featured_local, pinnedCommunity: postView.post.featured_community)
             }
         } catch {
             print("Lemmy error \(error)")
@@ -98,6 +98,6 @@ struct LemmyPostService: PostService {
                          my_vote: postView.my_vote,
                          timestamp: timestamp,
                          timestampDescription: dateFormatterService.relativeDateTimeDescription(for: timestamp),
-                         user: postView.creator.name)
+                         user: postView.creator.name, pinnedLocal: postView.post.featured_local, pinnedCommunity: postView.post.featured_community)
     }
 }

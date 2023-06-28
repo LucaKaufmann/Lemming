@@ -17,7 +17,19 @@ struct PostsRowView: View {
         HStack {
             VStack(alignment: .leading, spacing: 12) {
                 HStack(alignment: .bottom) {
+                    Group {
+                        if post.pinnedLocal {
+                            Image(systemName: "pin.circle.fill")
+                                .resizable()
+                        } else if post.pinnedCommunity {
+                            Image(systemName: "pin.circle")
+                                .resizable()
+                        }
+                    }
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(Color.LemmingColors.accentOpt3)
                     Text(LocalizedStringKey(post.title))
+                    Spacer()
                 }
                 Spacer()
                 HStack {
