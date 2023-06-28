@@ -102,6 +102,7 @@ struct PostsListFeatureListView: View {
                 }
                 if viewStore.isLoading && viewStore.posts.count > 0 {
                     ProgressView()
+                        .listRowBackground(Color.clear)
                 }
             }
             .background {

@@ -36,7 +36,6 @@ struct PostsRootFeature: ReducerProtocol {
                 case let .path(.element(id: _, action: .detailPost(.delegate(action)))):
                   switch action {
                   case let .goToCommunity(communityId):
-                          print("Going to community \(communityId)")
                           state.path.append(.community(.init(communityId: communityId,
                                                              postsList: .init(communityId: communityId,
                                                                               posts: [],
