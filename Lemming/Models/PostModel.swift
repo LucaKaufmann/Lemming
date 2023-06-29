@@ -22,15 +22,16 @@ struct PostModel: Equatable, Identifiable, Hashable {
     var numberOfUpvotes: Int
     var numberOfComments: Int
     var my_vote: Int?
-    let timestamp: Date?
+    let timestamp: Date
     let timestampDescription: String
     let user: String
+    let userId: Int
     
     let pinnedLocal: Bool
     let pinnedCommunity: Bool
     
     static var mockPosts: [PostModel] {
-        let post1 = PostModel(id: 1,
+        let post1 = PostModel(id: 11,
                               title: "[Megathread] Reddit going dark",
                               body: "Good luck, have fun",
                               embed_description: nil,
@@ -45,8 +46,11 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               my_vote: 1,
                               timestamp: Date(),
                               timestampDescription: "1min ago",
-                              user: "Admin", pinnedLocal: true, pinnedCommunity: false)
-        let post2 = PostModel(id: 2,
+                              user: "Admin",
+                              userId: 1,
+                              pinnedLocal: true,
+                              pinnedCommunity: false)
+        let post2 = PostModel(id: 21,
                               title: "Another mock post",
                               body: """
                               Title: Discover the Power of Lemmy: The Ultimate Community-Driven Platform
@@ -81,8 +85,10 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               my_vote: 0,
                               timestamp: Date(),
                               timestampDescription: "1hr ago",
-                              user: "Codable", pinnedLocal: false, pinnedCommunity: false)
-        let post3 = PostModel(id: 3,
+                              user: "Codable",
+                              userId: 1,
+                              pinnedLocal: false, pinnedCommunity: false)
+        let post3 = PostModel(id: 31,
                               title: "How are they so cute?",
                               body: nil,
                               embed_description: nil,
@@ -97,7 +103,9 @@ struct PostModel: Equatable, Identifiable, Hashable {
                               my_vote: -1,
                               timestamp: Date(),
                               timestampDescription: "1d ago",
-                              user: "LemmingFan123", pinnedLocal: false, pinnedCommunity: true)
+                              user: "LemmingFan123",
+                              userId: 1,
+                              pinnedLocal: false, pinnedCommunity: true)
         
         return [post1, post2, post3]
     }

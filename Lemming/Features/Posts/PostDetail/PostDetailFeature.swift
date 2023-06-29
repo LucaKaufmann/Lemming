@@ -48,7 +48,8 @@ struct PostDetailFeature: ReducerProtocol {
         case delegate(Delegate)
         
         enum Delegate: Equatable {
-          case goToCommunity(Int)
+            case goToCommunity(Int)
+            case goToUser(Int)
         }
     }
     

@@ -40,9 +40,11 @@ struct LemmyPostService: PostService {
                                  numberOfUpvotes: postView.counts.upvotes,
                                  numberOfComments: postView.counts.comments,
                                  my_vote: postView.my_vote,
-                                 timestamp: timestamp,
+                                 timestamp: timestamp ?? Date(),
                                  timestampDescription: dateFormatterService.relativeDateTimeDescription(for: timestamp),
-                                 user: postView.creator.name, pinnedLocal: postView.post.featured_local, pinnedCommunity: postView.post.featured_community)
+                                 user: postView.creator.name,
+                                 userId: postView.creator.id,
+                                 pinnedLocal: postView.post.featured_local, pinnedCommunity: postView.post.featured_community)
             }
         } catch {
             print("Lemmy error \(error)")
@@ -96,8 +98,10 @@ struct LemmyPostService: PostService {
                          numberOfUpvotes: postView.counts.upvotes,
                          numberOfComments: postView.counts.comments,
                          my_vote: postView.my_vote,
-                         timestamp: timestamp,
+                         timestamp: timestamp ?? Date(),
                          timestampDescription: dateFormatterService.relativeDateTimeDescription(for: timestamp),
-                         user: postView.creator.name, pinnedLocal: postView.post.featured_local, pinnedCommunity: postView.post.featured_community)
+                         user: postView.creator.name,
+                         userId: postView.creator.id,
+                         pinnedLocal: postView.post.featured_local, pinnedCommunity: postView.post.featured_community)
     }
 }

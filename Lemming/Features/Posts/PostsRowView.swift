@@ -13,10 +13,12 @@ struct PostsRowView: View {
     let post: PostModel
     let showThumbnail: Bool
     
+    let formatter = KMBFormatter()
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 12) {
-                HStack(alignment: .bottom) {
+                HStack(alignment: .top) {
                     Group {
                         if post.pinnedLocal {
                             Image(systemName: "pin.circle.fill")
@@ -39,8 +41,8 @@ struct PostsRowView: View {
                         .foregroundColor(Color("lemmingGrayDark"))
                     Spacer()
                         .frame(width: 25)
-                    Text("\(post.numberOfUpvotes) \(Image(systemName: IconConstants.upvote(post.my_vote == 1)))")
-                    Text("\(post.numberOfComments) \(Image(systemName: IconConstants.comment))")
+                    Text("\(formatter.string(for: post.numberOfUpvotes) ?? "") \(Image(systemName: IconConstants.upvote(post.my_vote == 1)))")
+                    Text("\(formatter.string(for: post.numberOfComments) ?? "") \(Image(systemName: IconConstants.comment))")
                         .foregroundColor(Color.LemmingColors.primaryOnBackground)
                 }
                 .font(.footnote)

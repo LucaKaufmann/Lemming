@@ -17,7 +17,6 @@ struct PostsRootFeature: ReducerProtocol {
     
     enum Action: Equatable {
         case path(StackAction<Path.State, Path.Action>)
-
         case postsFeature(PostsFeature.Action)
     }
     
@@ -34,26 +33,32 @@ struct PostsRootFeature: ReducerProtocol {
                     }
                     return .none
                 case let .path(.element(id: _, action: .detailPost(.delegate(action)))):
-                  switch action {
-                  case let .goToCommunity(communityId):
-                          state.path.append(.community(.init(communityId: communityId,
-                                                             postsList: .init(communityId: communityId,
-                                                                              posts: [],
-                                                                              currentPage: 1,
-                                                                              isLoading: false,
-                                                                              sort: .hot,
-                                                                              origin: .all),
-                                                             sort: .hot)))
-                    return .none
-                  }
+                    switch action {
+                        case let .goToCommunity(communityId):
+                            state.path.append(.community(.init(communityId: communityId,
+                                                               postsList: .init(communityId: communityId,
+                                                                                posts: [],
+                                                                                currentPage: 1,
+                                                                                isLoading: false,
+                                                                                sort: .hot,
+                                                                                origin: .all),
+                                                               sort: .hot)))
+                            return .none
+                        case let .goToUser(userId):
+                            state.path.append(.user(.init(userId: userId, items: [])))
+                            return .none
+                    }
                 case let .path(.element(id: _, action: .community(action))):
-                  switch action {
-                      case let .postsList(.delegate(.goToPost(post))):
-                          state.path.append(.detailPost(.init(post: post, comments: [], isLoading: false)))
-                          return .none
-                      default:
-                          return .none
-                  }
+                    switch action {
+                        case let .postsList(.delegate(.goToPost(post))):
+                            state.path.append(.detailPost(.init(post: post, comments: [], isLoading: false)))
+                            return .none
+                        case let .postsList(.delegate(.goToUser(userId))):
+                            state.path.append(.user(.init(userId: userId, items: [])))
+                            return .none
+                        default:
+                            return .none
+                    }
                 case .path(_):
                     return .none
             }
@@ -69,10 +74,12 @@ struct PostsRootFeature: ReducerProtocol {
         enum State: Equatable {
             case detailPost(PostDetailFeature.State)
             case community(CommunityFeature.State)
+            case user(UserProfileFeature.State)
         }
         enum Action: Equatable {
             case detailPost(PostDetailFeature.Action)
             case community(CommunityFeature.Action)
+            case user(UserProfileFeature.Action)
         }
         var body: some ReducerProtocolOf<Self> {
             Scope(state: /State.detailPost, action: /Action.detailPost) {
@@ -80,6 +87,9 @@ struct PostsRootFeature: ReducerProtocol {
             }
             Scope(state: /State.community, action: /Action.community) {
                 CommunityFeature()
+            }
+            Scope(state: /State.user, action: /Action.user) {
+                UserProfileFeature()
             }
         }
     }

@@ -72,7 +72,7 @@ struct LemmyCommentService: CommentService {
         let commentTimestamp = dateFormatterService.date(from: comment.published)
         return CommentModel(id: comment.id,
                            content: comment.content,
-                           timestamp: commentTimestamp,
+                            timestamp: commentTimestamp ?? .now,
                            timestampDescription: dateFormatterService.relativeDateTimeDescription(for: commentTimestamp),
                            user: commentView.creator.name,
                            path: comment.path,

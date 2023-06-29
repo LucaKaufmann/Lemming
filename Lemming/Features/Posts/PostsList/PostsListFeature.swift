@@ -46,7 +46,8 @@ struct PostsListFeature: ReducerProtocol {
         case commentSheet(PresentationAction<CommentSheetFeature.Action>)
         
         enum Delegate: Equatable {
-          case goToPost(PostModel)
+            case goToPost(PostModel)
+            case goToUser(Int)
         }
     }
     

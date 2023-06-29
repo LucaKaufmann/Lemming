@@ -157,6 +157,8 @@ struct PostDetailHeaderView: View {
                             .fontWeight(.bold)
                             .foregroundColor(Color("lemmingBrown"))
                         Spacer()
+                    }.onTapGesture {
+                        viewStore.send(.delegate(.goToUser(viewStore.post.userId)))
                     }
                 }
             }.padding(.bottom)
@@ -201,7 +203,9 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                                  my_vote: 1,
                                  timestamp: Date(),
                                  timestampDescription: "1d ago",
-                              user: "Codable", pinnedLocal: true, pinnedCommunity: false)
+                              user: "Codable",
+                                 userId: 1,
+                                 pinnedLocal: true, pinnedCommunity: false)
         let imagePost = PostModel(id: 3,
                               title: "How are they so cute?",
                               body: nil,
@@ -217,7 +221,9 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                                   my_vote: -1,
                                   timestamp: Date(),
                                   timestampDescription: "1hr ago",
-                              user: "LemmingFan123", pinnedLocal: true, pinnedCommunity: false)
+                              user: "LemmingFan123",
+                                  userId: 1,
+                                  pinnedLocal: true, pinnedCommunity: false)
         let imageErrorPost = PostModel(id: 3,
                               title: "How are they so cute?",
                               body: nil,
@@ -233,7 +239,9 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                                        my_vote: -1,
                                        timestamp: Date(),
                                        timestampDescription: "now",
-                              user: "LemmingFan123", pinnedLocal: false, pinnedCommunity: false)
+                              user: "LemmingFan123",
+                                       userId: 2,
+                                       pinnedLocal: false, pinnedCommunity: false)
         let linkPost = PostModel(id: 3,
                               title: "How are they so cute?",
                               body: nil,
@@ -249,7 +257,9 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
                                  my_vote: 0,
                                        timestamp: Date(),
                                        timestampDescription: "now",
-                              user: "LemmingFan123", pinnedLocal: false, pinnedCommunity: true)
+                              user: "LemmingFan123",
+                                 userId: 2,
+                                 pinnedLocal: false, pinnedCommunity: true)
         PostDetailFeatureView(store: Store(initialState: .init(post: textPost, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Text post")
         PostDetailFeatureView(store: Store(initialState: .init(post: imagePost, comments: [], isLoading: false), reducer: PostDetailFeature()))
