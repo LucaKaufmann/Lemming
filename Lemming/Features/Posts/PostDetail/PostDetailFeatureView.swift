@@ -130,7 +130,7 @@ struct PostDetailHeaderView: View {
                             }
                         }
                         .frame(width: 20, height: 20)
-                        .foregroundColor(Color.LemmingColors.accentOpt3)
+                        .foregroundColor(Color.LemmingColors.accentBeige)
                     }
                     
                     HStack {

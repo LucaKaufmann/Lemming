@@ -23,7 +23,9 @@ struct UserProfileCommentItem: UserProfileItem {
             VStack(alignment: .leading) {
                 HStack {
                     Text(data.comment.user)
-                        .foregroundColor(Color("lemmingGrayDark"))
+                        .foregroundColor(Color.LemmingColors.accentBeige)
+                    Text(data.comment.timestampDescription)
+                        .foregroundColor(Color.LemmingColors.accentGrayDark)
                     Spacer()
                     Text("\(Image(systemName: IconConstants.score)) \(data.comment.score)")
                         .foregroundColor(Color("lemmingOrange"))

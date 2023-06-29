@@ -83,12 +83,20 @@ extension Color {
             return Color("lemmingOrange")
         }
         
-        public static var accentOpt2: Color {
+        public static var accentBrown: Color {
             return Color("lemmingBrown")
         }
         
-        public static var accentOpt3: Color {
+        public static var accentBeige: Color {
             return Color("lemmingBeige")
+        }
+        
+        public static var accentGray: Color {
+            return Color("lemmingGray")
+        }
+        
+        public static var accentGrayDark: Color {
+            return Color("lemmingGrayDark")
         }
         
     }

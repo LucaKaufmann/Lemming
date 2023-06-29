@@ -57,7 +57,9 @@ struct CommentDetailView: View {
             } label: {
                 HStack {
                     Text(viewStore.user)
-                        .foregroundColor(Color("lemmingGrayDark"))
+                        .foregroundColor(Color.LemmingColors.accentBeige)
+                    Text(viewStore.timestampDescription)
+                        .foregroundColor(Color.LemmingColors.accentGrayDark)
                     Spacer()
                     Text("\(Image(systemName: IconConstants.score)) \(viewStore.score)")
                         .foregroundColor(Color("lemmingOrange"))
@@ -81,6 +83,6 @@ struct CommentDetailView: View {
 struct CommentDetailView_Previews: PreviewProvider {
     static var previews: some View {
         CommentDetailView(store: Store(initialState: .init(comment: CommentModel.mockComments.first!), reducer: CommentDetailFeature()))
-        CommentDetailView(store: Store(initialState: .init(comment: CommentModel(id: 2, content: "This is a short comment", timestamp: Date(), timestampDescription: "", user: "Testuser", path: "0", child_count: 0, downvotes: 50, score: 50, upvotes: 100, my_vote: 1, children: [])), reducer: CommentDetailFeature()))
+        CommentDetailView(store: Store(initialState: .init(comment: CommentModel(id: 2, content: "This is a short comment", timestamp: Date(), timestampDescription: "3 min ago", user: "Testuser", path: "0", child_count: 0, downvotes: 50, score: 50, upvotes: 100, my_vote: 1, children: [])), reducer: CommentDetailFeature()))
     }
 }

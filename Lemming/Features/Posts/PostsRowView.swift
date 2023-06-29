@@ -29,7 +29,7 @@ struct PostsRowView: View {
                         }
                     }
                     .frame(width: 20, height: 20)
-                    .foregroundColor(Color.LemmingColors.accentOpt3)
+                    .foregroundColor(Color.LemmingColors.accentBeige)
                     Text(LocalizedStringKey(post.title))
                     Spacer()
                 }

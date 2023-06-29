@@ -18,11 +18,6 @@ struct UserProfileFeatureView: View {
             GeometryReader { proxy in
                 ScrollView {
                     VStack {
-//                        Spacer()
-//                            .frame(height: proxy.safeAreaInsets.top)
-//                            .background {
-//                                Color.blue
-//                            }
                         if let user = viewStore.profile?.user {
                             UserProfileHeaderView(user: user)
                         }
@@ -104,6 +99,7 @@ struct UserProfileHeaderView: View {
                     Text("Created: \(user.createdDescription)")
                         .font(.footnote)
                         .padding(2)
+                        .padding(.horizontal, 1)
                         .background {
                             Capsule()
                                 .fill()
@@ -113,6 +109,7 @@ struct UserProfileHeaderView: View {
                     Text("Posts: \(formatter.string(for: user.post_score) ?? "") \(Image(systemName: IconConstants.score))")
                         .font(.footnote)
                         .padding(2)
+                        .padding(.horizontal, 1)
                         .background {
                             Capsule()
                                 .fill()
@@ -122,6 +119,7 @@ struct UserProfileHeaderView: View {
                     Text("Comments: \(formatter.string(for: user.comment_score) ?? "") \(Image(systemName: IconConstants.score))")
                         .font(.footnote)
                         .padding(2)
+                        .padding(.horizontal, 1)
                         .background {
                             Capsule()
                                 .fill()
