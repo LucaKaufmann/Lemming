@@ -15,35 +15,15 @@ struct CommentDetailFeature: ReducerProtocol {
     
     struct State: Equatable, Identifiable {
         var id: Int
-        var content: String
-        var timestamp: Date?
-        var timestampDescription: String
-        var user: String
         
-        var path: String
-        
-        var child_count: Int
-        var downvotes: Int
-        var score: Int
-        var upvotes: Int
-        
-        var my_vote: Int?
+        var comment: CommentModel
         var childComments: IdentifiedArrayOf<CommentDetailFeature.State>
         
         @PresentationState var commentSheet: CommentSheetFeature.State?
         
         init(comment: CommentModel, childComments: IdentifiedArrayOf<CommentDetailFeature.State> = []) {
             self.id = comment.id
-            self.content = comment.content
-            self.timestamp = comment.timestamp
-            self.timestampDescription = comment.timestampDescription
-            self.user = comment.user
-            self.path = comment.path
-            self.child_count = comment.child_count
-            self.downvotes = comment.downvotes
-            self.score = comment.score
-            self.upvotes = comment.upvotes
-            self.my_vote = comment.my_vote
+            self.comment = comment
             self.childComments = childComments
         }
     }
@@ -67,15 +47,15 @@ struct CommentDetailFeature: ReducerProtocol {
                         return .none
                     }
                     let id = state.id
-                    if state.my_vote == 1 {
-                        state.my_vote = 0
+                    if state.comment.my_vote == 1 {
+                        state.comment.my_vote = 0
                         return .task {
                             let newComment = try await commentService.removeUpvoteFrom(commentId: id, account: account)
                             
                             return .updateComment(newComment)
                         }
                     } else {
-                        state.my_vote = 1
+                        state.comment.my_vote = 1
                         return .task {
                             let newComment = try await commentService.upvote(commentId: id, account: account)
                             
@@ -87,15 +67,15 @@ struct CommentDetailFeature: ReducerProtocol {
                         return .none
                     }
                     let id = state.id
-                    if state.my_vote == -1 {
-                        state.my_vote = 0
+                    if state.comment.my_vote == -1 {
+                        state.comment.my_vote = 0
                         return .task {
                             let newComment = try await commentService.removeUpvoteFrom(commentId: id, account: account)
                             
                             return .updateComment(newComment)
                         }
                     } else {
-                        state.my_vote = -1
+                        state.comment.my_vote = -1
                         return .task {
                             let newComment = try await commentService.downvote(commentId: id, account: account)
                             
@@ -103,7 +83,7 @@ struct CommentDetailFeature: ReducerProtocol {
                         }
                     }
                 case .replyToComment:
-                    state.commentSheet = .init(comment: state.comment)
+                    state.commentSheet = .init(comment: state.comment, commentText: "")
                     return .none
                 case .updateComment(let comment):
                     let childComments = state.childComments

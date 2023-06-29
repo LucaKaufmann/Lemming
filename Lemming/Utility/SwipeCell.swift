@@ -30,7 +30,7 @@ struct CellButtonView: View {
             Text(title)
                 .font(.caption)
         }.padding(5)
-        .foregroundColor(.primary)
+        .foregroundColor(.white)
         .font(.subheadline)
         .frame(width: buttonWidth, height: cellHeight)
     }

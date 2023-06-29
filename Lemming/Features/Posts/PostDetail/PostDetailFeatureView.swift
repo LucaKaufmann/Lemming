@@ -10,7 +10,7 @@ import ComposableArchitecture
 import CachedAsyncImage
 
 struct PostDetailFeatureView: View {
-        
+    
     let store: StoreOf<PostDetailFeature>
     
     struct ViewState: Equatable {
@@ -29,7 +29,12 @@ struct PostDetailFeatureView: View {
         WithViewStore(store, observe: ViewState.init) { viewStore in
             ScrollView {
                 VStack {
-                    PostDetailHeaderView(store: store)
+                    PostDetailHeaderView(post: viewStore.post, onTapCommunity: {
+                        viewStore.send(.delegate(.goToCommunity(viewStore.post.communityId)))
+                    }, onTapUser: {
+                        viewStore.send(.delegate(.goToUser(viewStore.post.userId)))
+                        
+                    })
                         .padding(.horizontal)
                     Divider()
                     if let postUrl = viewStore.post.url {
@@ -106,74 +111,73 @@ struct PostDetailFeatureView: View {
 
 struct PostDetailHeaderView: View {
     
-    let store: StoreOf<PostDetailFeature>
+    let post: PostModel
+    let onTapCommunity: (() -> Void)?
+    let onTapUser: (() -> Void)?
     
-    struct ViewState: Equatable {
-        let post: PostModel
-        
-        init(state: PostDetailFeature.State) {
-            self.post = state.post
-        }
+    init(post: PostModel, onTapCommunity: (() -> Void)? = nil, onTapUser: (() -> Void)? = nil) {
+        self.post = post
+        self.onTapCommunity = onTapCommunity
+        self.onTapUser = onTapUser
     }
-
+    
     var body: some View {
-        WithViewStore(store, observe: ViewState.init) { viewStore in
-            HStack {
-                VStack(alignment: .leading, spacing: 12) {
-                    HStack(alignment: .bottom) {
-                        Text(LocalizedStringKey(viewStore.post.title))
-                        Spacer()
-                        Group {
-                            if viewStore.post.pinnedLocal {
-                                Image(systemName: "pin.circle.fill")
-                                    .resizable()
-                            } else if viewStore.post.pinnedCommunity {
-                                Image(systemName: "pin.circle")
-                                    .resizable()
-                            }
+        HStack {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(alignment: .bottom) {
+                    Text(LocalizedStringKey(post.title))
+                    Spacer()
+                    Group {
+                        if post.pinnedLocal {
+                            Image(systemName: "pin.circle.fill")
+                                .resizable()
+                        } else if post.pinnedCommunity {
+                            Image(systemName: "pin.circle")
+                                .resizable()
                         }
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(Color.LemmingColors.accentBeige)
                     }
-                    
-                    HStack {
-                        Text(viewStore.post.communityName)
-                            .onTapGesture {
-                                viewStore.send(.delegate(.goToCommunity(viewStore.post.communityId)))
-                            }
-                        Text(viewStore.post.timestampDescription)
-                            .font(.caption)
-                            .foregroundColor(Color("lemmingGrayDark"))
-                        Spacer()
-                        Text("\(viewStore.post.numberOfUpvotes) \(Image(systemName: IconConstants.upvote(viewStore.post.my_vote == 1)))")
-                        Text("\(viewStore.post.numberOfComments) \(Image(systemName: IconConstants.comment))")
-                            .foregroundColor(Color.LemmingColors.primaryOnBackground)
-                    }
-                    .font(.footnote)
-                    .foregroundColor(Color("lemmingOrange"))
-                    HStack(spacing: 3) {
-                        Text("by")
-                            .font(.caption)
-                            .foregroundColor(Color("lemmingBrown"))
-                        Text("\(viewStore.post.user)")
-                            .font(.caption)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color("lemmingBrown"))
-                        Spacer()
-                    }.onTapGesture {
-                        viewStore.send(.delegate(.goToUser(viewStore.post.userId)))
-                    }
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(Color.LemmingColors.accentBeige)
                 }
-            }.padding(.bottom)
-        }
+                
+                HStack {
+                    Text(post.communityName)
+                        .onTapGesture {
+                            onTapCommunity?()
+                        }
+                    Text(post.timestampDescription)
+                        .font(.caption)
+                        .foregroundColor(Color("lemmingGrayDark"))
+                    Spacer()
+                    Text("\(post.numberOfUpvotes) \(Image(systemName: IconConstants.upvote(post.my_vote == 1)))")
+                    Text("\(post.numberOfComments) \(Image(systemName: IconConstants.comment))")
+                        .foregroundColor(Color.LemmingColors.primaryOnBackground)
+                }
+                .font(.footnote)
+                .foregroundColor(Color("lemmingOrange"))
+                HStack(spacing: 3) {
+                    Text("by")
+                        .font(.caption)
+                        .foregroundColor(Color("lemmingBrown"))
+                    Text("\(post.user)")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color("lemmingBrown"))
+                    Spacer()
+                }.onTapGesture {
+                    onTapUser?()
+//                    viewStore.send(.delegate(.goToUser(viewStore.post.userId)))
+                }
+            }
+        }.padding(.bottom)
     }
 }
 
 struct PostDetailFeatureView_Previews: PreviewProvider {
     static var previews: some View {
         let textPost = PostModel(id: 2,
-                              title: "Another mock post",
-                              body: """
+                                 title: "Another mock post",
+                                 body: """
 Title: Discover the Power of Lemmy: The Ultimate Community-Driven Platform
 
 Introduction:
@@ -194,73 +198,73 @@ Lemmy believes in giving users the freedom to make the platform their own. Wheth
 Conclusion:
 In a world dominated by algorithmic feeds, targeted advertisements, and privacy concerns, Lemmy stands as a breath of fresh air. With its emphasis on community, privacy, transparency, and customization, Lemmy offers a compelling alternative for those seeking a more meaningful online experience. Join the Lemmy revolution today and be part of a growing movement that puts the power back into the hands of the users. Together, let’s redefine what it means to connect, share, and engage on the internet.
 """,
-                              embed_description: nil,
-                              embed_title: nil,
-                              embed_video_url: nil,
-                              thumbnail_url: nil,
-                              url: nil,
-                                communityId: 1,
-                              communityName: "swift",
-                              numberOfUpvotes: 123,
-                              numberOfComments: 1,
+                                 embed_description: nil,
+                                 embed_title: nil,
+                                 embed_video_url: nil,
+                                 thumbnail_url: nil,
+                                 url: nil,
+                                 communityId: 1,
+                                 communityName: "swift",
+                                 numberOfUpvotes: 123,
+                                 numberOfComments: 1,
                                  my_vote: 1,
                                  timestamp: Date(),
                                  timestampDescription: "1d ago",
-                              user: "Codable",
+                                 user: "Codable",
                                  userId: 1,
                                  pinnedLocal: true, pinnedCommunity: false)
         let imagePost = PostModel(id: 3,
-                              title: "How are they so cute?",
-                              body: nil,
-                              embed_description: nil,
-                              embed_title: nil,
-                              embed_video_url: nil,
-                              thumbnail_url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
-                              url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
-                            communityId: 2,
-                              communityName: "lemmings",
-                              numberOfUpvotes: 1,
-                              numberOfComments: 0,
+                                  title: "How are they so cute?",
+                                  body: nil,
+                                  embed_description: nil,
+                                  embed_title: nil,
+                                  embed_video_url: nil,
+                                  thumbnail_url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
+                                  url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
+                                  communityId: 2,
+                                  communityName: "lemmings",
+                                  numberOfUpvotes: 1,
+                                  numberOfComments: 0,
                                   my_vote: -1,
                                   timestamp: Date(),
                                   timestampDescription: "1hr ago",
-                              user: "LemmingFan123",
+                                  user: "LemmingFan123",
                                   userId: 1,
                                   pinnedLocal: true, pinnedCommunity: false)
         let imageErrorPost = PostModel(id: 3,
-                              title: "How are they so cute?",
-                              body: nil,
-                              embed_description: nil,
-                              embed_title: nil,
-                              embed_video_url: nil,
-                              thumbnail_url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
-                              url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg1"),
+                                       title: "How are they so cute?",
+                                       body: nil,
+                                       embed_description: nil,
+                                       embed_title: nil,
+                                       embed_video_url: nil,
+                                       thumbnail_url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
+                                       url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg1"),
                                        communityId: 3,
-                              communityName: "lemmings",
-                              numberOfUpvotes: 1,
-                              numberOfComments: 0,
+                                       communityName: "lemmings",
+                                       numberOfUpvotes: 1,
+                                       numberOfComments: 0,
                                        my_vote: -1,
                                        timestamp: Date(),
                                        timestampDescription: "now",
-                              user: "LemmingFan123",
+                                       user: "LemmingFan123",
                                        userId: 2,
                                        pinnedLocal: false, pinnedCommunity: false)
         let linkPost = PostModel(id: 3,
-                              title: "How are they so cute?",
-                              body: nil,
-                              embed_description: nil,
-                              embed_title: nil,
-                              embed_video_url: nil,
-                              thumbnail_url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
-                              url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus"),
+                                 title: "How are they so cute?",
+                                 body: nil,
+                                 embed_description: nil,
+                                 embed_title: nil,
+                                 embed_video_url: nil,
+                                 thumbnail_url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg"),
+                                 url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus"),
                                  communityId: 4,
-                              communityName: "lemmings",
-                              numberOfUpvotes: 1,
-                              numberOfComments: 0,
+                                 communityName: "lemmings",
+                                 numberOfUpvotes: 1,
+                                 numberOfComments: 0,
                                  my_vote: 0,
-                                       timestamp: Date(),
-                                       timestampDescription: "now",
-                              user: "LemmingFan123",
+                                 timestamp: Date(),
+                                 timestampDescription: "now",
+                                 user: "LemmingFan123",
                                  userId: 2,
                                  pinnedLocal: false, pinnedCommunity: true)
         PostDetailFeatureView(store: Store(initialState: .init(post: textPost, comments: [], isLoading: false), reducer: PostDetailFeature()))
@@ -271,6 +275,6 @@ In a world dominated by algorithmic feeds, targeted advertisements, and privacy 
             .previewDisplayName("Image error post")
         PostDetailFeatureView(store: Store(initialState: .init(post: linkPost, comments: [], isLoading: false), reducer: PostDetailFeature()))
             .previewDisplayName("Link post")
-
+        
     }
 }

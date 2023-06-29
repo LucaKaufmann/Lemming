@@ -19,7 +19,7 @@ struct CommentDetailView: View {
             DisclosureGroup(isExpanded: $isExpanded) {
                 VStack(alignment: .leading) {
                     HStack {
-                        Text(LocalizedStringKey(viewStore.content))
+                        Text(LocalizedStringKey(viewStore.comment.content))
                             .multilineTextAlignment(.leading)
                             .frame(minHeight: 40)
                         Spacer()
@@ -33,11 +33,10 @@ struct CommentDetailView: View {
                             case .downvote:
                                 viewStore.send(.tappedDownvote)
                             case .reply:
-                                
+                                viewStore.send(.replyToComment)
                             default:
                                 break
                         }
-                        print("clicked: \(button)")
                       })
                 #endif
                     LazyVStack {
@@ -49,7 +48,7 @@ struct CommentDetailView: View {
                                 Rectangle()
                                     .fill(Color("primary"))
                                     .frame(width: 2, alignment: .center)
-                                    .opacity(viewStore.child_count > 0 ? 1 : 0)
+                                    .opacity(viewStore.comment.child_count > 0 ? 1 : 0)
                                 CommentDetailView(store: store)
                             }
                             .padding(.top)
@@ -58,16 +57,16 @@ struct CommentDetailView: View {
                 }
             } label: {
                 HStack {
-                    Text(viewStore.user)
+                    Text(viewStore.comment.user)
                         .foregroundColor(Color.LemmingColors.accentBeige)
-                    Text(viewStore.timestampDescription)
+                    Text(viewStore.comment.timestampDescription)
                         .foregroundColor(Color.LemmingColors.accentGrayDark)
                     Spacer()
-                    Text("\(Image(systemName: IconConstants.score)) \(viewStore.score)")
+                    Text("\(Image(systemName: IconConstants.score)) \(viewStore.comment.score)")
                         .foregroundColor(Color("lemmingOrange"))
-                    Text("\(Image(systemName: IconConstants.upvote(viewStore.my_vote == 1))) \(viewStore.upvotes)")
+                    Text("\(Image(systemName: IconConstants.upvote(viewStore.comment.my_vote == 1))) \(viewStore.comment.upvotes)")
                         .foregroundColor(Color("lemmingOrange"))
-                    Text("\(Image(systemName: IconConstants.downvote(viewStore.my_vote == -1))) \(viewStore.downvotes)")
+                    Text("\(Image(systemName: IconConstants.downvote(viewStore.comment.my_vote == -1))) \(viewStore.comment.downvotes)")
                         .foregroundColor(Color.LemmingColors.error)
                 }
                 .font(.caption)
@@ -78,6 +77,8 @@ struct CommentDetailView: View {
                     isExpanded.toggle()
                 }
             }.accentColor(Color("lemmingOrange"))
+        }.sheet(store: store.scope(state: \.$commentSheet, action: CommentDetailFeature.Action.commentSheet)) { store in
+            CommentSheetFeatureView(store: store)
         }
     }
 }

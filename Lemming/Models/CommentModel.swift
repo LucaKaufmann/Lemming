@@ -21,7 +21,7 @@ struct CommentModel: Equatable, Identifiable, Hashable {
     let score: Int
     let upvotes: Int
     
-    let my_vote: Int?
+    var my_vote: Int?
     
     let postId: Int
     

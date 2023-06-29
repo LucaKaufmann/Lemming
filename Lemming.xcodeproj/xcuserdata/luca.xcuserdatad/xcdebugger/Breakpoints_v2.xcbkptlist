@@ -206,8 +206,8 @@
             filePath = "Lemming/Features/Posts/PostDetail/CommentDetail/CommentDetailFeature.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -241,26 +241,8 @@
                   endingLineNumber = "85"
                   offsetFromSymbolStart = "1680">
                </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "81BC2454-33D8-4B6C-B6E0-18B38312F342"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lemming/Features/Posts/PostDetail/CommentDetail/CommentDetailFeature.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
                <Location
-                  uuid = "81BC2454-33D8-4B6C-B6E0-18B38312F342 - 9d766ebf2e4d893c"
+                  uuid = "D975241D-3C2B-4062-9073-09959F66A402 - 9d766ebf2e4d8637"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -270,12 +252,12 @@
                   urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/PostDetail/CommentDetail/CommentDetailFeature.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "2060">
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "1804">
                </Location>
                <Location
-                  uuid = "81BC2454-33D8-4B6C-B6E0-18B38312F342 - 9d766ebf2e4d893c"
+                  uuid = "D975241D-3C2B-4062-9073-09959F66A402 - 9d766ebf2e4d8637"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -285,9 +267,9 @@
                   urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/PostDetail/CommentDetail/CommentDetailFeature.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "2140">
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "1944">
                </Location>
             </Locations>
          </BreakpointContent>
