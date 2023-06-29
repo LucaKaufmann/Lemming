@@ -32,6 +32,8 @@ struct CommentDetailView: View {
                                 viewStore.send(.tappedUpvote)
                             case .downvote:
                                 viewStore.send(.tappedDownvote)
+                            case .reply:
+                                
                             default:
                                 break
                         }
@@ -83,6 +85,6 @@ struct CommentDetailView: View {
 struct CommentDetailView_Previews: PreviewProvider {
     static var previews: some View {
         CommentDetailView(store: Store(initialState: .init(comment: CommentModel.mockComments.first!), reducer: CommentDetailFeature()))
-        CommentDetailView(store: Store(initialState: .init(comment: CommentModel(id: 2, content: "This is a short comment", timestamp: Date(), timestampDescription: "3 min ago", user: "Testuser", path: "0", child_count: 0, downvotes: 50, score: 50, upvotes: 100, my_vote: 1, children: [])), reducer: CommentDetailFeature()))
+        CommentDetailView(store: Store(initialState: .init(comment: CommentModel(id: 2, content: "This is a short comment", timestamp: Date(), timestampDescription: "3 min ago", user: "Testuser", path: "0", child_count: 0, downvotes: 50, score: 50, upvotes: 100, my_vote: 1, postId: 2, children: [])), reducer: CommentDetailFeature()))
     }
 }

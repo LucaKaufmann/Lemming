@@ -15,7 +15,7 @@ struct CommentSheetFeature: ReducerProtocol {
     @Dependency(\.accountService) var accountService
     
     struct State: Equatable {
-        var post: PostModel
+        var post: PostModel?
         var comment: CommentModel?
         
         @BindingState var commentText: String
@@ -35,15 +35,16 @@ struct CommentSheetFeature: ReducerProtocol {
         Reduce { state, action in
             switch action {
                 case .submitButtonTapped:
-                    guard let account = accountService.getCurrentAccount()
+                    guard let account = accountService.getCurrentAccount(), let postId = state.post?.id ?? state.comment?.postId
+
                     else {
                         return .none
                     }
 
                     let replyText = state.commentText
-                    let post = state.post
+                    let commentId = state.comment?.id
                     return .task {
-                        let _ = try await commentService.postReplyTo(commentId: nil, postId: post.id, replyText: replyText, account: account)
+                        let _ = try await commentService.postReplyTo(commentId: commentId, postId: postId, replyText: replyText, account: account)
                         return .commentSuccessful
                     }
                 case .commentSuccessful:

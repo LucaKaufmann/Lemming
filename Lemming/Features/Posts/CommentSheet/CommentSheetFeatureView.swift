@@ -9,7 +9,12 @@ import SwiftUI
 import ComposableArchitecture
 
 struct CommentSheetFeatureView: View {
+    enum FocusedField {
+        case textEditor
+    }
     
+    @FocusState private var focusedField: FocusedField?
+
     let store: StoreOf<CommentSheetFeature>
     
     var body: some View {
@@ -17,8 +22,12 @@ struct CommentSheetFeatureView: View {
             WithViewStore(store, observe: { $0 }) { viewStore in
                 VStack {
                     TextEditor(text: viewStore.binding(\.$commentText))
+                        .focused($focusedField, equals: .textEditor)
                 }
                 .padding()
+                .onAppear {
+                    focusedField = .textEditor
+                }
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Cancel") {

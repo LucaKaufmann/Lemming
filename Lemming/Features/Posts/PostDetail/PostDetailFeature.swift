@@ -155,12 +155,14 @@ struct PostDetailFeature: ReducerProtocol {
                 case .delegate:
                     return .none
             }
-        }.forEach(\.comments, action: /Action.comment) {
-            CommentDetailFeature()
         }
         .ifLet(\.$commentSheet, action: /Action.commentSheet) {
             CommentSheetFeature()
         }
+        .forEach(\.comments, action: /Action.comment) {
+            CommentDetailFeature()
+        }
+
     }
     
     func buildCommentGraph(_ comments: [CommentModel]) async -> IdentifiedArrayOf<CommentDetailFeature.State> {

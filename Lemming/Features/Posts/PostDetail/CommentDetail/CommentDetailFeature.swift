@@ -30,6 +30,8 @@ struct CommentDetailFeature: ReducerProtocol {
         var my_vote: Int?
         var childComments: IdentifiedArrayOf<CommentDetailFeature.State>
         
+        @PresentationState var commentSheet: CommentSheetFeature.State?
+        
         init(comment: CommentModel, childComments: IdentifiedArrayOf<CommentDetailFeature.State> = []) {
             self.id = comment.id
             self.content = comment.content
@@ -52,6 +54,9 @@ struct CommentDetailFeature: ReducerProtocol {
         case replyToComment
         case updateComment(CommentModel)
         case childComment(id: CommentDetailFeature.State.ID, action: Action)
+        
+        /// Presentation
+        case commentSheet(PresentationAction<CommentSheetFeature.Action>)
     }
     
     var body: some ReducerProtocolOf<CommentDetailFeature> {
@@ -98,15 +103,26 @@ struct CommentDetailFeature: ReducerProtocol {
                         }
                     }
                 case .replyToComment:
+                    state.commentSheet = .init(comment: state.comment)
                     return .none
                 case .updateComment(let comment):
                     let childComments = state.childComments
                     state = State(comment: comment, childComments: childComments)
                     return .none
+                    
+                /// Presentation
+                case .commentSheet(_):
+                    return .none
+                    
+                // Child features
                 case .childComment(_):
                     return .none
             }
-        }.forEach(\.childComments, action: /Action.childComment) {
+        }
+        .ifLet(\.$commentSheet, action: /Action.commentSheet) {
+            CommentSheetFeature()
+        }
+        .forEach(\.childComments, action: /Action.childComment) {
             CommentDetailFeature()
         }
     }

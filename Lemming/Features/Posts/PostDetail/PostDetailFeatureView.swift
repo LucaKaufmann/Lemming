@@ -97,6 +97,9 @@ struct PostDetailFeatureView: View {
             .onAppear {
                 viewStore.send(.onAppear)
             }
+            .sheet(store: store.scope(state: \.$commentSheet, action: PostDetailFeature.Action.commentSheet)) { store in
+                CommentSheetFeatureView(store: store)
+            }
         }
     }
 }

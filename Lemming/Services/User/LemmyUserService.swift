@@ -54,6 +54,7 @@ struct LemmyUserService: UserService {
                                    score: commentView.counts.score,
                                    upvotes: commentView.counts.upvotes,
                                    my_vote: commentView.my_vote,
+                                    postId: comment.post_id,
                                    children: [])
             }
             

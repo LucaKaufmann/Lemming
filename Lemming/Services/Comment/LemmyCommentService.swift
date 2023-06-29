@@ -71,17 +71,18 @@ struct LemmyCommentService: CommentService {
         let comment = commentView.comment
         let commentTimestamp = dateFormatterService.date(from: comment.published)
         return CommentModel(id: comment.id,
-                           content: comment.content,
+                            content: comment.content,
                             timestamp: commentTimestamp ?? .now,
-                           timestampDescription: dateFormatterService.relativeDateTimeDescription(for: commentTimestamp),
-                           user: commentView.creator.name,
-                           path: comment.path,
-                           child_count: commentView.counts.child_count,
-                           downvotes: commentView.counts.downvotes,
-                           score: commentView.counts.score,
-                           upvotes: commentView.counts.upvotes,
-                           my_vote: commentView.my_vote,
-                           children: [])
+                            timestampDescription: dateFormatterService.relativeDateTimeDescription(for: commentTimestamp),
+                            user: commentView.creator.name,
+                            path: comment.path,
+                            child_count: commentView.counts.child_count,
+                            downvotes: commentView.counts.downvotes,
+                            score: commentView.counts.score,
+                            upvotes: commentView.counts.upvotes,
+                            my_vote: commentView.my_vote,
+                            postId: comment.post_id,
+                            children: [])
     }
     
     private func likeComment(id: Int, auth: String, instanceUrl: URL, score: Int) async throws -> CommentModel {
