@@ -12,12 +12,14 @@ struct SettingsRootFeature: ReducerProtocol {
     
     struct State: Equatable {
         @PresentationState var appIcon: AppIconFeature.State?
+        @PresentationState var generalSettings: GeneralSettingsFeature.State?
     }
     
     enum Action: Equatable {
         case tappedAppIcon
         // navigation
         case appIcon(PresentationAction<AppIconFeature.Action>)
+        case generalSettings(PresentationAction<GeneralSettingsFeature.Action>)
     }
     
     var body: some ReducerProtocolOf<Self> {
@@ -31,6 +33,9 @@ struct SettingsRootFeature: ReducerProtocol {
             }
         }.ifLet(\.$appIcon, action: /Action.appIcon) {
             AppIconFeature()
+        }
+        .ifLet(\.$generalSettings, action: /Action.generalSettings) {
+            GeneralSettingsFeature()
         }
     }
 }

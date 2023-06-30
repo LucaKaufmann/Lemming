@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum _CommentSortType: String {
+enum _CommentSortType: String, CaseIterable {
     /// Comments sorted by a decaying rank.
     case hot = "Hot"
     /// Comments sorted by new.

@@ -80,6 +80,8 @@
 		81EC51782A4EE2B90053400C /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC51772A4EE2B90053400C /* AppIcon.swift */; };
 		81EC517A2A4EE9320053400C /* AppIconFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC51792A4EE9320053400C /* AppIconFeatureView.swift */; };
 		81EC517C2A4EECD70053400C /* SettingsRootFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC517B2A4EECD70053400C /* SettingsRootFeatureView.swift */; };
+		81EC517F2A4EF4830053400C /* GeneralSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC517E2A4EF4830053400C /* GeneralSettingsFeature.swift */; };
+		81EC51812A4EF6A90053400C /* GeneralSettingsFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC51802A4EF6A90053400C /* GeneralSettingsFeatureView.swift */; };
 		81F702122A386F3200484D6F /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702112A386F3200484D6F /* PostService.swift */; };
 		81F702142A386F5300484D6F /* LemmyPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702132A386F5300484D6F /* LemmyPostService.swift */; };
 		81F702172A38700000484D6F /* PostServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702162A38700000484D6F /* PostServiceDependency.swift */; };
@@ -169,6 +171,8 @@
 		81EC51772A4EE2B90053400C /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		81EC51792A4EE9320053400C /* AppIconFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconFeatureView.swift; sourceTree = "<group>"; };
 		81EC517B2A4EECD70053400C /* SettingsRootFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRootFeatureView.swift; sourceTree = "<group>"; };
+		81EC517E2A4EF4830053400C /* GeneralSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsFeature.swift; sourceTree = "<group>"; };
+		81EC51802A4EF6A90053400C /* GeneralSettingsFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsFeatureView.swift; sourceTree = "<group>"; };
 		81F702112A386F3200484D6F /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		81F702132A386F5300484D6F /* LemmyPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyPostService.swift; sourceTree = "<group>"; };
 		81F702162A38700000484D6F /* PostServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceDependency.swift; sourceTree = "<group>"; };
@@ -475,6 +479,7 @@
 		81EC51712A4E2B700053400C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				81EC517D2A4EF46C0053400C /* General */,
 				81EC51762A4EE2AF0053400C /* AppIcon */,
 				81EC51722A4E2B7C0053400C /* SettingsRootFeature.swift */,
 				81EC517B2A4EECD70053400C /* SettingsRootFeatureView.swift */,
@@ -490,6 +495,15 @@
 				81EC51792A4EE9320053400C /* AppIconFeatureView.swift */,
 			);
 			path = AppIcon;
+			sourceTree = "<group>";
+		};
+		81EC517D2A4EF46C0053400C /* General */ = {
+			isa = PBXGroup;
+			children = (
+				81EC517E2A4EF4830053400C /* GeneralSettingsFeature.swift */,
+				81EC51802A4EF6A90053400C /* GeneralSettingsFeatureView.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 		81F702102A386F1B00484D6F /* Services */ = {
@@ -660,6 +674,7 @@
 				810FA8152A48B5B900EF2CBA /* CommunityFeatureView.swift in Sources */,
 				81727D742A40E9FA0035FF22 /* URL+URLType.swift in Sources */,
 				8199A00C2A4CD12300A9BB09 /* UserProfileFeatureView.swift in Sources */,
+				81EC517F2A4EF4830053400C /* GeneralSettingsFeature.swift in Sources */,
 				8199A0092A4CB77200A9BB09 /* UserServiceDependency.swift in Sources */,
 				81B982E82A39E10800D2A3F7 /* DateFormatterService.swift in Sources */,
 				81F702122A386F3200484D6F /* PostService.swift in Sources */,
@@ -683,6 +698,7 @@
 				81EC51752A4EE1EE0053400C /* AppIconFeature.swift in Sources */,
 				818E8A162A3F419E00013875 /* AccountFeatureView.swift in Sources */,
 				816F99082A431DC3004F0AE9 /* CommentSheetFeatureView.swift in Sources */,
+				81EC51812A4EF6A90053400C /* GeneralSettingsFeatureView.swift in Sources */,
 				819217242A37093E0015BEF3 /* DesignSystemPreview.swift in Sources */,
 				8199A00D2A4CD3B000A9BB09 /* UserProfileFeature.swift in Sources */,
 				81F702142A386F5300484D6F /* LemmyPostService.swift in Sources */,

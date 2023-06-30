@@ -16,10 +16,19 @@ struct SettingsRootFeatureView: View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             NavigationStack {
                 Form {
-                    Button("\(Image(systemName: "square.grid.2x2")) App Icons") {
-                        viewStore.send(.tappedAppIcon)
-                    }
+                    Section("") {
+                        
+                        Button("\(Image(systemName: "square.grid.2x2")) App Icons") {
+                            viewStore.send(.tappedAppIcon)
+                        }
+                        .buttonStyle(.plain)
                         .listRowBackground(Color.LemmingColors.onBackground)
+                        Button("\(Image(systemName: "gear")) General") {
+                            viewStore.send(.tappedAppIcon)
+                        }
+                        .buttonStyle(.plain)
+                        .listRowBackground(Color.LemmingColors.onBackground)
+                    }
                 }
                 .scrollContentBackground(.hidden)
                 .background {
@@ -29,7 +38,8 @@ struct SettingsRootFeatureView: View {
                 .navigationDestination(store: store.scope(state: \.$appIcon, action: SettingsRootFeature.Action.appIcon)) { store in
                     AppIconFeatureView(store: store)
                 }
-            }.accentColor(Color.LemmingColors.accent)
+            }
+//            .accentColor(Color.LemmingColors.accent)
         }
     }
 }
