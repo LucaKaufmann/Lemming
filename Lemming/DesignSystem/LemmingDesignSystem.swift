@@ -27,6 +27,10 @@ extension Color {
             return Color("background")
         }
         
+        public static var onBackground: Color {
+            return Color("lemmingOnBackground")
+        }
+        
         public static var text: Color {
             return Color("text")
         }

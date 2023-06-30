@@ -17,8 +17,9 @@ struct RootFeature: ReducerProtocol {
     struct State: Equatable {
         var postsRoot: PostsRootFeature.State
         var account: AccountFeature.State
+        var settings: SettingsRootFeature.State
+        
         var search: String
-        var settings: String
         
         var selectedTab: Tab = .posts
         var isLoggedIn: Bool
@@ -28,6 +29,7 @@ struct RootFeature: ReducerProtocol {
         case selectedTabChanged(Tab)
         case posts(PostsRootFeature.Action)
         case account(AccountFeature.Action)
+        case settings(SettingsRootFeature.Action)
     }
     
     var body: some ReducerProtocolOf<Self> {
@@ -53,6 +55,9 @@ struct RootFeature: ReducerProtocol {
         }
         Scope(state: \.account, action: /Action.account) {
             AccountFeature()
+        }
+        Scope(state: \.settings, action: /Action.settings) {
+            SettingsRootFeature()
         }
     }
 }

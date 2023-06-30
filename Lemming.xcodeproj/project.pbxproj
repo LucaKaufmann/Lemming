@@ -75,6 +75,11 @@
 		81E9A5CD2A3C45DC0014CD86 /* LemmingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E9A5CC2A3C45DC0014CD86 /* LemmingTests.swift */; };
 		81E9A5D42A3C45F00014CD86 /* CommentParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E9A5D32A3C45F00014CD86 /* CommentParsingTests.swift */; };
 		81EC51702A4DB4620053400C /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC516F2A4DB4620053400C /* NumberFormatter.swift */; };
+		81EC51732A4E2B7C0053400C /* SettingsRootFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC51722A4E2B7C0053400C /* SettingsRootFeature.swift */; };
+		81EC51752A4EE1EE0053400C /* AppIconFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC51742A4EE1EE0053400C /* AppIconFeature.swift */; };
+		81EC51782A4EE2B90053400C /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC51772A4EE2B90053400C /* AppIcon.swift */; };
+		81EC517A2A4EE9320053400C /* AppIconFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC51792A4EE9320053400C /* AppIconFeatureView.swift */; };
+		81EC517C2A4EECD70053400C /* SettingsRootFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC517B2A4EECD70053400C /* SettingsRootFeatureView.swift */; };
 		81F702122A386F3200484D6F /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702112A386F3200484D6F /* PostService.swift */; };
 		81F702142A386F5300484D6F /* LemmyPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702132A386F5300484D6F /* LemmyPostService.swift */; };
 		81F702172A38700000484D6F /* PostServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702162A38700000484D6F /* PostServiceDependency.swift */; };
@@ -159,6 +164,11 @@
 		81E9A5D32A3C45F00014CD86 /* CommentParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentParsingTests.swift; sourceTree = "<group>"; };
 		81E9A5D52A3CD2210014CD86 /* LemmyAPIPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LemmyAPIPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81EC516F2A4DB4620053400C /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
+		81EC51722A4E2B7C0053400C /* SettingsRootFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRootFeature.swift; sourceTree = "<group>"; };
+		81EC51742A4EE1EE0053400C /* AppIconFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconFeature.swift; sourceTree = "<group>"; };
+		81EC51772A4EE2B90053400C /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
+		81EC51792A4EE9320053400C /* AppIconFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconFeatureView.swift; sourceTree = "<group>"; };
+		81EC517B2A4EECD70053400C /* SettingsRootFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRootFeatureView.swift; sourceTree = "<group>"; };
 		81F702112A386F3200484D6F /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		81F702132A386F5300484D6F /* LemmyPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyPostService.swift; sourceTree = "<group>"; };
 		81F702162A38700000484D6F /* PostServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceDependency.swift; sourceTree = "<group>"; };
@@ -236,6 +246,7 @@
 		81521DC62A42496800F77F14 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				81EC51712A4E2B700053400C /* Settings */,
 				8192171E2A364B790015BEF3 /* RootFeature.swift */,
 				8192170D2A364A950015BEF3 /* RootView.swift */,
 				819217272A3732D00015BEF3 /* Posts */,
@@ -461,6 +472,26 @@
 			path = LemmingTests;
 			sourceTree = "<group>";
 		};
+		81EC51712A4E2B700053400C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				81EC51762A4EE2AF0053400C /* AppIcon */,
+				81EC51722A4E2B7C0053400C /* SettingsRootFeature.swift */,
+				81EC517B2A4EECD70053400C /* SettingsRootFeatureView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		81EC51762A4EE2AF0053400C /* AppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				81EC51742A4EE1EE0053400C /* AppIconFeature.swift */,
+				81EC51772A4EE2B90053400C /* AppIcon.swift */,
+				81EC51792A4EE9320053400C /* AppIconFeatureView.swift */,
+			);
+			path = AppIcon;
+			sourceTree = "<group>";
+		};
 		81F702102A386F1B00484D6F /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,11 +648,13 @@
 				818E8A032A3EC4C400013875 /* AccountService.swift in Sources */,
 				819217262A370BE70015BEF3 /* LemmingButtons.swift in Sources */,
 				818E8A0F2A3F2DDC00013875 /* LemmyAccountService.swift in Sources */,
+				81EC51782A4EE2B90053400C /* AppIcon.swift in Sources */,
 				81727D762A40EA8C0035FF22 /* PostDetailLinkView.swift in Sources */,
 				8199A0052A4CAE7400A9BB09 /* UserModel.swift in Sources */,
 				818E8A052A3EC5A800013875 /* LemmingAccountModel.swift in Sources */,
 				819217292A3732E10015BEF3 /* PostsFeature.swift in Sources */,
 				810FA80D2A48AB3700EF2CBA /* CommunityService.swift in Sources */,
+				81EC517C2A4EECD70053400C /* SettingsRootFeatureView.swift in Sources */,
 				8126FEF62A46185600633121 /* CommentDetailFeature.swift in Sources */,
 				810FA81A2A49762900EF2CBA /* PostsListFeatureView.swift in Sources */,
 				810FA8152A48B5B900EF2CBA /* CommunityFeatureView.swift in Sources */,
@@ -632,6 +665,8 @@
 				81F702122A386F3200484D6F /* PostService.swift in Sources */,
 				81F702172A38700000484D6F /* PostServiceDependency.swift in Sources */,
 				81368C0D2A45936A005CF7A2 /* Collapsible.swift in Sources */,
+				81EC51732A4E2B7C0053400C /* SettingsRootFeature.swift in Sources */,
+				81EC517A2A4EE9320053400C /* AppIconFeatureView.swift in Sources */,
 				810E079C2A39C74900CCBDBE /* CommentServiceDependency.swift in Sources */,
 				818E8A212A403B9700013875 /* AddAccountFeatureView.swift in Sources */,
 				816F99062A431CA4004F0AE9 /* CommentSheetFeature.swift in Sources */,
@@ -645,6 +680,7 @@
 				810E07982A39B83B00CCBDBE /* CommentModel.swift in Sources */,
 				81368C0B2A4573A7005CF7A2 /* SwipeCell.swift in Sources */,
 				8192170E2A364A950015BEF3 /* RootView.swift in Sources */,
+				81EC51752A4EE1EE0053400C /* AppIconFeature.swift in Sources */,
 				818E8A162A3F419E00013875 /* AccountFeatureView.swift in Sources */,
 				816F99082A431DC3004F0AE9 /* CommentSheetFeatureView.swift in Sources */,
 				819217242A37093E0015BEF3 /* DesignSystemPreview.swift in Sources */,
@@ -797,7 +833,7 @@
 		819217182A364A960015BEF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "lemming-appicon-stripes";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "lemming-appicon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Lemming/Lemming.entitlements;
@@ -840,7 +876,7 @@
 		819217192A364A960015BEF3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "lemming-appicon-stripes";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "lemming-appicon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Lemming/Lemming.entitlements;

@@ -24,11 +24,11 @@ struct RootView: View {
                         .tabItem { Label("Account", systemImage: "person.crop.circle.fill") }
                         .tag(RootFeature.Tab.account)
                     
-                    Text("Search")
-                        .tabItem { Label("Search", systemImage: "magnifyingglass.circle.fill")  }
-                        .tag(RootFeature.Tab.search)
+//                    Text("Search")
+//                        .tabItem { Label("Search", systemImage: "magnifyingglass.circle.fill")  }
+//                        .tag(RootFeature.Tab.search)
                     
-                    Text("Settings")
+                    SettingsRootFeatureView(store: store.scope(state: \.settings, action: RootFeature.Action.settings))
                         .tabItem { Label("Settings", systemImage: "gearshape.circle.fill")  }
                         .tag(RootFeature.Tab.settings)
                 }.accentColor(Color("lemmingOrange"))
