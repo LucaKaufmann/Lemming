@@ -9,6 +9,7 @@ import ComposableArchitecture
 
 struct PostsRootFeature: ReducerProtocol {
     
+    @Dependency(\.appSettings) var appSettings
     
     struct State: Equatable {
         var path = StackState<Path.State>()
@@ -40,8 +41,8 @@ struct PostsRootFeature: ReducerProtocol {
                                                                                 posts: [],
                                                                                 currentPage: 1,
                                                                                 isLoading: false,
-                                                                                sort: .hot,
-                                                                                origin: .all),
+                                                                                sort: appSettings.getSetting(forKey: UserDefaultsKeys.postSortingKey) ?? .hot,
+                                                                                origin: appSettings.getSetting(forKey: UserDefaultsKeys.postOriginKey) ?? .all),
                                                                sort: .hot)))
                             return .none
                         case let .goToUser(userId):

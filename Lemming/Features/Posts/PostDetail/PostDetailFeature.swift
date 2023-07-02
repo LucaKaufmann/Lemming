@@ -60,7 +60,7 @@ struct PostDetailFeature: ReducerProtocol {
                     let postId = state.post.id
                     state.isLoading = true
                     return .task {
-                        let comments = try await commentService.getComments(forPost: postId, sort: .hot, origin: .all, account: accountService.getCurrentAccount(), previewInstance: nil)
+                        let comments = try await commentService.getComments(forPost: postId, sort: UserDefaults.standard.object(forKey: UserDefaultsKeys.commentSortingKey) as? _CommentSortType ?? .hot, origin: .all, account: accountService.getCurrentAccount(), previewInstance: nil)
                         return .buildCommentGraph(comments)
                     }
                 

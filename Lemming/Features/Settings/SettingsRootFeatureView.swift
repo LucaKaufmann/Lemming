@@ -24,7 +24,7 @@ struct SettingsRootFeatureView: View {
                         .buttonStyle(.plain)
                         .listRowBackground(Color.LemmingColors.onBackground)
                         Button("\(Image(systemName: "gear")) General") {
-                            viewStore.send(.tappedAppIcon)
+                            viewStore.send(.tappedGeneral)
                         }
                         .buttonStyle(.plain)
                         .listRowBackground(Color.LemmingColors.onBackground)
@@ -37,6 +37,9 @@ struct SettingsRootFeatureView: View {
                 .navigationTitle("Settings")
                 .navigationDestination(store: store.scope(state: \.$appIcon, action: SettingsRootFeature.Action.appIcon)) { store in
                     AppIconFeatureView(store: store)
+                }
+                .navigationDestination(store: store.scope(state: \.$generalSettings, action: SettingsRootFeature.Action.generalSettings)) { store in
+                    GeneralSettingsFeatureView(store: store)
                 }
             }
 //            .accentColor(Color.LemmingColors.accent)

@@ -12,14 +12,15 @@ import ComposableArchitecture
 struct LemmingApp: App {
     
     @Dependency(\.accountService) var accountService
+    @Dependency(\.appSettings) var appSettings
     
     var body: some Scene {
         WindowGroup {
             RootView(store: Store(initialState: RootFeature.State(postsRoot: .init(postsFeature: .init(postsList: .init(posts: [],
                                                                                                                         currentPage: 0,
                                                                                                                         isLoading: false,
-                                                                                                                        sort: .hot,
-                                                                                                                        origin: .all), sort: .hot, origin: .all)),
+                                                                                                                        sort: appSettings.getSetting(forKey: UserDefaultsKeys.postSortingKey) ?? .hot,
+                                                                                                                        origin: appSettings.getSetting(forKey: UserDefaultsKeys.postOriginKey) ?? .all), sort: appSettings.getSetting(forKey: UserDefaultsKeys.postSortingKey) ?? .hot, origin: appSettings.getSetting(forKey: UserDefaultsKeys.postOriginKey) ?? .all)),
                                                                   account: .init(currentAccount: accountService.getCurrentAccount(), availableAccounts: accountService.getAccounts()),
                                                                   settings: .init(), search: "search",
                                                                   isLoggedIn: false), reducer: RootFeature()))

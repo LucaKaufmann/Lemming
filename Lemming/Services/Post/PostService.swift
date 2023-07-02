@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PostSortType: String, CaseIterable {
+enum PostSortType: String, CaseIterable, Codable {
     /// Posts sorted by hot, but bumped by new comments up to 2 days.
     case active = "Active"
     /// Posts sorted by a decaying rank.
@@ -32,7 +32,7 @@ enum PostSortType: String, CaseIterable {
     case topYear = "TopYear"
 }
 
-enum PostOriginType: String, CaseIterable {
+enum PostOriginType: String, CaseIterable, Codable {
     case all = "All"
     case community = "Community"
     case local = "Local"

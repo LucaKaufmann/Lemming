@@ -82,6 +82,9 @@
 		81EC517C2A4EECD70053400C /* SettingsRootFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC517B2A4EECD70053400C /* SettingsRootFeatureView.swift */; };
 		81EC517F2A4EF4830053400C /* GeneralSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC517E2A4EF4830053400C /* GeneralSettingsFeature.swift */; };
 		81EC51812A4EF6A90053400C /* GeneralSettingsFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC51802A4EF6A90053400C /* GeneralSettingsFeatureView.swift */; };
+		81EC51832A5195BF0053400C /* AppSettingsDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC51822A5195BF0053400C /* AppSettingsDependency.swift */; };
+		81EC51862A5196080053400C /* AppSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC51852A5196080053400C /* AppSettingsService.swift */; };
+		81EC51882A5196E10053400C /* LemmingAppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC51872A5196E10053400C /* LemmingAppSettings.swift */; };
 		81F702122A386F3200484D6F /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702112A386F3200484D6F /* PostService.swift */; };
 		81F702142A386F5300484D6F /* LemmyPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702132A386F5300484D6F /* LemmyPostService.swift */; };
 		81F702172A38700000484D6F /* PostServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F702162A38700000484D6F /* PostServiceDependency.swift */; };
@@ -173,6 +176,9 @@
 		81EC517B2A4EECD70053400C /* SettingsRootFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRootFeatureView.swift; sourceTree = "<group>"; };
 		81EC517E2A4EF4830053400C /* GeneralSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsFeature.swift; sourceTree = "<group>"; };
 		81EC51802A4EF6A90053400C /* GeneralSettingsFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsFeatureView.swift; sourceTree = "<group>"; };
+		81EC51822A5195BF0053400C /* AppSettingsDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsDependency.swift; sourceTree = "<group>"; };
+		81EC51852A5196080053400C /* AppSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsService.swift; sourceTree = "<group>"; };
+		81EC51872A5196E10053400C /* LemmingAppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmingAppSettings.swift; sourceTree = "<group>"; };
 		81F702112A386F3200484D6F /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		81F702132A386F5300484D6F /* LemmyPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmyPostService.swift; sourceTree = "<group>"; };
 		81F702162A38700000484D6F /* PostServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceDependency.swift; sourceTree = "<group>"; };
@@ -506,9 +512,19 @@
 			path = General;
 			sourceTree = "<group>";
 		};
+		81EC51842A5195EF0053400C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				81EC51852A5196080053400C /* AppSettingsService.swift */,
+				81EC51872A5196E10053400C /* LemmingAppSettings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		81F702102A386F1B00484D6F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				81EC51842A5195EF0053400C /* Settings */,
 				8199A0012A4CAD6200A9BB09 /* User */,
 				810FA80B2A48AB2900EF2CBA /* Community */,
 				818E8A0D2A3F2DC400013875 /* Account */,
@@ -528,6 +544,7 @@
 				818E8A1B2A3F990200013875 /* AccountServiceKey.swift */,
 				810FA8122A48B1ED00EF2CBA /* CommunityServiceDependency.swift */,
 				8199A0082A4CB77200A9BB09 /* UserServiceDependency.swift */,
+				81EC51822A5195BF0053400C /* AppSettingsDependency.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -673,6 +690,7 @@
 				810FA81A2A49762900EF2CBA /* PostsListFeatureView.swift in Sources */,
 				810FA8152A48B5B900EF2CBA /* CommunityFeatureView.swift in Sources */,
 				81727D742A40E9FA0035FF22 /* URL+URLType.swift in Sources */,
+				81EC51832A5195BF0053400C /* AppSettingsDependency.swift in Sources */,
 				8199A00C2A4CD12300A9BB09 /* UserProfileFeatureView.swift in Sources */,
 				81EC517F2A4EF4830053400C /* GeneralSettingsFeature.swift in Sources */,
 				8199A0092A4CB77200A9BB09 /* UserServiceDependency.swift in Sources */,
@@ -687,6 +705,8 @@
 				816F99062A431CA4004F0AE9 /* CommentSheetFeature.swift in Sources */,
 				81B982E62A39E08300D2A3F7 /* RelativeDateTimeFormatterDependency.swift in Sources */,
 				8199A0032A4CAD7900A9BB09 /* UserService.swift in Sources */,
+				81EC51862A5196080053400C /* AppSettingsService.swift in Sources */,
+				81EC51882A5196E10053400C /* LemmingAppSettings.swift in Sources */,
 				818E8A1F2A40326E00013875 /* AddAccountFeature.swift in Sources */,
 				81B982EE2A39E89900D2A3F7 /* URLCache+imageCache.swift in Sources */,
 				810E07942A39AB2600CCBDBE /* PostDetailFeatureView.swift in Sources */,

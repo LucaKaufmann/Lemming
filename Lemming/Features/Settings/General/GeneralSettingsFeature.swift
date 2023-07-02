@@ -10,6 +10,8 @@ import ComposableArchitecture
 
 struct GeneralSettingsFeature: ReducerProtocol {
     
+    @Dependency(\.appSettings) var appSettings
+    
     struct State: Equatable {
         @BindingState var postSorting: PostSortType
         @BindingState var blurNSFW: Bool
@@ -26,16 +28,16 @@ struct GeneralSettingsFeature: ReducerProtocol {
         Reduce { state, action in
             switch action {
                 case .binding(\.$postSorting):
-                    UserDefaults.standard.setValue(state.postSorting, forKey: UserDefaultsKeys.postSortingKey)
+                    appSettings.setSetting(forKey: UserDefaultsKeys.postSortingKey, value: state.postSorting)
                     return .none
                 case .binding(\.$blurNSFW):
-                    UserDefaults.standard.setValue(state.blurNSFW, forKey: UserDefaultsKeys.blurNSFWKey)
+                    appSettings.setSetting(forKey: UserDefaultsKeys.blurNSFWKey, value: state.blurNSFW)
                     return .none
                 case .binding(\.$postOrigin):
-                    UserDefaults.standard.setValue(state.postOrigin, forKey: UserDefaultsKeys.postOriginKey)
+                    appSettings.setSetting(forKey: UserDefaultsKeys.postOriginKey, value: state.postOrigin)
                     return .none
                 case .binding(\.$commentSorting):
-                    UserDefaults.standard.setValue(state.commentSorting, forKey: UserDefaultsKeys.commentSortingKey)
+                    appSettings.setSetting(forKey: UserDefaultsKeys.commentSortingKey, value: state.commentSorting)
                     return .none
                 case .binding(_):
                     return .none

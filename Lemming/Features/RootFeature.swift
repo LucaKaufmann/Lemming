@@ -10,6 +10,8 @@ import ComposableArchitecture
 
 struct RootFeature: ReducerProtocol {
     
+    @Dependency(\.appSettings) var appSettings
+    
     enum Tab {
       case posts, account, search, settings
     }
@@ -26,6 +28,7 @@ struct RootFeature: ReducerProtocol {
     }
     
     enum Action: Equatable {
+        case initialSetup
         case selectedTabChanged(Tab)
         case posts(PostsRootFeature.Action)
         case account(AccountFeature.Action)
@@ -35,6 +38,9 @@ struct RootFeature: ReducerProtocol {
     var body: some ReducerProtocolOf<Self> {
         Reduce { state, action in
             switch action {
+                case .initialSetup:
+                    appSettings.setInitialSettings()
+                    return .none
                 case .selectedTabChanged(let tab):
                     state.selectedTab = tab
                     return .none

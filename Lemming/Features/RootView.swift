@@ -13,7 +13,7 @@ struct RootView: View {
     let store: StoreOf<RootFeature>
     
     var body: some View {
-        ZStack {
+//        ZStack {
             WithViewStore(self.store, observe: \.selectedTab) { viewStore in
                 TabView(selection: viewStore.binding(send: RootFeature.Action.selectedTabChanged)) {
                     PostsRootFeatureView(store: store.scope(state: \.postsRoot, action: RootFeature.Action.posts))
@@ -31,9 +31,13 @@ struct RootView: View {
                     SettingsRootFeatureView(store: store.scope(state: \.settings, action: RootFeature.Action.settings))
                         .tabItem { Label("Settings", systemImage: "gearshape.circle.fill")  }
                         .tag(RootFeature.Tab.settings)
-                }.accentColor(Color("lemmingOrange"))
+                }
+                .accentColor(Color("lemmingOrange"))
+                .onAppear {
+                    viewStore.send(.initialSetup)
+                }
             }
-        }
+//        }
     }
 }
 //
