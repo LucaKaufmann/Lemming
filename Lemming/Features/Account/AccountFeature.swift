@@ -18,9 +18,10 @@ struct AccountFeature: ReducerProtocol {
         @PresentationState var addAccountSheet: AddAccountFeature.State?
         
         var availableAccounts: [LemmingAccountModel]
+        var userProfile: UserProfileFeature.State
     }
     
-    enum Action: Equatable, BindableAction {
+    enum Action: Equatable, BindableAction {        
         case login(username: String, password: String)
         
         case setCurrentAccount(LemmingAccountModel)
@@ -31,6 +32,8 @@ struct AccountFeature: ReducerProtocol {
         case delegate(Delegate)
         case addAccountSheet(PresentationAction<AddAccountFeature.Action>)
 
+        // child features
+        case userProfile(UserProfileFeature.Action)
         
         enum Delegate: Equatable {
             case updateCurrentAccount(LemmingAccountModel?)
@@ -77,6 +80,9 @@ struct AccountFeature: ReducerProtocol {
             }
         }.ifLet(\.$addAccountSheet, action: /Action.addAccountSheet) {
             AddAccountFeature()
+        }
+        Scope(state: \.userProfile, action: /Action.userProfile) {
+            UserProfileFeature()._printChanges()
         }
     }
 }

@@ -15,24 +15,25 @@ struct AccountFeatureView: View {
     var body: some View {
         NavigationStack {
             WithViewStore(store, observe: { $0 }) { viewStore in
-                Form {
-                    if let account = viewStore.currentAccount {
-                        Section("Current") {
-                            LabeledContent("Instance:", value: account.instanceLink)
-                            LabeledContent("Username:", value: account.username)
-                        }
-                        Section {
-                            Button("Remove account") {
-                                viewStore.send(.addAccountTapped)
-                            }.buttonStyle(LemmingButton(style: .destruction))
-                        }
-                    } else {
-                        Button("Add account") {
-                            viewStore.send(.addAccountTapped)
-                        }.buttonStyle(LemmingButton(style: .primary))
-                    }
-                }
-                .scrollContentBackground(.hidden)
+                UserProfileFeatureView(store: store.scope(state: \.userProfile, action: AccountFeature.Action.userProfile))
+//                Form {
+//                    if let account = viewStore.currentAccount {
+//                        Section("Current") {
+//                            LabeledContent("Instance:", value: account.instanceLink)
+//                            LabeledContent("Username:", value: account.username)
+//                        }
+//                        Section {
+//                            Button("Remove account") {
+//                                viewStore.send(.addAccountTapped)
+//                            }.buttonStyle(LemmingButton(style: .destruction))
+//                        }
+//                    } else {
+//                        Button("Add account") {
+//                            viewStore.send(.addAccountTapped)
+//                        }.buttonStyle(LemmingButton(style: .primary))
+//                    }
+//                }
+//                .scrollContentBackground(.hidden)
                 .background {
                     Color.LemmingColors.background
                         .ignoresSafeArea()
@@ -58,9 +59,9 @@ struct AccountFeatureView: View {
 
 struct AccountFeatureView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountFeatureView(store: Store(initialState: .init(availableAccounts: []), reducer: AccountFeature()))
+        AccountFeatureView(store: Store(initialState: .init(availableAccounts: [], userProfile: .init(items: [])), reducer: AccountFeature()))
             .previewDisplayName("Not logged in")
-        AccountFeatureView(store: Store(initialState: .init(currentAccount: LemmingAccountModel.mockAccunts.first!, availableAccounts: LemmingAccountModel.mockAccunts), reducer: AccountFeature()._printChanges()))
+        AccountFeatureView(store: Store(initialState: .init(currentAccount: LemmingAccountModel.mockAccounts.first!, availableAccounts: LemmingAccountModel.mockAccounts, userProfile: .init(items: [])), reducer: AccountFeature()._printChanges()))
             .previewDisplayName("Logged in")
     }
 }

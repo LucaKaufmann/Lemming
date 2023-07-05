@@ -15,7 +15,7 @@ struct UserProfileFeature: ReducerProtocol {
     
     struct State: Equatable {
         var username: String?
-        var userId: Int
+        var userId: Int?
         var profile: UserProfileModel?
         
         // child features
@@ -24,6 +24,7 @@ struct UserProfileFeature: ReducerProtocol {
     
     enum Action: Equatable {
         case onAppear
+        case refreshProfile
         case userProfileUpdated(UserProfileModel)
         case userProfileItemsUpdated(IdentifiedArrayOf<AnyUserProfileItem>)
     }
@@ -36,10 +37,21 @@ struct UserProfileFeature: ReducerProtocol {
     private func core(state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
             case .onAppear:
-                let userId = state.userId
-                return .task {
-                    let profile = try await userService.getUserDetails(userId: userId, username: nil, page: 1, account: accountService.getCurrentAccount(), previewInstance: nil)
-                    return .userProfileUpdated(profile)
+                return .send(.refreshProfile)
+            case .refreshProfile:
+                if let username = state.username {
+                    return .task {
+                        let profile = try await userService.getUserDetails(userId: nil, username: username, page: 1, account: accountService.getCurrentAccount(), previewInstance: nil)
+                        return .userProfileUpdated(profile)
+                    }
+                } else if let username = state.username {
+                    let userId = state.userId
+                    return .task {
+                        let profile = try await userService.getUserDetails(userId: userId, username: nil, page: 1, account: accountService.getCurrentAccount(), previewInstance: nil)
+                        return .userProfileUpdated(profile)
+                    }
+                } else {
+                    return .none
                 }
             case .userProfileUpdated(let profile):
                 state.profile = profile

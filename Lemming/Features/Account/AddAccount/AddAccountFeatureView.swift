@@ -68,6 +68,6 @@ struct AddAccountFeatureView: View {
 
 struct AddAccountFeatureView_Previews: PreviewProvider {
     static var previews: some View {
-        AddAccountFeatureView(store: Store(initialState: .init(currentAccount: LemmingAccountModel.mockAccunts.first), reducer: AddAccountFeature()))
+        AddAccountFeatureView(store: Store(initialState: .init(currentAccount: LemmingAccountModel.mockAccounts.first), reducer: AddAccountFeature()))
     }
 }
