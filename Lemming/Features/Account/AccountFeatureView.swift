@@ -15,7 +15,17 @@ struct AccountFeatureView: View {
     var body: some View {
         NavigationStack {
             WithViewStore(store, observe: { $0 }) { viewStore in
-                UserProfileFeatureView(store: store.scope(state: \.userProfile, action: AccountFeature.Action.userProfile))
+                VStack {
+                    if let account = viewStore.currentAccount {
+                        UserProfileFeatureView(store: store.scope(state: \.userProfile, action: AccountFeature.Action.userProfile))
+                   } else {
+                       Button("Add account") {
+                           viewStore.send(.addAccountTapped)
+                       }.buttonStyle(LemmingButton(style: .primary))
+                        .padding(.horizontal)
+                       Spacer()
+                   }
+                }
 //                Form {
 //                    if let account = viewStore.currentAccount {
 //                        Section("Current") {

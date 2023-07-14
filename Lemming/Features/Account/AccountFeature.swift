@@ -51,9 +51,11 @@ struct AccountFeature: ReducerProtocol {
                     return .none
                 case .binding(\.$currentAccount):
                     let account = state.currentAccount
-                    if let accountId = account?.id as? String {
-                        state.userProfile.username = accountId
+                    state.userProfile.username = account?.id ?? ""
+                    if account == nil {
+                        state.userProfile.profile = nil
                     }
+                    
                     if let account {
                         accountService.setCurrentAccount(account)
                     }
