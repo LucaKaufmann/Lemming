@@ -40,6 +40,7 @@ struct AccountFeatureView: View {
                 }.sheet(store: store.scope(state: \.$addAccountSheet, action: AccountFeature.Action.addAccountSheet)) { store in
                     AddAccountFeatureView(store: store)
                 }
+                .navigationBarTitleDisplayMode(.large)
                 .toolbar {
                     ToolbarItem(placement: .automatic) {
                         Picker("Accounts", selection: viewStore.binding(\.$currentAccount)) {
@@ -59,9 +60,9 @@ struct AccountFeatureView: View {
 
 struct AccountFeatureView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountFeatureView(store: Store(initialState: .init(availableAccounts: [], userProfile: .init(items: [])), reducer: AccountFeature()))
+        AccountFeatureView(store: Store(initialState: .init(availableAccounts: [], userProfile: .init(isLoading: false, items: [])), reducer: AccountFeature()))
             .previewDisplayName("Not logged in")
-        AccountFeatureView(store: Store(initialState: .init(currentAccount: LemmingAccountModel.mockAccounts.first!, availableAccounts: LemmingAccountModel.mockAccounts, userProfile: .init(items: [])), reducer: AccountFeature()._printChanges()))
+        AccountFeatureView(store: Store(initialState: .init(currentAccount: LemmingAccountModel.mockAccounts.first!, availableAccounts: LemmingAccountModel.mockAccounts, userProfile: .init(isLoading: false, items: [])), reducer: AccountFeature()))
             .previewDisplayName("Logged in")
     }
 }

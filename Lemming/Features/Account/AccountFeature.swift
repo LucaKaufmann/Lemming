@@ -24,7 +24,6 @@ struct AccountFeature: ReducerProtocol {
     enum Action: Equatable, BindableAction {        
         case login(username: String, password: String)
         
-        case setCurrentAccount(LemmingAccountModel)
         case updateAvailableAccounts([LemmingAccountModel])
         case addAccountTapped
         
@@ -44,9 +43,6 @@ struct AccountFeature: ReducerProtocol {
         BindingReducer()
         Reduce { state, action in
             switch action {
-                case .setCurrentAccount(let account):
-                    state.currentAccount = account
-                    return .none
                 case .updateAvailableAccounts(let accounts):
                     state.availableAccounts = accounts
                     return .none
@@ -55,10 +51,16 @@ struct AccountFeature: ReducerProtocol {
                     return .none
                 case .binding(\.$currentAccount):
                     let account = state.currentAccount
+                    if let accountId = account?.id as? String {
+                        state.userProfile.username = accountId
+                    }
                     if let account {
                         accountService.setCurrentAccount(account)
                     }
-                    return .send(.delegate(.updateCurrentAccount(account)))
+                    return .run { send in
+                        await send(.delegate(.updateCurrentAccount(account)))
+                        await send(.userProfile(.refreshProfile))
+                    }
                 case .addAccountSheet(let action):
                     switch action {
                         case .presented(.loginSuccessful(let account)):

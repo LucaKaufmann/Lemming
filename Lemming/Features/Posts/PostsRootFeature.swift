@@ -46,7 +46,7 @@ struct PostsRootFeature: ReducerProtocol {
                                                                sort: .hot)))
                             return .none
                         case let .goToUser(userId):
-                            state.path.append(.user(.init(userId: userId, items: [])))
+                            state.path.append(.user(.init(userId: userId, isLoading: false, items: [])))
                             return .none
                     }
                 case let .path(.element(id: _, action: .community(action))):
@@ -55,7 +55,7 @@ struct PostsRootFeature: ReducerProtocol {
                             state.path.append(.detailPost(.init(post: post, comments: [], isLoading: false)))
                             return .none
                         case let .postsList(.delegate(.goToUser(userId))):
-                            state.path.append(.user(.init(userId: userId, items: [])))
+                            state.path.append(.user(.init(userId: userId, isLoading: false, items: [])))
                             return .none
                         default:
                             return .none

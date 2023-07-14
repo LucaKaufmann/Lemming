@@ -18,6 +18,7 @@ struct UserProfileFeature: ReducerProtocol {
         var userId: Int?
         var profile: UserProfileModel?
         
+        var isLoading: Bool
         // child features
         var items: IdentifiedArrayOf<AnyUserProfileItem>
     }
@@ -40,12 +41,15 @@ struct UserProfileFeature: ReducerProtocol {
                 return .send(.refreshProfile)
             case .refreshProfile:
                 if let username = state.username {
+                    state.isLoading = true
+                    state.items = []
+                    state.profile = nil
                     return .task {
                         let profile = try await userService.getUserDetails(userId: nil, username: username, page: 1, account: accountService.getCurrentAccount(), previewInstance: nil)
                         return .userProfileUpdated(profile)
                     }
-                } else if let username = state.username {
-                    let userId = state.userId
+                } else if let userId = state.userId {
+                    state.isLoading = true
                     return .task {
                         let profile = try await userService.getUserDetails(userId: userId, username: nil, page: 1, account: accountService.getCurrentAccount(), previewInstance: nil)
                         return .userProfileUpdated(profile)
@@ -55,7 +59,8 @@ struct UserProfileFeature: ReducerProtocol {
                 }
             case .userProfileUpdated(let profile):
                 state.profile = profile
-//                return .none
+                state.isLoading = false
+
                 return .task {
                     let profiles = await buildUserProfileItems(posts: profile.posts, comments: profile.comments)
                     return .userProfileItemsUpdated(profiles)
