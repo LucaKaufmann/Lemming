@@ -18,12 +18,12 @@ struct AccountFeature: ReducerProtocol {
         @PresentationState var addAccountSheet: AddAccountFeature.State?
         
         var availableAccounts: [LemmingAccountModel]
+        var userProfile: UserProfileFeature.State
     }
     
-    enum Action: Equatable, BindableAction {
+    enum Action: Equatable, BindableAction {        
         case login(username: String, password: String)
         
-        case setCurrentAccount(LemmingAccountModel)
         case updateAvailableAccounts([LemmingAccountModel])
         case addAccountTapped
         
@@ -31,6 +31,8 @@ struct AccountFeature: ReducerProtocol {
         case delegate(Delegate)
         case addAccountSheet(PresentationAction<AddAccountFeature.Action>)
 
+        // child features
+        case userProfile(UserProfileFeature.Action)
         
         enum Delegate: Equatable {
             case updateCurrentAccount(LemmingAccountModel?)
@@ -41,9 +43,6 @@ struct AccountFeature: ReducerProtocol {
         BindingReducer()
         Reduce { state, action in
             switch action {
-                case .setCurrentAccount(let account):
-                    state.currentAccount = account
-                    return .none
                 case .updateAvailableAccounts(let accounts):
                     state.availableAccounts = accounts
                     return .none
@@ -52,10 +51,16 @@ struct AccountFeature: ReducerProtocol {
                     return .none
                 case .binding(\.$currentAccount):
                     let account = state.currentAccount
+                    if let accountId = account?.id as? String {
+                        state.userProfile.username = accountId
+                    }
                     if let account {
                         accountService.setCurrentAccount(account)
                     }
-                    return .send(.delegate(.updateCurrentAccount(account)))
+                    return .run { send in
+                        await send(.delegate(.updateCurrentAccount(account)))
+                        await send(.userProfile(.refreshProfile))
+                    }
                 case .addAccountSheet(let action):
                     switch action {
                         case .presented(.loginSuccessful(let account)):
@@ -77,6 +82,9 @@ struct AccountFeature: ReducerProtocol {
             }
         }.ifLet(\.$addAccountSheet, action: /Action.addAccountSheet) {
             AddAccountFeature()
+        }
+        Scope(state: \.userProfile, action: /Action.userProfile) {
+            UserProfileFeature()._printChanges()
         }
     }
 }

@@ -17,19 +17,23 @@ struct UserProfileFeatureView: View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             GeometryReader { proxy in
                 ScrollView {
-                    VStack {
-                        if let user = viewStore.profile?.user {
-                            UserProfileHeaderView(user: user)
-                        }
-                        LazyVStack {
-                            ForEach(viewStore.items) { item in
-                                item.contentView
-                                Divider()
+                        VStack {
+                            if viewStore.isLoading && viewStore.profile == nil {
+                                Spacer()
+                                ProgressView()
                             }
-                        }
+                            if let user = viewStore.profile?.user {
+                                UserProfileHeaderView(user: user)
+                                    .padding(.horizontal)
+                            }
+                            LazyVStack {
+                                ForEach(viewStore.items) { item in
+                                    item.contentView
+                                    Divider()
+                                }
+                            }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
-
                     .onAppear {
                         viewStore.send(.onAppear)
                     }
@@ -145,7 +149,7 @@ struct UserProfileHeaderView: View {
 
 struct UserProfileFeatureView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileFeatureView(store: Store(initialState: UserProfileFeature.State(userId: 916074, profile: UserProfileModel.mockUser, items: []), reducer: UserProfileFeature()._printChanges()))
+        UserProfileFeatureView(store: Store(initialState: UserProfileFeature.State(userId: 916074, profile: UserProfileModel.mockUser, isLoading: false, items: []), reducer: UserProfileFeature()._printChanges()))
         UserProfileHeaderView(user: UserModel.mockUser)
             .background {
                 Color.red

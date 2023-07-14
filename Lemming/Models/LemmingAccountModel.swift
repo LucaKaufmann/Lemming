@@ -22,7 +22,7 @@ struct LemmingAccountModel: Codable, Identifiable, Equatable, Hashable {
         self.jwt = jwt
     }
     
-    static var mockAccunts: [LemmingAccountModel] {
+    static var mockAccounts: [LemmingAccountModel] {
         return [
             .init(instanceLink: "lemmy.ml", username: "Codable", jwt: "1234"),
             .init(instanceLink: "sh.itjust.works", username: "luca", jwt: "1234"),

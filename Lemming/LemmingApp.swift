@@ -21,7 +21,7 @@ struct LemmingApp: App {
                                                                                                                         isLoading: false,
                                                                                                                         sort: appSettings.getSetting(forKey: UserDefaultsKeys.postSortingKey) ?? .hot,
                                                                                                                         origin: appSettings.getSetting(forKey: UserDefaultsKeys.postOriginKey) ?? .all), sort: appSettings.getSetting(forKey: UserDefaultsKeys.postSortingKey) ?? .hot, origin: appSettings.getSetting(forKey: UserDefaultsKeys.postOriginKey) ?? .all)),
-                                                                  account: .init(currentAccount: accountService.getCurrentAccount(), availableAccounts: accountService.getAccounts()),
+                                                                  account: .init(currentAccount: accountService.getCurrentAccount(), availableAccounts: accountService.getAccounts(), userProfile: .init(username: accountService.getCurrentAccount()?.id, isLoading: false, items: [])),
                                                                   settings: .init(), search: "search",
                                                                   isLoggedIn: false), reducer: RootFeature()))
         }
