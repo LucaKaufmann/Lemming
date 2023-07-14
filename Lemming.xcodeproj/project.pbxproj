@@ -54,7 +54,6 @@
 		8192172C2A3734F20015BEF3 /* PostsFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192172B2A3734F20015BEF3 /* PostsFeatureView.swift */; };
 		8192172E2A3735B80015BEF3 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192172D2A3735B80015BEF3 /* PostModel.swift */; };
 		819217302A3737410015BEF3 /* PostsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192172F2A3737410015BEF3 /* PostsRowView.swift */; };
-		81999FFE2A4CA2BD00A9BB09 /* Lemmy-Swift-Client in Frameworks */ = {isa = PBXBuildFile; productRef = 81999FFD2A4CA2BD00A9BB09 /* Lemmy-Swift-Client */; };
 		8199A0032A4CAD7900A9BB09 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8199A0022A4CAD7900A9BB09 /* UserService.swift */; };
 		8199A0052A4CAE7400A9BB09 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8199A0042A4CAE7400A9BB09 /* UserModel.swift */; };
 		8199A0072A4CB2EF00A9BB09 /* LemmyUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8199A0062A4CB2EF00A9BB09 /* LemmyUserService.swift */; };
@@ -72,6 +71,7 @@
 		81B982F12A3A40AF00D2A3F7 /* IconConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982F02A3A40AF00D2A3F7 /* IconConstants.swift */; };
 		81B982F32A3A5DBA00D2A3F7 /* PostsRootFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982F22A3A5DBA00D2A3F7 /* PostsRootFeature.swift */; };
 		81B982F52A3A5E1600D2A3F7 /* PostsRootFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B982F42A3A5E1600D2A3F7 /* PostsRootFeatureView.swift */; };
+		81E874272A61D3BB003810EC /* Lemmy-Swift-Client in Frameworks */ = {isa = PBXBuildFile; productRef = 81E874262A61D3BB003810EC /* Lemmy-Swift-Client */; };
 		81E9A5CD2A3C45DC0014CD86 /* LemmingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E9A5CC2A3C45DC0014CD86 /* LemmingTests.swift */; };
 		81E9A5D42A3C45F00014CD86 /* CommentParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E9A5D32A3C45F00014CD86 /* CommentParsingTests.swift */; };
 		81EC51702A4DB4620053400C /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC516F2A4DB4620053400C /* NumberFormatter.swift */; };
@@ -189,7 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81999FFE2A4CA2BD00A9BB09 /* Lemmy-Swift-Client in Frameworks */,
+				81E874272A61D3BB003810EC /* Lemmy-Swift-Client in Frameworks */,
 				81B982EB2A39E88600D2A3F7 /* CachedAsyncImage in Frameworks */,
 				818E8A242A40630600013875 /* KeychainSwift in Frameworks */,
 				8192171C2A364AEF0015BEF3 /* ComposableArchitecture in Frameworks */,
@@ -569,7 +569,7 @@
 				8192171B2A364AEF0015BEF3 /* ComposableArchitecture */,
 				81B982EA2A39E88600D2A3F7 /* CachedAsyncImage */,
 				818E8A232A40630600013875 /* KeychainSwift */,
-				81999FFD2A4CA2BD00A9BB09 /* Lemmy-Swift-Client */,
+				81E874262A61D3BB003810EC /* Lemmy-Swift-Client */,
 			);
 			productName = Lemming;
 			productReference = 819217082A364A950015BEF3 /* Lemming.app */;
@@ -625,7 +625,7 @@
 				8192171A2A364AEF0015BEF3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				81B982E92A39E88600D2A3F7 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 				818E8A222A40630600013875 /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				81999FFC2A4CA2BD00A9BB09 /* XCRemoteSwiftPackageReference "Lemmy-Swift-Client" */,
+				81E874252A61D3BB003810EC /* XCRemoteSwiftPackageReference "Lemmy-Swift-Client" */,
 			);
 			productRefGroup = 819217092A364A950015BEF3 /* Products */;
 			projectDirPath = "";
@@ -1042,20 +1042,20 @@
 				minimumVersion = 0.54.0;
 			};
 		};
-		81999FFC2A4CA2BD00A9BB09 /* XCRemoteSwiftPackageReference "Lemmy-Swift-Client" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LucaKaufmann/Lemmy-Swift-Client";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		81B982E92A39E88600D2A3F7 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
+			};
+		};
+		81E874252A61D3BB003810EC /* XCRemoteSwiftPackageReference "Lemmy-Swift-Client" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rrainn/Lemmy-Swift-Client.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1071,15 +1071,15 @@
 			package = 8192171A2A364AEF0015BEF3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
-		81999FFD2A4CA2BD00A9BB09 /* Lemmy-Swift-Client */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 81999FFC2A4CA2BD00A9BB09 /* XCRemoteSwiftPackageReference "Lemmy-Swift-Client" */;
-			productName = "Lemmy-Swift-Client";
-		};
 		81B982EA2A39E88600D2A3F7 /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 81B982E92A39E88600D2A3F7 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;
+		};
+		81E874262A61D3BB003810EC /* Lemmy-Swift-Client */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81E874252A61D3BB003810EC /* XCRemoteSwiftPackageReference "Lemmy-Swift-Client" */;
+			productName = "Lemmy-Swift-Client";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
