@@ -15,6 +15,9 @@ protocol UserProfileItem {
     
     /// SwiftUI View
     associatedtype ViewBody: View
+    associatedtype LeadingViewBody: View
+    associatedtype TrailingViewBody: View
+
     
     /// Payload required to initialize the card
     associatedtype Data: UserProfileItemData
@@ -23,6 +26,9 @@ protocol UserProfileItem {
     var timestamp: Date { get }
     var data: Data { get }
     func make() -> ViewBody
+    func makeLeadingAction() -> LeadingViewBody
+    func makeTrailingAction() -> TrailingViewBody
+
 
     static var kind: UserProfileItemKind { get }
     init(id: Int, timestamp: Date, data: Data)
@@ -44,6 +50,8 @@ struct AnyUserProfileItem: Identifiable, Equatable {
     var timestamp: Date
     let kind: UserProfileItemKind
     private let make: () -> AnyView
+    private let makeLeadingAction: () -> AnyView
+    private let makeTrailingAction: () -> AnyView
 
     init<ItemType>(_ item: ItemType) where ItemType: UserProfileItem {
         self.item = item
@@ -53,10 +61,24 @@ struct AnyUserProfileItem: Identifiable, Equatable {
         self.make = {
             AnyView(item.make())
         }
+        self.makeLeadingAction = {
+            AnyView(item.makeLeadingAction())
+        }
+        self.makeTrailingAction = {
+            AnyView(item.makeTrailingAction())
+        }
     }
 
     var contentView: AnyView {
         make()
+    }
+    
+    var leadingActions: AnyView {
+        makeLeadingAction()
+    }
+    
+    var trailingActions: AnyView {
+        makeTrailingAction()
     }
 }
 

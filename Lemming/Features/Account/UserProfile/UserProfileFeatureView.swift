@@ -15,38 +15,48 @@ struct UserProfileFeatureView: View {
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            GeometryReader { proxy in
-                ScrollView {
-                        VStack {
-                            if viewStore.isLoading && viewStore.profile == nil {
-                                Spacer()
-                                ProgressView()
-                            }
-                            if let user = viewStore.profile?.user {
-                                UserProfileHeaderView(user: user)
-                                    .padding(.horizontal)
-                            }
-                            LazyVStack {
-                                ForEach(viewStore.items) { item in
-                                    item.contentView
-                                    Divider()
-                                }
-                            }
+            List {
+                if viewStore.isLoading && viewStore.profile == nil {
+                    Spacer()
+                    ProgressView()
+                }
+                if let user = viewStore.profile?.user {
+                    UserProfileHeaderView(user: user)
                         .padding(.horizontal)
-                    }
-                    .onAppear {
-                        viewStore.send(.onAppear)
-                    }
-                    .ignoresSafeArea()
+                        .listRowBackground(Color.clear)
                 }
-                .navigationTitle(viewStore.profile?.user.displayName ?? (viewStore.profile?.user.name ?? ""))
-                .background {
-                    Color
-                        .LemmingColors
-                        .background
-                        .ignoresSafeArea()
+                ForEach(viewStore.items) { item in
+                    item.contentView
+                        .listRowBackground(Color.clear)
+                        .swipeActions(edge: .leading) {
+                            item.leadingActions
+                        }
+                        .swipeActions(edge: .trailing) {
+                            item.trailingActions
+                        }
                 }
+                .padding(.horizontal)
             }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
+            .navigationTitle(viewStore.profile?.user.displayName ?? (viewStore.profile?.user.name ?? ""))
+            .background {
+                #if os(xrOS)
+                Color
+                    .LemmingColors
+                    .background
+                    .opacity(0.5)
+                    .ignoresSafeArea()
+                #else
+                Color
+                    .LemmingColors
+                    .background
+                    .ignoresSafeArea()
+                #endif
+            }
+            .scrollContentBackground(.hidden)
+            .listStyle(.plain)
         }
     }
 }

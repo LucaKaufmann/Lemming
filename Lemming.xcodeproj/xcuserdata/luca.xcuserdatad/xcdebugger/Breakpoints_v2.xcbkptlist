@@ -271,6 +271,21 @@
                   endingLineNumber = "70"
                   offsetFromSymbolStart = "1944">
                </Location>
+               <Location
+                  uuid = "D975241D-3C2B-4062-9073-09959F66A402 - 9d766ebf2e4d8637"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Lemming.CommentDetailFeature.State, Lemming.CommentDetailFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;Lemming.CommentDetailFeature.Action, Swift.Never&gt; in Lemming.CommentDetailFeature.body.getter : some"
+                  moduleName = "Lemming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luca/git/Lemming/Lemming/Features/Posts/PostDetail/CommentDetail/CommentDetailFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "1920">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>

@@ -25,9 +25,42 @@ struct UserProfilePostItem: UserProfileItem {
         }
     }
     
+    private struct LeadingActionContent: View {
+        var body: some View {
+            Button {
+                print("Upvote item")
+                //                                viewStore.send(.upvotePost(post))
+            } label: {
+                Label("Upvote", systemImage: IconConstants.upvote)
+            }
+            .tint(Color.LemmingColors.upvote)
+        }
+    }
+    
+    private struct TrailingActionContent: View {
+        var body: some View {
+            Button {
+                //                                viewStore.send(.upvotePost(post))
+            } label: {
+                Label("Comment", systemImage: IconConstants.comment)
+            }
+            .tint(Color.LemmingColors.comments)
+        }
+    }
+    
     func make() -> some View {
         Content(data: data)
     }
+    
+    func makeLeadingAction() -> some View {
+        LeadingActionContent()
+    }
+    
+    func makeTrailingAction() -> some View {
+        TrailingActionContent()
+    }
+    
+    
     
     var data: Data
     
